@@ -1,0 +1,15 @@
+/* 
+    Document   : css-layer
+    Created on : 21-may-2010, 12:39:13
+    Author     : Davis
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.contenTabs {
+    width: 100%;
+    float: left;
+}
+.contenTabs div{
+    min-width: 65px;
+    float:left;
+}

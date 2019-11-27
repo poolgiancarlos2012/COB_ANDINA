@@ -1,0 +1,29 @@
+<?php
+/**
+ * Description of servletPermisosDetalle
+ *
+ * @author Davis
+ */
+class servletPermisosDetalle extends CommandController {
+    public function doPost() {
+    }
+    public function doGet() {
+        $daoPermisos=DAOFactory::getDAOPermisosDetalle();
+        $daoNivelesPermisos = DAOFactory::getDAONivelesPermisos();
+        switch ($_GET["action"]) {
+            case 'listarNiveles':
+                echo $daoNivelesPermisos->listarNivelesPermisos();
+                break;
+            case 'buscarPermisos':
+                $obj = new dto_niveles_permisos();
+                $obj->setId($_GET["id"]);
+                echo $daoPermisos->buscarPermisos($obj);
+                break;
+
+            default:
+                echo "Error";
+                break;
+        }
+    }
+}
+?>

@@ -1,0 +1,30 @@
+var xidServicio = 1;//$("#hddServicio").val();
+$(document).ready(function(){
+    tab.init();
+    $("#btnUploadFile").click(upLoadFile);
+    CargaCarteraDAO.filechoose();
+    CargaCarteraDAO.loadCampania(xidServicio);
+});
+upLoadFile = function(){
+    CargaCarteraDAO.loadFile();
+}
+var tab = {
+    init:function(){
+        $("#optionUsuario").click(function(){
+            _activeTabLayer("contenOption","option",this,"layerOption","layer","layerUsuario");
+        });
+        $("#optionCuenta").click(function(){
+            _activeTabLayer("contenOption","option",this,"layerOption","layer","layerCuenta");
+        });
+        $("#optionOperacion").click(function(){
+            _activeTabLayer("contenOption","option",this,"layerOption","layer","layerOperacion");
+        });
+        $("#optionTelefono").click(function(){
+            _activeTabLayer("contenOption","option",this,"layerOption","layer","layerTelefono");
+        });
+        $("#optionDireccion").click(function(){
+            _activeTabLayer("contenOption","option",this,"layerOption","layer","layerDireccion");
+        });
+        $("#layerOption").find("div[id^='layer']").not("div:first-child").css({display:'none'});
+    }    
+}

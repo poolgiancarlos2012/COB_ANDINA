@@ -1,0 +1,1 @@
+C:\xampp\php\php.exe -f C:\xampp\htdocs\COB_ANDINA\tarea\cargar_correo.php $namefile >> C:\xampp\htdocs\COB_ANDINA\tarea\cargar_correo.log

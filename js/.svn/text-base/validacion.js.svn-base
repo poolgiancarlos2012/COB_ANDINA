@@ -1,0 +1,63 @@
+var validacion={
+        check : function ( Json  ) {
+            for ( i=0; i<Json.length ; i++ ){
+                data = Json[i];
+                if(data.type=='text'){
+                    var trim = $.trim( $('#'+data.id).val()  );
+                    if(data.required ){
+                        if( trim=='' ){
+                            return false;
+                            break;
+                        }
+                    }else if ( data.isEmail  ) {
+                        var email=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                        if(!email.test(trim)){
+                            return false;
+                            break;
+                        }
+                    }else if ( data.isNumber ) {
+                        var number=/^(?:\+|-)?\d+$/;
+                        if(!number.test(trim)){
+                            return false;
+                            break;
+                        }
+                    }else if ( data.isDecimal ) {
+                        var decimal=/^\d+\.?\d*$/;
+                        if(!decimal.test(trim)){
+                            return false;
+                            break;
+                        }
+                        
+                    }else if ( data.isAlpha ) {
+                        var alpha=/[[:alpha:]]/;
+                        if(alpha.test(trim)){
+                            return false;
+                            break;
+                       }
+
+                    }else if( data.isDNI ) {
+                        var dni=/^\d{1,8}$/;
+                        if(! dni.test(trim)){
+                           return false;
+                           break;
+                        }
+                    }else if ( data.isDate ) {
+                        var date=/^^/;
+                        if(! date.test(trim)){
+                            return false;
+                            break;
+                        }
+                    }
+
+                }else if (data.type=='selected') {
+                    var value=$('#'+data.id).val();
+                    if(value==data.valueFalse){
+                        return false;
+                        break;
+                    }
+                }
+                
+            }  
+        }
+
+    }

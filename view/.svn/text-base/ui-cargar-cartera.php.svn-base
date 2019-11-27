@@ -1,0 +1,315 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title></title>
+        <!--<link type="text/css" rel="stylesheet"
+              href="../includes/jqgrid5/css/ui.jqgrid.css" />
+        <link type="text/css" rel="stylesheet"
+              href="../includes/jquery-ui-1.8/themes/humanity/jquery-ui.css" />
+
+        <script type="text/javascript" src="../js/includes/jquery-1.4.2.js"></script>
+        <script type="text/javascript"
+        src="../includes/jqgrid5/src/i18n/grid.locale-en.js"></script>
+        <script type="text/javascript" src="../includes/jqgrid5/src/jqModal.js"></script>
+        <script type="text/javascript"
+        src="../includes/jqgrid5/src/grid.base.js"></script>
+        <script type="text/javascript" src="../includes/jqgrid5/src/grid.celledit.js"></script>
+        <script type="text/javascript"
+        src="../includes/jqgrid5/src/grid.common.js"></script>-->
+        <link type="text/css" rel="stylesheet" href="../css/css-cobrast.css" />
+        <link type="text/css" rel="stylesheet" href="../css/css-layer.css" />
+        <link href="../includes/uploadify/uploadify.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="../js/includes/jquery-1.4.2.js"></script>
+        <script type="text/javascript" src="../includes/uploadify/jquery.uploadify.v2.1.0.js" ></script>
+        <script type="text/javascript" src="../includes/uploadify/swfobject.js" ></script>
+        <script type="text/javascript" src="../js/js-cobrast.js"></script>
+        <script type="text/javascript" src="../js/CargaCarteraDAO.js"></script>
+        <script type="text/javascript" src="../js/js-carga-cartera.js"></script>
+
+    </head>
+    <body>
+        <div style="width: 100%; margin: 0 auto;">
+            <table class="tableTab" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td rowspan="2" width="100"></td>
+                    <td>
+                        <div class="rightItem">
+                            <div class="fltRight"><a class="itemTop">Cerra Sesion</a></div>
+                            <div class="fltRight"><a class="itemTop">Ayuda</a></div>
+                            <div class="fltRight"><a class="itemTop">Whats' New</a></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="vAlignBottom tabsLine">
+                        <div class="menuHome"><span>
+                                <div>
+                                    <table cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td>
+                                                <div id="tabMaestro" class="itemTabActive border-radius-top pointer" onclick="_activeTab(this)">
+                                                    <a class="text-white">Servicios</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                                    <a class="AitemTab">Usuarios</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                                    <a class="AitemTab">Campa&ntilde;as</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                                    <a class="AitemTab">Cartera</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div id="tabDistribucion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                                    <a class="AitemTab">Distribucion</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div id="tabProcesos" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                                    <a class="AitemTab">Procesos</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div id="tabSpeech" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                                    <a class="AitemTab">Speech</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div id="tabGestion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                                    <a class="AitemTab">Gestion</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div id="tabGestion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                                    <a class="AitemTab">Reportes</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div id="tabPapelera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                                    <a class="AitemTab">Adicionales</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lineTab" colspan="2"></td>
+                </tr>
+            </table>
+            <table class="tableContent" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="barLayer">
+                        <div id="barLayer" style="width: 210px; display: block;">
+                            <div class=" backPanel headerPanel">
+                                <div class="backPanel iconPinUp"
+                                     onclick="_slideBarLayer(this,'panelMenu')">Menu</div>
+                            </div>
+                            <div id="panelMenu" class="backPanel contentBarLayer"
+                                 style="display: block;">
+                                <table border="0" style="margin-left: 20px;">
+                                    <tr>
+                                        <td><a class="text-blue" style="cursor: pointer;"
+                                               onClick="_display_panel('panelRegistrosUsuario')">Nuevo</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="text-blue" style="cursor: pointer;"
+                                               onClick="_display_panel('panelNuevoUsuario')">Registros</a></td>
+                                    </tr>
+                                    <!--<tr>
+                                            <td><a class="text-blue" style="cursor:pointer;">Papelera</a></td>
+                                        </tr>-->
+                                </table>
+                            </div>
+                            <div class=" backPanel headerPanel">
+                                <div class="backPanel iconPinUp"
+                                     onclick="_slideBarLayer(this,'panelCrear')">Crear</div>
+                            </div>
+                            <div id="panelCrear" class="backPanel contentBarLayer"
+                                 style="display: block;">
+                                <table>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                    <td id="showhide" width="10px" class="showHide"><a
+                            onclick="_sliderFadeBarLayer()">
+                            <div id="iconSlider" class="slider icon sliderIconUp"></div>
+                        </a></td>                    
+                    <td width="100%">
+                        <!--  Aqui Comienza el contenido de mi pagina. -->
+                        <div style="width: 100%; height: 100%;">
+                            <div>
+                                <label>Campaña</label>
+                                <select id="cboCampania">
+                                </select>
+                            </div>
+                            <div>
+                                <label>Elejir Archivo</label>
+                                <input type="file" id="flCartera"/>
+                            </div>
+                            <div>
+                                <button id="btnUploadFile">Levantar Informacion</button>
+                            </div>
+                            <div id="contenOption" class="contenTabs">
+                                <div id="optionUsuario" class="border-radius-top pointer itemTabActive"><div class="text-white">Cliente</div></div>
+                                <div id="optionCuenta" class="itemTab border-radius-top pointer"><div class="AitemTab">Cuenta</div></div>
+                                <div id="optionOperacion" class="itemTab border-radius-top pointer"><div class="AitemTab">Operacion</div></div>
+                                <div id="optionTelefono" class="itemTab border-radius-top pointer"><div class="AitemTab">Telefono</div></div>
+                                <div id="optionDireccion" class="itemTab border-radius-top pointer"><div class="AitemTab">Direccion</div></div>
+                            </div>
+                            <div id="layerOption">
+                                <!-- Datos de Usuario -->
+                                <div id="layerUsuario">
+                                    <div>
+                                        <label>Codigo Cliente</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Nombre</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Paterno</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Materno</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>DNI</label>
+                                        <select></select>
+                                    </div>
+                                </div>
+                                <!-- Datos de Cuenta -->
+                                <div id="layerCuenta">
+                                    <div>
+                                        <label>Numero de Cuenta</label>
+                                        <select></select>
+                                    </div>
+                                </div>
+                                <!-- Datos de Operacion -->
+                                <div id="layerOperacion">
+                                    <div>
+                                        <label>Codigo de Operacion</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Moneda</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Dia Mora</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Total Deuda Soles</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Total Deuda Dolares</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Monto Mora</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Monto Mora Soles</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Monto Mora Dolares</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Saldo Capital</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Saldo Capital Soles</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Saldo Capital Dolares</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Fecha Asignacion</label>
+                                        <select></select>
+                                    </div>
+                                </div>
+                                <!-- Datos de Telefono -->
+                                <div id="layerTelefono">
+                                    <div>
+                                        <label>Telefono</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Tipo</label>
+                                        <select></select>
+                                    </div>
+                                </div>
+                                <!-- Datos de Direccion-->
+                                <div id="layerDireccion">
+                                    <div>
+                                        <label>Direccion</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Ubigeo</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Dpto</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Prov</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Distrito</label>
+                                        <select></select>
+                                    </div>
+                                    <div>
+                                        <label>Tipo de Direccion</label>
+                                        <select></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button id="btnCargarCartera">Cargar Cartera</button>
+                            </div>
+                        </div>
+                        <!--  Aqui Termina el contenido de mi pagina. -->
+                    </td>                    
+                </tr>
+            </table>
+            <div style="width: 100%; height: 20px; background-color: #F0E8D9; border: 0 none;"></div>
+        </div>
+    </body>
+</html>
+

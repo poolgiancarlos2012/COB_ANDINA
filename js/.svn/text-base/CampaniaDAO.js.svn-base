@@ -1,0 +1,92 @@
+var CampaniaDAO = {
+		url : '../controller/ControllerCobrast.php',
+		retornarData : function ( ) {
+			return {command:'campania',Id:$('#IdCampania').val(),Servicio:$('#hdCodServicio').val(),Nombre:$('#txtCampania'),FechaInicio:$('#txtFechaInicio').val(),FechaFin:$('#txtFechaFin').val(),Descripcion:$('#txtDescripcion').val(),UsuarioCreacion:$('#hdCodUsuario').val(),UsuarioModificacion:$('#hdCodUsuario').val()};
+		},
+		Save : function ( ) {
+				var dataJson=$.extend({action:'save_campania'},this.retornarData());
+				$.ajax({
+					   url : this.url,
+					   type:'POST',
+					   dataType : 'json',
+					   data : dataJson,
+					   beforeSend : function ( ) {
+						   		_displayBeforeSend('Guardando Campa&ntilde;a...',200);
+						   },
+					   success : function ( obj ) {
+						   		_noneBeforeSend();
+								if(obj.rst){
+									$('#layerMessage').html(templates.MsgInfo(obj.msg,'250px'));
+								}else{
+									$('#layerMessage').html(templates.MsgError(obj.msg,'250px'));	
+								}
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		Delete : function ( ) {
+				var dataJson=$.extend({command:'usuario',action:'delete_campania'},this.retornarData());
+				$.ajax({
+					   url : this.url,
+					   type:'POST',
+					   dataType : 'json',
+					   data : dataJson,
+					   beforeSend : function ( ) {
+						   		_displayBeforeSend('Eliminando Campa&ntilde;a...',200);
+						   },
+					   success : function ( obj ) {
+						   		_noneBeforeSend();
+								if(obj.rst){
+									$('#layerMessage').html(templates.MsgInfo(obj.msg,'250px'));
+								}else{
+									$('#layerMessage').html(templates.MsgError(obj.msg,'250px'));	
+								}
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		Update : function ( ) {
+				var dataJson=$.extend({command:'usuario',action:'update_campania'},this.retornarData());
+				$.ajax({
+					   url : this.url,
+					   type:'POST',
+					   dataType : 'json',
+					   data : dataJson,
+					   beforeSend : function ( ) {
+						   		_displayBeforeSend('Actualizando Campa&ntilde;a...',200);
+						   },
+					   success : function ( obj ) {
+						   		_noneBeforeSend();
+								if(obj.rst){
+									$('#layerMessage').html(templates.MsgInfo(obj.msg,'250px'));
+								}else{
+									$('#layerMessage').html(templates.MsgError(obj.msg,'250px'));	
+								}
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		DataById : function ( Campania ) {
+				$.ajax({
+					   url : this.url,
+					   type : 'GET',
+					   dataType : 'json',
+					   data : {command:'campania',action:'DataById',Id:Campania},
+					   success : function ( obj ) {
+						   		
+								$('#txtCampania').val(obj[0].nombre);
+								$('#txtFechaInicio').val(obj[0].fecha_inicio);
+								$('#txtFechaFin').val(obj[0].fecha_fin);
+								$('#txtDescripcion').val(obj[0].descripcion);
+								$('#IdCampania').val(obj[0].idcampania);
+								if(obj[0].usuario_creacion!=$('#hdCodUsuario').val()){
+									$('#txtUsuarioCreacion').val(obj[0].nombre_usuario_creacion);	
+								}
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		error_ajax : function ( ) {
+				$('#layerMessage').html(templates.MsgError('Error en el servidor','200px'));
+			}
+	}

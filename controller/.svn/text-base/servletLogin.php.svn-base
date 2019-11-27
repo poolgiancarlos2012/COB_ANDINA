@@ -1,0 +1,31 @@
+<?php
+
+    class servletLogin extends CommandController {
+          public function doPost() {
+              $dao=DAOFactory::getDAOUsuarioServicio();
+              switch ($_POST['action']):
+                case 'check':
+                    $dtoUsuario=new dto_usuario ;
+                    $dtoServicio=new dto_servicio ;
+                    $dtoUsuario->setDni($_POST['Usuario']);
+                    $dtoUsuario->setClave($_POST['Password']);
+                    $dtoServicio->setId($_POST['Servicio']);
+
+                    $check=$dao->check($dtoUsuario, $dtoServicio);
+                    if($check[0]['COUNT']==1){
+                        echo json_encode(array('rst'=>true,'msg'=>'Usuario logeado correctamente'));
+                        $dataUsuario=$dao->queryLogin($dtoUsuario, $dtoServicio);
+                        $_SESSION['cobrast']=$dataUsuario[0];
+                    }else{
+                        echo json_encode(array('rst'=>false,'msg'=>'Usuario no se encuentra registrado'));
+                    }
+                    
+                break;
+              endswitch;
+          }
+          public function doGet() {
+              
+          }
+    }
+
+?>

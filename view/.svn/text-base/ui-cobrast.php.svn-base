@@ -1,0 +1,377 @@
+<link type="text/css" rel="stylesheet" href="../includes/jqgrid6/css/ui.jqgrid.css" />
+<link type="text/css" rel="stylesheet" href="../includes/jquery-ui-1.8/themes/humanity/jquery-ui.css" />
+
+<link type="text/css" rel="stylesheet" href="../css/css-cobrast.css" />
+<script type="text/javascript" src="../js/includes/jquery-1.4.2.js" ></script>
+
+<script type="text/javascript" src="../includes/jqgrid6/src/i18n/grid.locale-en.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/jqModal.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.base.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.common.js" ></script>
+
+
+<script type="text/javascript" src="../js/js-cobrast.js" ></script>
+<div style="width:100%; margin:0 auto;">
+	<table class="tableTab" cellpadding="0" cellspacing="0" border="0">
+    	<tr>
+        	<td rowspan="2" width="100"></td>
+            <td>
+            	<div class="rightItem">
+                	<div class="fltRight">
+                    	<a class="itemTop">Cerra Sesion</a>
+                    </div>
+                    <div class="fltRight">
+                    	<a class="itemTop">Ayuda</a>
+                    </div>
+                    <div class="fltRight">
+                    	<a class="itemTop">Whats' New</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+        	<td class="vAlignBottom tabsLine">
+            	<div class="menuHome">
+                	<span>
+                    	<div>
+                        	<table cellpadding="0" cellspacing="0" border="0">
+                            	<tr>
+                                	<td>
+                                    	<div id="tabMaestro" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Servicios</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Usuarios</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                            <a class="AitemTab">Campa&ntilde;as</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Cartera</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabDistribucion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Distribucion</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabProcesos" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Procesos</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabSpeech" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Speech</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabGestion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Gestion</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabGestion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Reportes</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabPapelera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Adicionales</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+        	<td class="lineTab" colspan="2"></td>
+        </tr>
+    </table>
+    <table class="tableContent" cellpadding="0" cellspacing="0" border="0">
+    	<tr>
+        	<td class="barLayer">
+            	<div id="barLayer" style="width:210px; display:block;">	
+                	<div class=" backPanel headerPanel">
+                    	<div class="backPanel iconPinUp" onclick="_slideBarLayer(this,'panelMenu')">Menu</div>
+                    </div>
+                    <div id="panelMenu" class="backPanel contentBarLayer" style="display:block;" >
+                    	<table border="0" style="margin-left:20px;" >
+                        	<tr>
+                            	<td>Usuarios</td>
+                            </tr>
+                            <tr>
+                            	<td>Teleoperadores</td>
+                            </tr>
+                            <tr>
+                            	<td>Servicios</td>
+                            </tr>
+                            <tr>
+                            	<td>Campa&ntilde;as</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class=" backPanel headerPanel">
+                    	<div class="backPanel iconPinUp" onclick="_slideBarLayer(this,'panelCrear')">Crear</div>
+                    </div>
+                    <div id="panelCrear" class="backPanel contentBarLayer" style="display:block;" >
+                    	<table>
+                        	<tr>
+                            	<td></td>
+                            </tr>
+                            <tr>
+                            	<td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td id="showhide" width="10px" class="showHide">
+            	<a onclick="_sliderFadeBarLayer()">
+                	<div id="iconSlider" class="slider icon sliderIconUp"></div>
+                </a>
+            </td>
+            <td width="100%">	
+            	<div id="cobrastHOME" style="background-color:#FFFFFF; width:100%; height:100%; ">
+                	<div>
+                    	<table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp" onclick="_slide(this,'content_table_user')"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Usuarios</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris">Nuevo</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="content_table_user" style="display:none; padding:5px 10px 5px 20px ;">
+                        	<table id="table_user"></table>
+                            <div id="pager_table_user"></div>
+                        </div>
+                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp" onclick="_slide(this,'content_table_service')"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Servicios</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris">Nuevo</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="content_table_service" style="display:none; padding:5px 10px 5px 20px;">
+                        	<table id="table_service"></table>
+                            <div id="pager_table_service"></div>
+                        </div>
+                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Campa&ntilde;as</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris">Nuevo</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="display:none;">
+                        	<table></table>
+                            <div></div>
+                        </div>
+                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Teleoperadores</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris">Nuevo</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="display:none;">
+                        	<table></table>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div>
+                    	<table cellpadding="0" cellspacing="0" border="0" class="tableForm">
+                        	<tr>
+                            	<td></td>
+                                <td class="text-black" style="font-size:18px; border-bottom:1px solid #F1F1F1;">Crear Servicio</td>
+                            </tr>
+                        </table>
+						<table cellpadding="0" cellspacing="0" border="0" class="tableForm">
+                        	<tr>
+                            	<td>
+									<div align="center">
+                                    	<table>
+                                        	<tr>
+                                            	<td><button class="button">Guardar</button></td>
+                                                <td><button class="button">Cancelar</button></td>
+                                            </tr>
+                                        </table>
+	                                    <div style="float:right; color:#AB0D05; font-weight:bold; ">*Campos requeridos</div>
+                                    </div>
+                                </td>
+                            </tr>
+							<tr>
+                            	<td>
+                                	<span class="text-black" style="margin-left:5px;font-size:15px;">Informacion sobre Servicio</span>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                	<div>
+                                    	<table align="center" class="tableForm BoxContent" cellpadding="0" cellspacing="0">
+                                        	<tr>
+                                            	<td class="rowLastBoxContent textForm">Usuario de creacion:</td>
+                                                <td><input type="text" class="cajaForm" style="width:100%;" /></td>
+                                                <td class="rowLastBoxContent text-alert" style="text-align:right;">*Nombre de Servicio:</td>
+                                                <td><input type="text" class="cajaForm" style="width:100%;" /></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td><span class="text-black" style="margin-left:5px;font-size:15px;">Descripcion/Informacion</span></td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                	<div>
+                                    	<table align="center" class="tableForm BoxContent" cellpadding="0" cellspacing="0">
+                                        	<tr>
+                                            	<td valign="top" class="rowLastBoxContent textForm">Descripcion:</td>
+                                                <td><textarea class="cajaForm" style="width:100%;"></textarea></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                	<div align="center">
+                                    	<table>
+                                        	<tr>
+                                            	<td><button class="button">Guardar</button></td>
+                                                <td><button class="button">Cancelar</button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+						<table cellpadding="0" cellspacing="0" border="0" class="tableForm">
+                        	<tr>
+                            	<td></td>
+                                <td class="text-black" style="font-size:18px; border-bottom:1px solid #F1F1F1;">Crear Usuarios</td>
+                            </tr>
+                        </table>
+						<table cellpadding="0" cellspacing="0" border="0" class="tableForm">
+                        	<tr>
+                            	<td>
+									<div align="center">
+                                    	<table>
+                                        	<tr>
+                                            	<td><button class="button">Guardar</button></td>
+                                                <td><button class="button">Cancelar</button></td>
+                                            </tr>
+                                        </table>
+	                                    <div style="float:right; color:#AB0D05; font-weight:bold; ">*Campos requeridos</div>
+                                    </div>
+                                </td>
+                            </tr>
+							<tr>
+                            	<td>
+                                	<span class="text-black" style="margin-left:5px;font-size:15px;">Informacion sobre Usuario</span>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                	<div>
+                                    	<table align="center" class="tableForm BoxContent" cellpadding="0" cellspacing="0">
+                                        	<tr>
+                                            	<td class="rowBoxContent textForm">Usuario de creacion:</td>
+                                                <td><input type="text" class="cajaForm" style="width:100%;" /></td>
+                                                <td class="rowBoxContent text-alert" style="text-align:right;">*Nombre:</td>
+                                                <td><input type="text" class="cajaForm" style="width:100%;" /></td>
+                                            </tr>
+                                        	<tr>
+                                            	<td class="rowBoxContent text-alert" style="text-align:right;">*Paterno:</td>
+                                                <td><input type="text" class="cajaForm" style="width:100%;" /></td>
+                                                <td class="rowBoxContent text-alert" style="text-align:right;">*Materno:</td>
+                                                <td><input type="text" class="cajaForm" style="width:100%;" /></td>
+                                            </tr>
+                                        	<tr>
+                                            	<td class="rowBoxContent text-alert" style="text-align:right;">*DNI:</td>
+                                                <td><input type="text" class="cajaForm" style="width:100%;" /></td>
+                                                <td class="rowBoxContent textForm" style="text-align:right;">RUC:</td>
+                                                <td><input type="text" class="cajaForm" style="width:100%;" /></td>
+                                            </tr>
+											<tr>
+                                            	<td class="rowLastBoxContent textForm" style="text-align:right;">Email:</td>
+                                                <td><input type="text" class="cajaForm" style="width:100%;" /></td>
+                                            	<td class="rowLastBoxContent text-alert" style="text-align:right;">*Clave:</td>
+                                                <td><input type="password" class="cajaForm" style="width:100%;" /></td>
+                                            </tr>
+										</table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                	<div align="center">
+                                    	<table>
+                                        	<tr>
+                                            	<td><button class="button">Guardar</button></td>
+                                                <td><button class="button">Cancelar</button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div style="width:100%; height:20px; background-color:#F0E8D9; border:0 none;"></div>
+</div>

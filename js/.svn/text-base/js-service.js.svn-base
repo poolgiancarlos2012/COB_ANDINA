@@ -1,0 +1,33 @@
+$(document).ready(function(){
+        ServicioJQGRID.servicio();
+        /*****************/
+		$('#layerDatepicker').datepicker({inline:true,autoSize:true});
+});
+save_servicio=function(){
+	var xname=$("#txtNombre").val();
+	var xdescription=$("#txtDescripcion").val();
+    var xidusuario=$("#hdIdUsuario").val();
+	ServicioDAO.insert();
+        
+}
+update_servicio=function(){
+	var xid=$("#hdIdServicio").val();
+	var xname=$("#txtNombre").val();
+	var xdescription=$("#txtDescripcion").val();
+    var xidusuario=$("#hdIdUsuario").val();
+	ServicioDAO.update();
+}
+delete_servicio=function(){
+	var xid=$("#hdIdServicio").val();
+    var xidusuario=$("#hdIdUsuario").val();
+	ServicioDAO.Delete();
+}
+cancel=function(){
+	$("#panelCrearServicio :text").val('');
+	$("#panelCrearServicio textarea").val('');
+}
+edit_servicio = function ( ) {
+	var id=$("#table_servicio").jqGrid("getGridParam",'selrow');
+	ServicioDAO.DataById(id);
+	_display_panel('panelCrearServicio');
+}

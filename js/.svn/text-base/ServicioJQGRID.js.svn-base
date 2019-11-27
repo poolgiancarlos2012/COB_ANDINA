@@ -1,0 +1,53 @@
+var ServicioJQGRID={
+    type:'json',
+    usuario:function(){
+        $("#table_user").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=servicio&action=jqgrid_usuario',
+                                        datatype:this.type,
+                                        gridview:true,
+                                        height:100,
+                                        colNames:['Nombre','Dni'],
+                                        colModel:[
+                                                        { name:'nombre_usuario',index:'nombre_usuario',align:'center',width:400 },
+                                                        { name:'dni',index:'dni',align:'center',width:100 }
+                                                    ],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_user',
+                                        sortname:'nombre_usuario',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+		
+	
+		
+    },
+    servicio:function(){
+        $("#table_servicio").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=servicio&action=jqgrid_servicio',
+                                        datatype:this.type,
+                                        gridview:true,
+                                        height:150,
+                                        colNames:['Nombre','Descripcion'],
+                                        colModel:[
+                                                        { name:'nombre',index:'nombre',align:'center',width:150 },
+                                                        { name:'descripcion',index:'descripcion',align:'center',width:550 }
+                                                        ],
+                                        rowNum:10,
+                                        rowList:[10,15],
+                                        rownumbers:true,
+                                        pager:'#pager_table_servicio',
+                                        sortname:'nombre',
+                                        sortorder:'desc',
+										toolbar: [true,"top"],
+                                        loadui: "block"
+                                    });
+		
+		$("#table_servicio").jqGrid('navGrid','#pager_table_servicio',{edit:false,add:false,del:false,view:true});
+		$('#t_table_servicio').addClass('ui-corner-top');
+		$("#t_table_servicio").append("<div id='toolbar_servicio_icon_edit' class='ui-pg-button ui-corner-all' style='width:19px;margin:0 2px;' onclick='edit_servicio()' ><div class='ui-pg-div'><span class='ui-icon ui-icon-pencil'></span></div></div>");
+		$('#toolbar_servicio_icon_edit').hover(function(){$('#toolbar_servicio_icon_edit').addClass('ui-state-hover');},function(){$('#toolbar_servicio_icon_edit').removeClass('ui-state-hover');});
+		
+    }
+}

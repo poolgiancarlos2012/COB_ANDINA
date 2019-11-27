@@ -1,0 +1,33 @@
+<?php
+/**
+ * Description of dto_menu
+ *
+ * @author Davis
+ */
+class dto_menu {
+    private $id;
+    private $nombreMenu;
+    private $estado;
+
+    public function setId($valor){
+            $this->id=$valor;
+    }
+    public function getId(){
+        return $this->id;
+    }
+    public function setNombreMenu($valor){
+            $this->nombreMenu=$valor;
+    }
+    public function getNombreMenu(){
+        return $this->nombreMenu;
+    }
+    public function setEstado($valor){
+            $this->estado=$valor;
+    }
+    public function getEstado(){
+        return $this->estado;
+    }
+
+
+}
+?>

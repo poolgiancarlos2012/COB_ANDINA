@@ -1,0 +1,5 @@
+var AdicionalesDAO={
+		tipo_final : function ( ) {
+				
+			}
+	}

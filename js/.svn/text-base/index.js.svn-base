@@ -1,0 +1,10 @@
+$(document).ready(function(){
+    indexDAO.servicio();
+});
+login=function ( ) {
+    var user=$('#txtUsuario').val();
+    var psw=$('#txtPsw').val();
+    var service=$('#cbServicio').val();
+    
+    indexDAO.checkUser({command:'login',action:'check',Usuario:user,Password:psw,Servicio:service});
+}

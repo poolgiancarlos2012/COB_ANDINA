@@ -1,0 +1,6 @@
+[ui]
+editor = vim
+username = servidor@hdec.pe
+[web]
+push_ssl = false
+allow_push = *

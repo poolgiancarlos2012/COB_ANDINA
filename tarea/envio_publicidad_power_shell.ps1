@@ -1,0 +1,1 @@
+C:\xampp\php\php.exe -f C:\xampp\htdocs\COB_ANDINA\tarea\envio_publicidad.php >> C:\xampp\htdocs\COB_ANDINA\tarea\envio_publicidad.log

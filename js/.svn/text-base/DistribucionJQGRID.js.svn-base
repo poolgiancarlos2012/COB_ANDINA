@@ -1,0 +1,46 @@
+var DistribucionJQGRID = {
+		clientes_gestionados : function ( ) {
+				$("#table_clientes_gestionados").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=distribucion&action=jqgrid_clientes_gestionados',
+                                        datatype:'GET',
+                                        height:100,
+                                        colNames:['Codigo','Cliente','DNI','Usuario Gestion'],
+                                        colModel:[
+												{ name:'cli.codigo',index:'cli.codigo',align:'center',width:80 },
+												{ name:'cli.nombre',index:'cli.nombre',align:'center',width:250 },
+												{ name:'cli.dni',index:'cli.dni',align:'center',width:80 },
+												{ name:'usuario_gestion',index:'usuario_gestion',align:'center',width:250 }
+												],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_clientes_gestionados',
+                                        sortname:'cliente',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+				$("#table_clientes_gestionados").jqGrid('navGrid','#pager_table_clientes_gestionados',{edit:false,add:false,del:false,view:true});
+			},
+		clientes_sin_gestionar : function ( ) {
+				$("#table_clientes_sin_gestionar").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=distribucion&action=jqgrid_clientes_sin_gestionar',
+                                        datatype:'GET',
+                                        height:100,
+                                        colNames:['Codigo','Cliente','DNI','Usuario Gestion'],
+                                        colModel:[
+												{ name:'cli.codigo',index:'cli.codigo',align:'center',width:80 },
+												{ name:'cli.nombre',index:'cli.nombre',align:'center',width:250 },
+												{ name:'cli.dni',index:'cli.dni',align:'center',width:80 },
+												{ name:'usuario_gestion',index:'usuario_gestion',align:'center',width:250 }
+												],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_clientes_sin_gestionar',
+                                        sortname:'cliente',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+				$("#table_clientes_sin_gestionar").jqGrid('navGrid','#pager_table_clientes_sin_gestionar',{edit:false,add:false,del:false,view:true});
+			}
+	}

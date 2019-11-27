@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/COBRAST/!svn/ver/30/trunk/COBRAST/conexion
+END
+MYSQLConnectionMYSQLI.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/COBRAST/!svn/ver/15/trunk/COBRAST/conexion/MYSQLConnectionMYSQLI.php
+END
+config.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/COBRAST/!svn/ver/29/trunk/COBRAST/conexion/config.php
+END
+MYSQLConnectionPDO.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/COBRAST/!svn/ver/30/trunk/COBRAST/conexion/MYSQLConnectionPDO.php
+END

@@ -1,0 +1,257 @@
+var DistribucionDAO = {
+		url: '../controller/ControllerCobrast.php',
+		CampaniaAjax : function ( ) {
+				$.ajax({
+					   url : this.url,
+					   type : 'GET',
+					   dataType : 'json',
+					   data : {command:'distribucion',action:'ListCampania',Servicio:$('#hdCodServicio').val()},
+					   success : function ( obj ) {
+						   		DistribucionDAO.campaniaDistribucionAutomatica(obj);
+								DistribucionDAO.campaniaClientesGestionadosSinGestionar(obj);
+								DistribucionDAO.campaniaDistribucionManual(obj);
+								DistribucionDAO.campaniaRetirarClientes(obj);
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		campaniaDistribucionManual : function ( obj ) {
+				var html='';
+					html+='<option value="0">--Seleccione--</option>';
+				$.each(obj,function(key,data){
+					html+='<option value="'+data.idcampania+'">'+data.nombre+'</option>';
+				});
+				$('#cbCampaniaDistribucionManual').html(html);
+			},
+		campaniaDistribucionAutomatica : function ( obj ) {
+				var html='';
+					html+='<option value="0">--Seleccione--</option>';
+				$.each(obj,function(key,data){
+					html+='<option value="'+data.idcampania+'">'+data.nombre+'</option>';
+				});
+				$('#cbCampaniaDistribucionAutomatica').html(html);
+			},
+		campaniaClientesGestionadosSinGestionar : function ( obj ) {
+				var html='';
+					html+='<option value="0">--Seleccione--</option>';
+				$.each(obj,function(key,data){
+					html+='<option value="'+data.idcampania+'">'+data.nombre+'</option>';
+				});
+				$('#cbCampaniaClientesGestSinGest').html(html);
+				
+			},
+		campaniaRetirarClientes : function ( obj ) {
+				var html='';
+					html+='<option value="0">--Seleccione--</option>';
+				$.each(obj,function(key,data){
+					html+='<option value="'+data.idcampania+'">'+data.nombre+'</option>';
+				});
+				$('#cbCampaniaRetirarCliente').html(html);
+				
+			},	
+		operadores_retirar_cliente : function ( ) {
+				$.ajax({
+					   url : this.url,
+					   type : 'GET',
+					   dataType : 'json',
+					   data : {command:'distribucion',action:'ListarGestionOperador',Campania:$('#cbCampaniaRetirarCliente').val(),Servicio:$('#hdCodServicio').val()},
+					   beforeSend : function ( ) {
+						   		$('#table_retirar_clientes').html(templates.IMGloadingContentTable());
+						   },
+					   success : function ( obj ) {
+						   		var html='';
+									html+='<tr>';
+										html+='<td align="center"><div class="ui-widget-header ui-corner-all" style="padding:2px 4px;margin:2px;">Operador</div></td>';
+										html+='<td align="center"><div class="ui-widget-header ui-corner-all" style="padding:2px 4px;margin:2px;">Clts. Asignados</div></td>';
+										html+='<td align="center"><div class="ui-widget-header ui-corner-all" style="padding:2px 4px;margin:2px;">Clts. Gestionados</div></td>';
+										html+='<td align="center"><div class="ui-widget-header ui-corner-all" style="padding:2px 4px;margin:2px;">Clts. Sin Gestionar</div></td>';
+										html+='<td></td>';
+										html+='<td></td>';
+										html+='<td></td>';
+									html+='</tr>';
+								$.each(obj,function(key,data){
+									html+='<tr id="'+data.idusuario+'">';
+										html+='<td align="center" style="width:200px;padding:2px;">'+data.operador+'</td>';
+										html+='<td align="center" style="width:105px;padding:2px;">'+data.clientes_asignados+'</td>';
+										html+='<td align="center" style="width:115px;padding:2px;">'+data.clientes_gestionados+'</td>';
+										html+='<td align="center" style="width:120px;padding:2px;">'+data.clientes_sin_gestionar+'</td>';
+										html+='<td class="ui-pg-button ui-corner-all" ><div class="ui-pg-div ui-corner-all"><span class="ui-icon ui-icon-pencil"></span></div></td>';
+										html+='<td class="ui-pg-button ui-corner-all" ><div class="ui-pg-div ui-corner-all"><span class="ui-icon ui-icon-disk"></span></div></td>';
+										html+='<td class="ui-pg-button ui-corner-all" onclick="retirar_todo_clientes_sin_gestionar(this)"><div class="ui-pg-div ui-corner-all"><span class="ui-icon ui-icon-trash"></span></div></td>';
+									html+='</tr>';
+								});
+								$('#table_retirar_clientes').html(html);
+								$('#table_retirar_clientes tr:gt(0)').find('td:eq(4)').bind('click',function(){edit_retirar_clientes(this);})
+								$('#table_retirar_clientes tr:gt(0)').find('td:gt(3)').hover(function(){$(this).addClass('ui-state-hover')},function(){$(this).removeClass('ui-state-hover')});
+								//$('#table_retirar_clientes tr:gt(0):odd').css('background-color','#7F694F');
+								//$('#table_retirar_clientes').selectable({filter:'tr:gt(0)'});
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		delete_all_clientes_sin_gestionar : function ( idusuario , element ) {
+				var clientes_asignados=parseInt( $(element).parent().children('td:eq(1)').text() );
+				var clientes_sin_gestionar=parseInt( $(element).parent().children('td:eq(3)').text() );
+				$.ajax({
+					   url : this.url ,
+					   type : 'POST',
+					   dataType : 'json',
+					   data : {command:'distribucion',action:'RetirarTodoclienteSinGestionar',Campania:$('#cbCampaniaRetirarCliente').val(),Usuario:idusuario},
+					   beforeSend : function ( ) {
+						   		$(element).find('div').html(templates.IMGloadingContent);
+						   },
+					   success : function ( obj ) { 
+					   			$(element).find('div').html('<span class="ui-icon ui-icon-trash"></span>');
+					   			if(obj.rst){
+									$(element).parent().children('td:eq(1)').text(clientes_asignados-clientes_sin_gestionar);
+									$(element).parent().children('td:eq(3)').text(0);
+									$('#layerMessage').html( templates.MsgInfo(obj.msg,'300px') );
+								}else{
+									$('#layerMessage').html( templates.MsgError(obj.msg,'300px') );
+								}
+								$('#layerMessage').effect('pulsate',{},'slow');
+					   		},
+					   error : this.error_ajax 
+					   });
+			},
+		delete_retirar_clientes_sin_gestionar_ingresados : function ( element, usuario, clientes ) {
+				$.ajax({
+					   url : this.url,
+					   type :'POST',
+					   dataType : 'json',
+					   data : {command:'distribucion',action:'RetirarIngresadosClientesSinGestionar',Campania:$('#cbCampaniaRetirarCliente').val(),Usuario:usuario,Cantidad:clientes},
+					   beforeSend : function ( ) {
+								$(element).find('div').html(templates.IMGloadingContent());
+								$(element).unbind('click');
+						   },
+					   success : function ( obj ) {
+						   		$(element).find('div').html('<span class="ui-icon ui-icon-disk"></span>');
+								$(element).bind('click',function(){edit_retirar_clientes(this);} );
+								
+								if(obj.rst){
+									var clientes=$(element).find(':text').val();
+									$(element).parent().children('td:3').text(clientes);
+									$('#layerMessage').html(templates.MsgInfo(obj.msg,'250px'));
+								}else{
+									$('#layerMessage').html(templates.MsgError(obj.msg,'250px'));
+								}
+								
+								$('#layerMessage').effect('pulsate',{},'slow');
+						   },
+					   error : function ( ) {
+						   		$(element).find('div').html('<span class="ui-icon ui-icon-disk"></span>');
+								$(element).bind('click',fun1ction(){edit_retirar_clientes(this);} );
+						   		this.error_ajax();
+					   		}
+					   });
+			},
+		generar_distribucion_automatica : function ( ) {
+				$.ajax({
+					   url : this.url ,
+					   type : 'POST',
+					   dataType : 'json',
+					   data : {command:'distribucion',action:'generar_distribucion_automatica',Campania:$('#cbCampaniaDistribucionAutomatica').val(),Servicio:$('#hdCodServicio').val()},
+					   beforeSend : function ( ) {
+						   		_displayBeforeSend('Generando Distribucion...',300);
+						   },
+					   success : function ( obj ) {
+						   		_noneBeforeSend();
+						   		if(obj.rst){
+									$('#layerMessage').html( templates.MsgInfo(obj.msg,'300px') );
+									$('#txtClientesSinAsignar').val('');
+									$('#txtClientesAsignados').val('');
+									$('#txtCantidadOperadores').val('');
+									$('#txtClientesXOperador').val('');
+									$('#cbCampaniaDistribucionAutomatica').val(0);
+								}else{
+									$('#layerMessage').html( templates.MsgError(obj.msg,'300px') );
+								}
+								$('#layerMessage').effect('pulsate',{},'slow');
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		generar_distribucion_manual : function ( dataJson ) {
+				$.ajax({
+					   url : this.url,
+					   type : 'POST',
+					   dataType : 'json',
+					   data : {command:'distribucion',action:'generar_distribucion_manual',Campania:$('#cbCampaniaDistribucionAutomatica').val(),Servicio:$('#hdCodServicio').val(),DataManual:dataJson},
+					   beforeSend : function ( ) {
+						   		_displayBeforeSend('Generando Distribucion...',300);
+						   },
+					   success : function ( obj ) {
+						   		_noneBeforeSend();
+								if(obj.rst){
+									$('#layerMessage').html(templates.MsgInfo('Distribucion manual generada correctamente','400px'));
+									$('#table_asignacion').html('<tr><td>Arrastre operadores aqui..</td></tr>');
+								}else{
+									$('#layerMessage').html(templates.MsgError('Error al generar distribucion manual','400px'));
+								}
+								$('#layerMessage').effect('pulsate',{},'slow');
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		DataDistribucionAutomatica : function ( ) {
+				$.ajax({
+					   url : this.url,
+					   type : 'GET',
+					   dataType : 'json',
+					   data : {command:'distribucion',action:'DataDistribucionAutomatica',Campania:$('#cbCampaniaDistribucionAutomatica').val(),Servicio:$('#hdCodServicio').val()},
+					   success : function ( obj ) {
+								$('#txtClientesSinAsignar').val(obj[0].clientes_sin_asignar);
+								$('#txtClientesAsignados').val(obj[0].clientes_asignados);
+								$('#txtCantidadOperadores').val(obj[0].cantidad_operadores);
+								$('#txtClientesXOperador').val(Math.round(obj[0].clientes_sin_asignar/obj[0].cantidad_operadores));
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		ListarGestionOperador : function ( ) {
+				$.ajax({
+					   url : this.url,
+					   type : 'GET',
+					   dataType : 'json',
+					   data : {command:'distribucion',action:'ListarGestionOperador',Campania:$('#cbCampaniaDistribucionManual').val(),Servicio:$('#hdCodServicio').val()},
+					   beforeSend : function ( ) {
+						   		$('#table_operador_distribucion_manual').html(templates.IMGloadingContentTable());
+						   },
+					   success : function ( obj ) {
+						   		var html='';
+						   		$.each(obj,function(key,data){
+									html+='<tr id="'+data.idusuario+'">';
+										html+='<td align="center" style="width:240px;" name="operador'+data.idusuario+'" ><input type="hidden" value="'+data.idusuario+'" ><span>'+data.operador+'<span></td>';
+										html+='<td align="center" style="width:40px;">'+data.clientes_asignados+'</td>';
+										html+='<td align="center" style="width:40px;">'+data.clientes_sin_gestionar+'</td>';
+										html+='<td align="center" style="width:40px;">'+data.clientes_gestionados+'</td>';
+										html+='<td class="ui-pg-button ui-corner-all" ><div class="ui-pg-div ui-corner-all "><span class="ui-icon ui-icon-plus"></span></div></td>';
+									html+='</tr>';
+								});
+								$('#table_operador_distribucion_manual').html(html);
+								$('#table_operador_distribucion_manual tr').find('td:eq(4)').bind('click',function(){ agregar_asignacion(this);})
+								$('#table_operador_distribucion_manual td[name^="operador"]').draggable({ opacity: 0.7, helper: 'clone' });
+								$('#table_operador_distribucion_manual .ui-pg-div').hover(function(){ $(this).addClass('ui-state-hover'); },function(){ $(this).removeClass('ui-state-hover'); })
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		clientes_sin_asignar : function ( ) {
+				$.ajax({
+					   url : this.url,
+					   type : 'GET',
+					   dataType : 'json',
+					   data : {command:'distribucion',action:'clientes_sin_gestionar',Campania:$('#cbCampaniaDistribucionManual').val()},
+					   success : function ( obj ) {
+								$('#txtClienteSinAsignarManual').val(obj[0].clientes_sin_asignar);
+								$('#hdClienteSinAsignar').val(obj[0].clientes_sin_asignar);
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		error_ajax : function ( ) {
+				$('#layerMessage').html(templates.MsgError('Error en el servidor','200px'));
+				$('#layerMessage').effect('pulsate',{},'slow');
+				_noneBeforeSend();
+			}
+	}

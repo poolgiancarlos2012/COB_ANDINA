@@ -1,0 +1,11 @@
+[ruta_cobrast]
+nombre_carpeta = "COBRAST_19"
+document_root_cobrast = "/var/www/web"
+[ruta_sqlite]
+ruta = "/var/www/web/COBRAST/db/cobrast.sqlite"
+<<<<<<< local
+=======
+[user_db]
+user_rpt = "root"
+password_rpt = "123456"
+>>>>>>> other

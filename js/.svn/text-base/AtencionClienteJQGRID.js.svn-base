@@ -1,0 +1,199 @@
+var AtencionClienteJQGRID={
+		type : 'get',
+		busquedaManual : function ( ) {
+				$("#table_busqueda_manual").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_busquedaManual',
+                                        datatype:this.type,
+                                        gridview:true,
+                                        height:100,
+                                        colNames:['Codigo','Nombre','Paterno','Materno'],
+                                        colModel:[
+												{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:100 },
+												{ name:'dni',index:'dni',align:'center',width:150 },
+												{ name:'dni',index:'dni',align:'center',width:150 },
+												{ name:'dni',index:'dni',align:'center',width:150 }
+												],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_busqueda_manual',
+                                        sortname:'nombre_usuario',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+			
+			},
+		busquedaBase : function ( ) {
+				$("#table_busqueda_base").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_busquedaBase',
+                                        datatype:this.type,
+                                        gridview:true,
+                                        height:100,
+                                        colNames:['Codigo','Nombre','Paterno','Materno'],
+                                        colModel:[
+													{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:100 },
+													{ name:'dni',index:'dni',align:'center',width:150 },
+													{ name:'dni',index:'dni',align:'center',width:150 },
+													{ name:'dni',index:'dni',align:'center',width:150 }
+												],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_busqueda_base',
+                                        sortname:'nombre_usuario',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+			},
+		matrizBusqueda : function ( ) {
+				$("#table_matriz_busqueda").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_matrizBusqueda',
+                                        datatype:this.type,
+                                        gridview:true,
+                                        height:100,
+                                        colNames:['Codigo','Nombre','Paterno','Materno'],
+                                        colModel:[
+													{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:100 },
+													{ name:'dni',index:'dni',align:'center',width:200 },
+													{ name:'dni',index:'dni',align:'center',width:200 },
+													{ name:'dni',index:'dni',align:'center',width:200 }
+												],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_matriz_busqueda',
+                                        sortname:'nombre_usuario',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+			},
+		llamada : function ( ) {
+				$("#table_llamada").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_llamada',
+                                        datatype:this.type,
+                                        gridview:true,
+                                        height:100,
+                                        colNames:['Fecha','Final','Fecha Compromiso Pago','Momto Compromiso Pago','Observacion'],
+                                        colModel:[
+													{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:80 },
+													{ name:'dni',index:'dni',align:'center',width:80 },
+													{ name:'dni',index:'dni',align:'center',width:150 },
+													{ name:'dni',index:'dni',align:'center',width:150 },
+													{ name:'dni',index:'dni',align:'center',width:250 }
+												],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_llamada',
+                                        sortname:'nombre_usuario',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+			},
+		direcciones : function ( ) {
+				$("#table_direccion").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_direcciones',
+                                        datatype:this.type,
+                                        gridview:true,
+                                        height:100,
+                                        colNames:['Direccion','Ubigeo','Departamento','Provincia','Distrito','Tipo Direccion'],
+                                        colModel:[
+													{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:200 },
+													{ name:'dni',index:'dni',align:'center',width:100 },
+													{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:100 },
+													{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:100 },
+													{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:100 },
+													{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:100 }
+												],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_direccion',
+                                        sortname:'nombre_usuario',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+			},
+		cuenta : function ( ) {
+				$("#table_cuenta").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_cuenta',
+                                        datatype:this.type,
+                                        gridview:true,
+                                        height:100,
+                                        colNames:['Numero de Cuenta','Total Deuda'],
+                                        colModel:[
+													{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:400 },
+													{ name:'dni',index:'dni',align:'center',width:100 }
+												],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_cuenta',
+                                        sortname:'nombre_usuario',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+			},
+		operaciones : function ( ) {
+				$("#table_operaciones").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_operaciones',
+                                        datatype:this.type,
+                                        gridview:true,
+                                        height:100,
+                                        colNames:['Nombre','Dni'],
+                                        colModel:[
+													{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:400 },
+													{ name:'dni',index:'dni',align:'center',width:100 }
+												],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_operaciones',
+                                        sortname:'nombre_usuario',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+			},
+		pagos : function ( ) {
+				$("#table_pagos").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_pagos',
+                                        datatype:this.type,
+                                        gridview:true,
+                                        height:100,
+                                        colNames:['Moneda','Monto','Fecha'],
+                                        colModel:[
+													{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:400 },
+													{ name:'dni',index:'dni',align:'center',width:100 },
+													{ name:'dni',index:'dni',align:'center',width:100 }
+												],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_pagos',
+                                        sortname:'nombre_usuario',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+			},
+		telefonos : function ( ) {
+				$("#table_telefonos").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_telefonos',
+                                        datatype:this.type,
+                                        gridview:true,
+                                        height:100,
+                                        colNames:['Numero','Tipo','Descripcion'],
+                                        colModel:[
+													{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:150 },
+													{ name:'dni',index:'dni',align:'center',width:150 },
+													{ name:'dni',index:'dni',align:'center',width:400 }
+												],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_telefonos',
+                                        sortname:'nombre_usuario',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+			}
+	}

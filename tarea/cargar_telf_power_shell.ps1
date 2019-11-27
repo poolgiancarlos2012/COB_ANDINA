@@ -1,0 +1,1 @@
+C:\xampp\php\php.exe -f C:\xampp\htdocs\COB_ANDINA\tarea\cargar_telf.php $namefile >> C:\xampp\htdocs\COB_ANDINA\tarea\cargar_telf.log

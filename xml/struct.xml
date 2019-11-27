@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cobrast>
+	<servicio id="1_" name="CENCOSUD" >
+		<campo table="cuenta" field="inscripcion" issubstr="true" >
+			<substring init="1" length="6" isequal="true" label="TIPO TARJETA" >
+				<equal value="905050" >METRO CERRADA</equal>
+				<equal value="477151" >METRO VISA CLASICA</equal>
+				<equal value="477357" >WONG VISA CLASICA</equal>
+				<equal value="477358" >WONG VISA GOLD</equal>
+				<equal value="477359" >WONG VISA PLATINUM</equal>
+			</substring>
+		</campo>
+	</servicio>
+	<servicio id="2_" name="CENCOSUD" >
+	</servicio>
+	<servicio id="3_" name="CENCOSUD" >
+	</servicio>
+	<servicio id="4_" name="CENCOSUD" >
+	</servicio>
+	<servicio id="5_" name="SAGA" >
+	</servicio>
+	<servicio id="6_" name="BBVA" >
+	</servicio>
+	<servicio id="7_" name="EXTRA_JUDICIAL" >
+	</servicio>	
+	<servicio id="8_" name="FORUM" >
+	</servicio>		
+	<servicio id="9_" name="PLANTA_EXTERNA" >
+	</servicio>
+	<servicio id="10_" name="COVINOC" >
+	</servicio>		
+	<servicio id="11_" name="SAGA" >
+	</servicio>	
+	<servicio id="13_" name="CONECTA" >
+	</servicio>	
+</cobrast>

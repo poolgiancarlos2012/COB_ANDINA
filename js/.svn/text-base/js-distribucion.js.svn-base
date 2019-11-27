@@ -1,0 +1,163 @@
+$(document.body).ready(function( ){
+	DistribucionDAO.CampaniaAjax();
+	/********************/
+	DistribucionJQGRID.clientes_gestionados();
+	DistribucionJQGRID.clientes_sin_gestionar();
+	/********************/
+	$('#table_asignacion').droppable({
+									 drop: function ( event, ui ) {
+										 	var html='';
+											var id=ui.draggable.find(":hidden").val();
+											var text=ui.draggable.text();
+											
+											var count=$('#table_asignacion').find('#'+id).length;
+											
+											if(count==0){
+												html+='<tr id="'+id+'">';
+													html+='<td style="width:220px;" align="center">'+text+'</td>';
+													html+='<td style="width:50px;" align="center"><input style="width:40px;" ></td>';
+													html+='<td class="ui-pg-button ui-corner-all" onclick="check_manual(this)"><div class="ui-pg-div ui-corner-all"><span class="ui-icon ui-icon-check"></span></div></td>';
+												html+='</tr>';
+												$('#table_asignacion #placeHolder').remove();
+												$('#table_asignacion').append(html);
+												$('#table_asignacion .ui-pg-div').hover(function(){$(this).addClass('ui-state-hover');},function(){$(this).removeClass('ui-state-hover');});
+												$('#table_asignacion tr').find('td:first').draggable({
+																					cursor : 'move',
+																					helper : function ( event ) {
+																							return '<div class="ui-widget-header ui-corner-all" style="width:70px;padding:3px 8px;">Eliminando...</div>'
+																						},
+																					stop : function ( ) {
+																							$(this).parent().remove();
+																							var count=$('#table_asignacion').find('tr').length;
+																							if(count==0){
+																								var html='';
+																								html+='<tr id="placeHolder"><td>Arrastre operadores aqui..</td></tr>';
+																								$('#table_asignacion').html(html);
+																							}
+																							
+																						}
+																					});
+											}
+											
+											
+										 }
+									 });
+		
+});
+check_manual = function ( element ) {
+	var ClientesSinAsignar=parseInt( $('#txtClienteSinAsignarManual').val() );
+	var cantidad=parseInt( $.trim( $(element).parent().find(':text').val() ) );
+	if(cantidad<=ClientesSinAsignar){
+		var html='<label>'+cantidad+'</label>';
+		$(element).parent().children('td:eq(1)').html(html);
+		$('#txtClienteSinAsignarManual').val(ClientesSinAsignar-cantidad);
+		$(element).find('span').removeClass('ui-icon-check').addClass('ui-icon-pencil');
+		$(element).unbind('click').bind('click',function(){ edit_manual(this); });
+	}
+		
+}
+edit_manual = function ( element ) {
+	var html='';
+	var cantidad=$(element).parent().find('label').text();
+	html+='<input type="text" style="width:40px;" value="'+cantidad+'" />';
+	$(element).parent().children('td:eq(1)').html(html);
+	$(element).find('span').removeClass('ui-icon-pencil').addClass('ui-icon-check');
+	$(element).unbind('click').bind('click',function(){ check_manual(this); });
+}
+agregar_asignacion = function ( element ) {
+	var html='';
+	var id=$(element).parent().attr('id');
+	var operador=$(element).parent().children('td:eq(0)').text();
+	var count=$('#table_asignacion').find('#'+id).length;
+	html+='<tr id="'+id+'" >';
+		html+='<td style="width:220px;" align="center">'+operador+'</td>';
+		html+='<td style="width:50px;" align="center"><input style="width:40px;" /></td>';
+		html+='<td class="ui-pg-button ui-corner-all" onclick="check_manual(this)"><div class="ui-pg-div ui-corner-all"><span class="ui-icon ui-icon-check"></span></div></td>';
+	html+='</tr>';
+	
+	if(count==1){
+		return false;	
+	}
+	
+	$('#table_asignacion #placeHolder').remove();
+	$('#table_asignacion').append(html);
+	$('#table_asignacion .ui-pg-div').hover(function(){$(this).addClass('ui-state-hover');},function(){$(this).removeClass('ui-state-hover');});
+	$('#table_asignacion tr').find('td:first').draggable({
+										cursor : 'move',
+										helper : function ( event ) {
+												return '<div class="ui-widget-header ui-corner-all" style="width:70px;padding:3px 8px;">Eliminando...</div>'
+											},
+										stop : function ( ) {
+												$(this).parent().remove();
+												var count=$('#table_asignacion').find('tr').length;
+												if(count==0){
+													var html='';
+													html+='<tr id="placeHolder"><td>Arrastre operadores aqui..</td></tr>';
+													$('#table_asignacion').html(html);
+												}
+												
+											}
+										});
+}
+generar_distribucion_automatica = function  ( ) {
+	DistribucionDAO.generar_distribucion_automatica();
+}
+grabar_distribucion_manual = function ( ) {
+	var data="["+$('#table_asignacion').find('tr').map(function(){
+												var count=$(this).find('label').length;
+												var clientes=$(this).find('label').text();
+												var usuario=this.id;
+												if(count==1){
+													return '{"usuario":"'+usuario+'","clientes":"'+clientes+'"}';
+												}
+												
+											}).get().join(',')+"]";
+	
+	DistribucionDAO.generar_distribucion_manual( data );
+}
+retirar_todo_clientes_sin_gestionar = function ( element ) {
+	var usuario=$(element).parent().attr('id');
+	DistribucionDAO.delete_all_clientes_sin_gestionar( usuario, element );	
+}
+edit_retirar_clientes = function ( element ) {
+	var html='';
+	var clientes_sin_gestionar=$(element).parent().children('td:eq(3)').text();
+	html+='<input type="hidden" value="'+clientes_sin_gestionar+'" >';
+	html+='<input type="text" style="width:50px;" value="'+clientes_sin_gestionar+'" />';
+	$(element).parent().children('td:eq(3)').html(html);
+	$(element).find('span').removeClass('ui-icon-pencil').addClass('ui-icon-close');
+	$(element).unbind('click').bind('click',function(){close_retirar_clientes(this);});
+}
+close_retirar_clientes = function ( element ) {
+	var clientes_sin_gestionar=$(element).parent().children('td:eq(3)').find(':hidden').val();
+	$(element).parent().children('td:eq(3)').text(clientes_sin_gestionar);
+	$(element).find('span').removeClass('ui-icon-close').addClass('ui-icon-pencil');
+	$(element).unbind('click').bind('click',function(){edit_retirar_clientes(this);});
+}
+save_retirar_clientes = function ( element ) {
+	var count=$(element).find(':text').length;
+	if(count==0){
+		return false;
+	}
+	var usuario=$(element).attr('id');
+	var clientes_tiene=parseInt( $(element).find(':hidden').val() );
+	var clientes_ingesados=parseInt( $(element).find(':text').val() );
+	
+	DistribucionDAO.delete_retirar_clientes_sin_gestionar_ingresados(element,usuario,(clientes_tiene-clientes_ingresados ));
+	
+}
+cargar_data_distribucion_automatica = function ( ) {
+	DistribucionDAO.DataDistribucionAutomatica();
+}
+cargar_data_distribucion_manual = function ( ) {
+	DistribucionDAO.ListarGestionOperador();
+	DistribucionDAO.clientes_sin_asignar();
+}
+cargar_data_retirar_clientes = function ( ) {
+	DistribucionDAO.operadores_retirar_cliente();	
+}
+reload_jqgrid_clientes_GSG = function ( ) {
+	var idCampania=$('#cbCampaniaClientesGestSinGest').val();
+	$("#table_clientes_gestionados").jqGrid('setGridParam',{url:'../controller/ControllerCobrast.php?command=distribucion&action=jqgrid_clientes_gestionados&Campania='+idCampania}).trigger('reloadGrid');
+	$("#table_clientes_sin_gestionar").jqGrid('setGridParam',{url:'../controller/ControllerCobrast.php?command=distribucion&action=jqgrid_clientes_sin_gestionar&Campania='+idCampania}).trigger('reloadGrid');
+}

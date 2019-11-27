@@ -1,0 +1,95 @@
+var ServicioDAO={
+			url:'../controller/ControllerServicio.php',
+			retornarData : function ( ) {
+					return {command:'servicio',Id:$('#IdServicio').val(),Nombre:$('#txtNombre').val(),Descripcion:$('#txtDescripcion').val(),UsuarioCreacion:$('#hdCodUsuario').val(),UsuarioModificacion:$('#hdCodUsuario').val()};
+				},
+			insert : function ( ) {
+					var dataJson=$.extend({action:'save_servicio'},this.retornarData());
+					$.ajax({
+						   	url : this.url,
+							type : 'POST',
+							dataType : 'json',
+							data : dataJson,
+							beforeSend : function ( ) {
+									_displayBeforeSend('Guardando Servicio...',200);
+								},
+							success : function( obj ){
+									_noneBeforeSend();
+									if(obj.rst){
+										$('#layerMessage').html(templates.MsgInfo(obj.msg,'250px'));
+									}else{
+										$('#layerMessage').html(templates.MsgError(obj.msg,'250px'));	
+									}
+								},
+							error : function ( ) {
+									$('#layerMessage').html(templates.MsgError('Error en el servidor','200px'));
+								}
+						   })
+				},
+			Delete : function( ){
+					var dataJson=$.extend({action:'delete_servicio'},this.retornarData());
+					$.ajax({
+						   url : this.url,
+						   type : 'POST',
+						   dataType : 'json',
+						   data : dataJson,
+						   beforeSend : function ( ) {
+							   		_displayBeforeSend('Eliminando Servicio...',200);
+							   },
+						   success : function ( obj ){
+							   		_noneBeforeSend();
+							   		if(obj.rst){
+										$('#layerMessage').html(templates.MsgInfo(obj.msg,'250px'));
+									}else{
+										$('#layerMessage').html(templates.MsgError(obj.msg,'250px'));	
+									}
+							   },
+						   error : function (  ){
+							   		$('#layerMessage').html(templates.MsgError('Error en el servidor','200px'));
+							   }
+						   });
+				},
+			update : function( ){
+					var dataJson=$.extend({action:'update_servicio'},this.retornarData());
+					$.ajax({
+						   url : this.url,
+						   type : 'POST',
+						   dataType : 'json',
+						   data : dataJson,
+						   beforeSend : function ( ) {
+							   		_displayBeforeSend('Actualizando Servicio...',200);
+							   },
+						   success : function ( obj ){
+							   		_noneBeforeSend();
+							   		if(obj.rst){
+										$('#layerMessage').html(templates.MsgInfo(obj.msg,'250px'));
+									}else{
+										$('#layerMessage').html(templates.MsgError(obj.msg,'250px'));	
+									}
+							   },
+						   error : function ( ) {
+							   		$('#layerMessage').html(templates.MsgError('Error en el servidor','200px'));		
+							   }
+						   });
+				},
+			DataById : function ( Servicio ) {
+					$.ajax({
+						   url : this.url,
+						   type : 'GET',
+						   dataType : 'json',
+						   data : {command:'servicio',action:'DataById',Id:Servicio},
+						   success : function ( obj ){
+							   		$('#IdServicio').val(obj[0].id);
+									$('#txtNombre').val(obj[0].nombre);
+									$('#txtDescripcion').val(obj[0].descripcion);
+									if(obj[0].usuario_creacion!=$('#hdCodUsuario').val()){
+										$('#txtUsuarioCreacion').val(obj[0].nombre_usuario_creacion);
+									}
+							   },
+						   error : function ( ) {
+							   	$('#layerMessage').html(templates.MsgError('Error al traer datos','200px'));
+							   }
+						   });
+				}
+			
+			};

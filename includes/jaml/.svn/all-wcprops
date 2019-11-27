@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/includes/jaml
+END
+package.json
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/includes/jaml/package.json
+END
+Jaml-all.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/includes/jaml/Jaml-all.js
+END
+.gitmodules
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/includes/jaml/.gitmodules
+END
+Jakefile
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/includes/jaml/Jakefile
+END
+README.textile
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/includes/jaml/README.textile
+END

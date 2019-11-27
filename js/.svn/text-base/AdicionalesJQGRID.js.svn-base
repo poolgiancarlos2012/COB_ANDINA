@@ -1,0 +1,103 @@
+var AdicionalesJQGRID = {
+		tipo_final : function ( ) {
+				        $("#table_tipo_final").jqGrid({
+											url:'../controller/ControllerCobrast.php?command=tipo_final&action=jqgrid_tipo_final',
+											datatype:this.type,
+											gridview:true,
+											height:100,
+											colNames:['Nombre','Dni'],
+											colModel:[
+															{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:400 },
+															{ name:'dni',index:'dni',align:'center',width:100 }
+														],
+											rowNum:10,
+											rowList:[10,15,20],
+											rownumbers:true,
+											pager:'#pager_table_tipo_final',
+											sortname:'nombre_usuario',
+											sortorder:'desc',
+											loadui: "block"
+											});
+
+			},
+		carga_final : function ( ) {
+						$("#table_carga_final").jqGrid({
+											url:'../controller/ControllerCobrast.php?command=tipo_final&action=jqgrid_tipo_final',
+											datatype:this.type,
+											gridview:true,
+											height:100,
+											colNames:['Nombre','Dni'],
+											colModel:[
+															{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:400 },
+															{ name:'dni',index:'dni',align:'center',width:100 }
+														],
+											rowNum:10,
+											rowList:[10,15,20],
+											rownumbers:true,
+											pager:'#pager_table_carga_final',
+											sortname:'nombre_usuario',
+											sortorder:'desc',
+											loadui: "block"
+											});
+			},
+		clase_final : function ( ) {
+						$("#table_clase_final").jqGrid({
+											url:'../controller/ControllerCobrast.php?command=tipo_final&action=jqgrid_tipo_final',
+											datatype:this.type,
+											gridview:true,
+											height:100,
+											colNames:['Nombre','Dni'],
+											colModel:[
+															{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:400 },
+															{ name:'dni',index:'dni',align:'center',width:100 }
+														],
+											rowNum:10,
+											rowList:[10,15,20],
+											rownumbers:true,
+											pager:'#pager_table_clase_final',
+											sortname:'nombre_usuario',
+											sortorder:'desc',
+											loadui: "block"
+											});
+			},
+		nivel : function ( ) {
+						$("#table_nivel").jqGrid({
+											url:'../controller/ControllerCobrast.php?command=tipo_final&action=jqgrid_tipo_final',
+											datatype:this.type,
+											gridview:true,
+											height:100,
+											colNames:['Nombre','Dni'],
+											colModel:[
+															{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:400 },
+															{ name:'dni',index:'dni',align:'center',width:100 }
+														],
+											rowNum:10,
+											rowList:[10,15,20],
+											rownumbers:true,
+											pager:'#pager_table_nivel',
+											sortname:'nombre_usuario',
+											sortorder:'desc',
+											loadui: "block"
+											});
+			}
+		tipo_gestion : function ( ) {
+						$("#table_tipo_gestion").jqGrid({
+											url:'../controller/ControllerCobrast.php?command=tipo_final&action=jqgrid_tipo_final',
+											datatype:this.type,
+											gridview:true,
+											height:100,
+											colNames:['Nombre','Dni'],
+											colModel:[
+															{ name:'nombre_usuario',index:'nombre_usuario',align:'center',width:400 },
+															{ name:'dni',index:'dni',align:'center',width:100 }
+														],
+											rowNum:10,
+											rowList:[10,15,20],
+											rownumbers:true,
+											pager:'#pager_table_tipo_gestion',
+											sortname:'nombre_usuario',
+											sortorder:'desc',
+											loadui: "block"
+											});
+			}
+	}

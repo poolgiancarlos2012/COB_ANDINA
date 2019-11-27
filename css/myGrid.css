@@ -1,0 +1,38 @@
+table.scroll {
+	table-layout: fixed;
+	border-right: 1px solid #D4D0C8;
+}
+table.scroll tr {
+	background-color: #ffffff;
+	font-family:Calibri;
+	font-size:10px;
+}
+table.scroll th{
+	background-image:url(../images/bg.png);
+	border-bottom:1px solid #cbc7b8;
+	border-left:1px solid #d4d0c8;
+	font-size:12px;
+	font-weight:bold;	
+	overflow:hidden;
+	padding:5px;
+	text-align:center;
+	white-space:nowrap;
+}
+table.scroll tr.selected td {
+	background: #BEDCC4;
+	color: #333333;
+}
+table.scroll td  {
+	padding: 5px;
+	text-align: left;
+	border-bottom: 1px solid #D4D0C8;
+	border-left: 1px solid #D4D0C8; 
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: pre-wrap;
+	font-family:Verdana;
+	text-transform:uppercase;
+}
+tr.odd td { background-color:#F7F7F7;}
+tr.even td { background-color:#fff; }
+table.scroll tr.over td{background-color: #FFEEE6;}

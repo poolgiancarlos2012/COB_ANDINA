@@ -1,0 +1,5 @@
+/* Watermark
+----------------------------------*/
+.ui-watermark-container { position: relative; overflow: hidden; display: inline-block; }
+.ui-watermark-label { position: absolute; cursor: text;  white-space: nowrap; color:#CCCCCC; font-style:italic; }
+.ui-watermark-textarea .ui-watermark-label { white-space: normal; }

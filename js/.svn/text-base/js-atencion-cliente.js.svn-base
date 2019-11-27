@@ -1,0 +1,32 @@
+$(document).ready(function(){
+	AtencionClienteJQGRID.busquedaManual();
+	AtencionClienteJQGRID.busquedaBase();
+	AtencionClienteJQGRID.matrizBusqueda();
+	AtencionClienteJQGRID.llamada();
+	AtencionClienteJQGRID.direcciones();
+	AtencionClienteJQGRID.cuenta();
+	AtencionClienteJQGRID.operaciones();
+	AtencionClienteJQGRID.pagos();
+	AtencionClienteJQGRID.telefonos();
+	/******************/
+	AtencionClienteDAO.ListarCampanias();
+	AtencionClienteDAO.servicios();
+});
+reloadJQGRID_telefono = function ( ) {
+	$("#table_telefonos").jqGrid('setGridParam',{url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_telefonos'}).trigger('reloadGrid');
+}
+reloadJQGRID_llamadas = function ( ) {
+	$("#table_llamada").jqGrid('setGridParam',{url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_llamada'}).trigger('reloadGrid');		
+}
+reloadJQGRID_cuenta = function ( ) {
+	$("#table_cuenta").jqGrid('setGridParam',{url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_cuenta'}).trigger('reloadGrid');	
+}
+reloadJQGRID_operacion = function ( ) {
+	$("#table_operaciones").jqGrid('setGridParam',{url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_operaciones'}).trigger('reloadGrid');
+}
+reloadJQGRID_pagos = function ( ) {
+	$("#table_pagos").jqGrid('setGridParam',{url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_pagos'}).trigger('reloadGrid');	
+}
+reloadJQGRID_direccion = function ( ) {
+	$("#table_direccion").jqGrid('setGridParam',{url:'../controller/ControllerCobrast.php?command=atencion_cliente&action=jqgrid_direcciones'}).trigger('reloadGrid');	
+}

@@ -1,0 +1,157 @@
+<?php
+	
+	class servletDistribucion extends CommandController {
+		public function doPost ( ) {
+			$daoClienteCartera=DAOFactory::getDAOClienteCartera();
+			switch ($_POST['action']) :
+				case 'generar_distribucion_automatica':
+					$dtoCampania=new dto_campanias ;
+					$dtoServicio=new dto_servicio ;
+					$dtoCampania->setId($_POST['Campania']);
+					$dtoServicio->setId($_POST['Servicio']);
+					
+					echo ($daoClienteCartera->generarDistribucionAutomatica($dtoServicio,$dtoCampania))?json_encode(array('rst'=>true,'msg'=>'Distribucion Generada Correctamente')):json_encode(array('rst'=>false,'msg'=>'Error al generar distribucion automatica'));
+					
+				break;
+				case 'RetirarTodoclienteSinGestionar':
+					$dtoCampania=new dto_campanias ;
+					$dtoUsuario=new dto_usuario ;
+					$dtoCampania->setId($_POST['Campania']);
+					$dtoUsuario->setId($_POST['Usuario']);
+					
+					echo ($daoClienteCartera->deleteAllClienteSinGestionarXUsuario($dtoCampania,$dtoUsuario))?json_encode(array('rst'=>true,'msg'=>'Clientes retirados correctamente')):json_encode(array('rst'=>false,'msg'=>'Error al retirar clientes'));
+					
+				break;
+				case 'generar_distribucion_manual':
+					$arrayData=json_decode($_POST['DataManual'],true);
+					$dtoCampania=new dto_campanias ;
+					$dtoCampania->setId($_POST['Campania']);
+					echo ($daoClienteCartera->generarDistribucionManual($dtoCampania,$arrayData))?json_encode(array('rst'=>true,'msg'=>'Distribucion Generada Correctamente')):json_encode(array('rst'=>false,'msg'=>'Error al generar distribucion manual'));
+				break;
+				case 'RetirarIngresadosClientesSinGestionar':
+					$dtoCampania=new dto_campanias ;
+					$dtoUsuario=new dto_usuario ;
+					$dtoCampania->setId($_POST['Campania']);
+					$dtoUsuario->setId($_POST['Usuario']);
+					$cantidad=$_POST['Cantidad'];
+					echo ($daoClienteCartera->deleteClientesIngresadosSinGestionar($dtoCampania,$dtoUsuario,$cantidad))?json_encode(array('rst'=>true,'msg'=>'Clientes retirados correctamente')):json_encode(array('rst'=>false,'msg'=>'Error al retirar clientes'));
+				break;
+			endswitch;
+		}
+		public function doGet ( ) {
+			$daoCampania=DAOFactory::getDAOCampania();
+			$daoClienteCartera=DAOFactory::getDAOClienteCartera();
+			switch ($_GET['action']):
+				case 'ListCampania':
+					$dto=new dto_servicio ;
+					$dto->setId($_GET['Servicio']);
+					echo json_encode($daoCampania->queryByIdName($dto));
+				break;
+				case 'ListarGestionOperador':
+					$dtoCampania=new dto_campanias ;
+					$dtoServicio=new dto_servicio ;
+					$dtoCampania->setId($_GET['Campania']);
+					$dtoServicio->setId($_GET['Servicio']);
+					echo json_encode($daoClienteCartera->queryClientesByOperador($dtoCampania,$dtoServicio));
+				break;
+				case 'DataDistribucionAutomatica':
+					$dtoServicio=new dto_servicio ;
+					$dtoCampania=new dto_campanias ;
+					$dtoServicio->setId($_GET['Servicio']);
+					$dtoCampania->setId($_GET['Campania']);
+					echo json_encode($daoClienteCartera->queryDistribucionAutomatica($dtoServicio,$dtoCampania));
+				break;
+				case 'clientes_sin_gestionar':
+					$dtoCampania=new dto_campanias ;
+					$dtoCampania->setId($_GET['Campania']);
+					echo json_encode($daoClienteCartera->queryClientesSinAsignar($dtoCampania));
+				break;
+				case 'jqgrid_clientes_gestionados':
+					//echo '{}';
+					//exit();
+					$page=$_GET["page"];
+					$limit=$_GET["rows"];
+					$sidx=$_GET["sidx"];
+					$sord=$_GET["sord"];
+	
+					if(!$sidx)$sidx=1 ;
+					
+					$stmt=" SELECT COUNT(*) AS 'COUNT' FROM ca_cliente_cartera clicar INNER JOIN ca_cartera car 
+						ON car.idcartera=clicar.idcartera
+						WHERE car.idcampania=1 AND ( clicar.id_ultima_llamada<>0 OR clicar.id_ultima_visita<>0 ) ";
+					
+					$row=$daoClienteCartera->executeSelectString($stmt);
+					$count=$row[0]['COUNT'];
+					if($count>0) {
+						$total_pages=ceil($count/$limit);
+					}else {
+						$total_pages=0;
+					}
+	
+					if($page>$total_pages) $page=$total_pages;
+	
+					$start=$page*$limit-$limit;
+					
+					$stmt=" SELECT clicar.idcliente_cartera,cli.codigo,CONCAT_WS(' ',cli.nombre,cli.paterno,cli.materno) AS 'cliente',cli.dni,
+						(SELECT CONCAT_WS(' ',nombre,paterno,materno) FROM ca_usuario WHERE idusuario=clicar.idusuario LIMIT 1)   as 'usuario_gestion'
+						FROM ca_cliente cli INNER JOIN ca_cliente_cartera clicar INNER JOIN ca_cartera car 
+						ON car.idcartera=clicar.idcartera AND clicar.idcliente=cli.idcliente
+						WHERE car.idcampania=1 AND ( clicar.id_ultima_llamada<>0 OR clicar.id_ultima_visita<>0 ) ORDER BY $sidx $sord LIMIT $start , $limit ";
+	
+					$response=array("page"=>$page,"total"=>$total_pages,"records"=>$count);
+					
+					$data=$daoClienteCartera->executeSelectString($stmt);
+					$dataRow=array();
+					for($i=0;$i<count($data);$i++){
+						array_push($dataRow, array("id"=>$data[$i]['idcliente_cartera'],"cell"=>array($data[$i]['codigo'],$data[$i]['cliente'],$data[$i]['dni'],$data[$i]['usuario_gestion'])));
+					}
+					$response["rows"]=$dataRow;
+					echo json_encode($response);
+				break;
+				case 'jqgrid_clientes_sin_gestionar':
+					//echo '{}';
+					//exit();
+					$page=$_GET["page"];
+					$limit=$_GET["rows"];
+					$sidx=$_GET["sidx"];
+					$sord=$_GET["sord"];
+	
+					if(!$sidx)$sidx=1 ;
+					
+					$stmt=" SELECT COUNT(*) AS 'COUNT' FROM ca_cliente_cartera clicar INNER JOIN ca_cartera car 
+						ON car.idcartera=clicar.idcartera
+						WHERE car.idcampania=1 AND clicar.id_ultima_llamada=0 AND clicar.id_ultima_visita=0 ";
+					
+					$row=$daoClienteCartera->executeSelectString($stmt);
+					$count=$row[0]['COUNT'];
+					if($count>0) {
+						$total_pages=ceil($count/$limit);
+					}else {
+						$total_pages=0;
+					}
+	
+					if($page>$total_pages) $page=$total_pages;
+	
+					$start=$page*$limit-$limit;
+					
+					$stmt=" SELECT clicar.idcliente_cartera,cli.codigo,CONCAT_WS(' ',cli.nombre,cli.paterno,cli.materno) AS 'cliente',cli.dni,
+						(SELECT CONCAT_WS(' ',nombre,paterno,materno) FROM ca_usuario WHERE idusuario=clicar.idusuario LIMIT 1)   as 'usuario_gestion'
+						FROM ca_cliente cli INNER JOIN ca_cliente_cartera clicar INNER JOIN ca_cartera car 
+						ON car.idcartera=clicar.idcartera AND clicar.idcliente=cli.idcliente
+						WHERE car.idcampania=1 AND clicar.id_ultima_llamada=0 AND clicar.id_ultima_visita=0 ORDER BY $sidx $sord LIMIT $start , $limit ";
+	
+					$response=array("page"=>$page,"total"=>$total_pages,"records"=>$count);
+					
+					$data=$daoClienteCartera->executeSelectString($stmt);
+					$dataRow=array();
+					for($i=0;$i<count($data);$i++){
+						array_push($dataRow, array("id"=>$data[$i]['idcliente_cartera'],"cell"=>array($data[$i]['codigo'],$data[$i]['cliente'],$data[$i]['dni'],$data[$i]['usuario_gestion'])));
+					}
+					$response["rows"]=$dataRow;
+					echo json_encode($response);
+				break;
+			endswitch;
+		}
+	}
+	
+?>

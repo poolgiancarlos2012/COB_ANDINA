@@ -1,0 +1,257 @@
+<link type="text/css" rel="stylesheet" href="../includes/jqgrid6/css/ui.jqgrid.css" />
+<link type="text/css" rel="stylesheet" href="../includes/jquery-ui-1.8/themes/humanity/jquery-ui.css" />
+
+<link type="text/css" rel="stylesheet" href="../css/css-cobrast.css" />
+<script type="text/javascript" src="../js/includes/jquery-1.4.2.js" ></script>
+
+<script type="text/javascript" src="../includes/jqgrid6/src/i18n/grid.locale-en.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/jqModal.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.base.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.celledit.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.common.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.custom.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.formedit.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.import.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.inlinedit.js" ></script>
+
+<script type="text/javascript" src="../js/js-cobrast.js" ></script>
+<script type="text/javascript" src="../js/ServicioDAO.js" ></script>
+<script type="text/javascript" src="../js/ServicioJQGRID.js" ></script>
+<script type="text/javascript" src="../js/js-service.js" ></script>
+<div style="width:100%; margin:0 auto;">
+	<table class="tableTab" cellpadding="0" cellspacing="0" border="0">
+    	<tr>
+        	<td rowspan="2" width="100"></td>
+            <td>
+            	<div class="rightItem">
+                	<div class="fltRight">
+                    	<a class="itemTop">Cerra Sesion</a>
+                    </div>
+                    <div class="fltRight">
+                    	<a class="itemTop">Ayuda</a>
+                    </div>
+                    <div class="fltRight">
+                    	<a class="itemTop">Whats' New</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+        	<td class="vAlignBottom tabsLine">
+            	<div class="menuHome">
+                	<span>
+                    	<div>
+                        	<table cellpadding="0" cellspacing="0" border="0">
+                            	<tr>
+                                	<td>
+                                    	<div id="tabMaestro" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Servicios</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Usuarios</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                            <a class="AitemTab">Campa&ntilde;as</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Cartera</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabDistribucion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Distribucion</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabProcesos" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Procesos</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabSpeech" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Speech</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabGestion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Gestion</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabGestion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Reportes</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabPapelera" class="itemTabActive border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="text-white">Adicionales</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+        	<td class="lineTab" colspan="2"></td>
+        </tr>
+    </table>
+    <table class="tableContent" cellpadding="0" cellspacing="0" border="0">
+    	<tr>
+        	<td class="barLayer">
+            	<div id="barLayer" style="width:210px; display:block;">
+                	<div class=" backPanel headerPanel">
+                    	<div class="backPanel iconPinUp" onclick="_slideBarLayer(this,'panelMenu')">Menu</div>
+                    </div>
+                    <div id="panelMenu" class="backPanel contentBarLayer" style="display:block;" >
+                    	<div style="width:100%;">
+                        	<div style="margin-left:20px; margin-bottom:2px;"><a class="text-blue" onClick="_display_panel('panelRegistrosServicio')">Registros</a></div>
+                            
+                     	</div>
+                    </div>
+                    <div class=" backPanel headerPanel">
+                    	<div class="backPanel iconPinUp" onclick="_slideBarLayer(this,'panelCrear')">Crear</div>
+                    </div>
+                    <div id="panelCrear" class="backPanel contentBarLayer" style="display:block;" >
+                    	<table>
+                        	<tr>
+                            	<td></td>
+                            </tr>
+                            <tr>
+                            	<td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td id="showhide" width="10px" class="showHide">
+            	<a onclick="_sliderFadeBarLayer()">
+                	<div id="iconSlider" class="slider icon sliderIconUp"></div>
+                </a>
+            </td>
+            <td width="100%">
+            	<div id="cobrastHOME" style="background-color:#FFFFFF; width:100%; height:100%; ">
+                	<div id="panelRegistrosServicio" >
+                    	<table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp" onclick="_slide(this,'content_table_tipo_final')"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Tipo Final</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="content_table_tipo_final" style="display:none; padding:5px 10px 5px 20px ;">
+                        	<table id="table_tipo_final"></table>
+                            <div id="pager_table_tipo_final"></div>
+                        </div>
+                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp" onclick="_slide(this,'content_table_carga_final')"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Carga Final</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="content_table_carga_final" style="display:none; padding:5px 10px 5px 20px ;">
+                        	<table id="table_carga_final"></table>
+                            <div id="pager_table_carga_final"></div>
+                        </div>
+                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp" onclick="_slide(this,'content_table_clase_final')"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Clase Final</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="content_table_clase_final" style="display:none; padding:5px 10px 5px 20px ;">
+                        	<table id="table_clase_final"></table>
+                            <div id="pager_table_clase_final"></div>
+                        </div>
+                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp" onclick="_slide(this,'content_table_nivel')"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Nivel</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="content_table_nivel" style="display:none; padding:5px 10px 5px 20px ;">
+                        	<table id="table_nivel"></table>
+                            <div id="pager_table_nivel"></div>
+                        </div>
+                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp" onclick="_slide(this,'content_table_tipo_gestion')"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Tipo Gestion</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="content_table_tipo_gestion" style="display:none; padding:5px 10px 5px 20px ;">
+                        	<table id="table_tipo_gestion"></table>
+                            <div id="pager_table_tipo_gestion"></div>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div style="width:100%; height:20px; background-color:#F0E8D9; border:0 none;"></div>
+</div>

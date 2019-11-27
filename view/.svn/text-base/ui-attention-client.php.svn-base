@@ -1,0 +1,727 @@
+<?php
+    session_start();
+    
+?>
+<link type="text/css" rel="stylesheet" href="../includes/jqgrid6/css/ui.jqgrid.css" />
+<link type="text/css" rel="stylesheet" href="../includes/jquery-ui-1.8/themes/humanity/jquery-ui.css" />
+
+<link type="text/css" rel="stylesheet" href="../css/css-cobrast.css" />
+
+<script type="text/javascript" src="../js/includes/jquery-1.4.2.js" ></script>
+
+<script type="text/javascript" src="../includes/jqgrid6/src/i18n/grid.locale-en.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/jqModal.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.base.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.celledit.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.common.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.custom.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.formedit.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.import.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.inlinedit.js" ></script>
+
+<script type="text/javascript" src="../js/js-cobrast.js" ></script>
+<script type="text/javascript" src="../js/templates.js"  ></script>
+<script type="text/ecmascript" src="../js/AtencionClienteDAO.js" ></script>
+<script type="text/ecmascript" src="../js/AtencionClienteJQGRID.js" ></script>
+<script type="text/ecmascript" src="../js/js-atencion-cliente.js" ></script>
+<div style="width:100%; margin:0 auto;">
+	<table class="tableTab" cellpadding="0" cellspacing="0" border="0">
+    	<tr>
+        	<td rowspan="2" width="100"></td>
+            <td>
+            	<div class="rightItem">
+                	<div class="fltRight">
+                            <a class="itemTop" href="../close.php">Cerra Sesion</a>
+                    </div>
+                    <div class="fltRight">
+                    	<a class="itemTop">Ayuda</a>
+                    </div>
+                    <div class="fltRight">
+                    	<a class="itemTop">Whats' New</a>
+                    </div>
+                    <div><strong style="margin-right: 5px;">Bienvenido: <?php echo $_SESSION['cobrast']['usuario'] ?></strong></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="vAlignBottom tabsLine">
+                <div id="layerMessage" align="center"></div>
+            	<div class="menuHome">
+                	<span>
+                    	<div>
+                        	<table cellpadding="0" cellspacing="0" border="0">
+                            	<tr>
+                                	<td>
+                                    	<div id="tabMaestro" class="itemTab border-radius-top pointer" >
+                                        	<a class="AitemTab">Servicios</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" >
+                                        	<a class="AitemTab">Usuarios</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" >
+                                            <a class="AitemTab">Campa&ntilde;as</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" >
+                                        	<a class="AitemTab">Cartera</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabDistribucion" class="itemTab border-radius-top pointer" >
+                                        	<a class="AitemTab">Distribucion</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabProcesos" class="itemTab border-radius-top pointer" >
+                                        	<a class="AitemTab">Procesos</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabSpeech" class="itemTab border-radius-top pointer" >
+                                        	<a class="AitemTab">Speech</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabGestion" class="itemTabActive border-radius-top pointer" >
+                                        	<a class="text-white">Gestion</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabGestion" class="itemTab border-radius-top pointer" >
+                                        	<a class="AitemTab">Reportes</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabPapelera" class="itemTab border-radius-top pointer" >
+                                        	<a class="AitemTab">Adicionales</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+        	<td class="lineTab" colspan="2"></td>
+        </tr>
+    </table>
+    <table class="tableContent" cellpadding="0" cellspacing="0" border="0">
+    	<tr>
+        	<td class="barLayer">
+            	<div id="barLayer" style="width:210px; display:block;">	
+                	<div class=" backPanel headerPanel">
+                    	<div class="backPanel iconPinUp" onclick="_slideBarLayer(this,'panelMenu')">Menu</div>
+                    </div>
+                    <div id="panelMenu" class="backPanel contentBarLayer" style="display:block;" >
+                    	<div style="width:100%;">
+                        	<div style="margin-left:20px; margin-bottom:2px;"><a class="text-blue" onClick="_display_panel('panelAtencionCliente')">Atencion al Cliente</a></div>
+                            <div style="margin-left:20px; margin-bottom:2px;"><a class="text-blue" onClick="_display_panel('panelGestorCampo')">Gestor de Campo</a></div>
+                            <!--<div style="margin-left:10px; margin-bottom:2px;">
+                            	<table border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+                            			<td><div class="icon plus-icon" style="width:10px; height:10px; cursor:pointer;"></div></td>
+                                		<td><a class="text-blue" >Registros</a></td>
+                                	</tr>
+                                </table>
+                            </div>
+                            <div style="display:none; margin-left:30px;" id="submenuRegistros">
+                            	<div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Servicios</a></div>
+                                <div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Administradores por Servicio</a></div>
+                                <div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Operadores por Servicio</a></div>
+                            </div>-->
+                     	</div>       
+                    </div>
+                    <div class=" backPanel headerPanel">
+                    	<div class="backPanel iconPinUp" onclick="_slideBarLayer(this,'panelCrear')">Crear</div>
+                    </div>
+                    <div id="panelCrear" class="backPanel contentBarLayer" style="display:block;" >
+                    	<table>
+                        	<tr>
+                            	<td></td>
+                            </tr>
+                            <tr>
+                            	<td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td id="showhide" width="10px" class="showHide">
+            	<a onclick="_sliderFadeBarLayer()">
+                	<div id="iconSlider" class="slider icon sliderIconUp"></div>
+                </a>
+            </td>
+            <td width="100%">	
+            	<div id="cobrastHOME" style="background-color:#FFFFFF; width:100%; height:100%; ">
+                	<input type="hidden" id="hdCodUsuario" name="hdCodUsuario" value="<?=$_SESSION['cobrast']['idusuario']?>" />
+                    <input type="hidden" id="hdCodServicio" name="hdCodServicio" value="<?=$_SESSION['cobrast']['idservicio']?>" />
+                    <input type="hidden" id="hdCodUsuarioServicio" name="hdCodUsuarioServicio" value="<?=$_SESSION['cobrast']['idusuario_servicio']?>" />
+                    <input type="hidden" id="hdNomServicio" name="hdNomServicio" value="<?=$_SESSION['cobrast']['servicio']?>" />
+                	<div id="panelAtencionCliente" style="display:block;">
+                    	<table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+                        	<tr>
+                            	<td>
+                                	<div style="padding:5px;" class="ui-widget-content">
+                                    	<table border="0" cellpadding="0" cellspacing="0" style="width:99%;">
+                                        	<tr>
+                                            	<td>
+                                                	<div style="margin-left:100px;">
+                                                        <table id="table_tab_AC1" border="0" cellpadding="0" cellspacing="0">
+                                                            <tr>
+                                                                <td>
+                                                                    <div onclick="_activeTabLayer('table_tab_AC1','tabAC1',this,'content_table_tab_AC1','layerTabAC1','layerTabAC1Busqueda')" id="tabAC1Busqueda" class="itemTabActive border-radius-top pointer">
+                                                                        <div class="text-white">Busqueda</div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div onclick="_activeTabLayer('table_tab_AC1','tabAC1',this,'content_table_tab_AC1','layerTabAC1','layerTabAC1Resultado')" id="tabAC1Resultado" class="itemTab border-radius-top pointer">
+                                                                        <div class="AitemTab">Resultado</div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div onclick="_activeTabLayer('table_tab_AC1','tabAC1',this,'content_table_tab_AC1','layerTabAC1','layerTabAC1MatrizBusqueda')" id="tabAC1MatrizBusqueda" class="itemTab border-radius-top pointer">
+                                                                        <div class="AitemTab" style="width:110px;">Matriz de Busqueda</div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+													</div>
+												</td>
+                                          	</tr>
+                                            <tr>
+                                            	<td class="lineTab"></td>
+                                            </tr>
+                                        </table>
+                                        <table border="0" cellpadding="0" cellspacing="0" style="width:99%;">
+                                        	<tr>
+                                            	<td id="content_table_tab_AC1">
+                                                	<div id="layerTabAC1Busqueda" style="display:block;" class="ui-widget-content">
+                                                    	<table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+                                                        	<tr>
+                                                            	<td valign="top">
+                                                                	<div style="margin-top:20px;">
+                                                                    	<table id="table_tab_busqueda">
+                                                                        	<tr>
+                                                                            	<td>
+                                                                                	<div id="tabBusquedaManual" class="itemTabActive pointer border-radius-left" onclick="_activeTabLayer('table_tab_busqueda','tabBusqueda',this,'content_tab_busqueda','layerTabBusqueda','layerTabBusquedaManual')">
+                                                                                    	<div class="text-white">Busqueda Manual</div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                            	<td>
+                                                                                	<div id="tabBusquedaBase" class="itemTab pointer border-radius-left" onclick="_activeTabLayer('table_tab_busqueda','tabBusqueda',this,'content_tab_busqueda','layerTabBusqueda','layerTabBusquedaBase')">
+                                                                                    	<div class="AitemTab">Busqueda Base</div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                                <td id="content_tab_busqueda" align="center">
+                                                                	<div style="display:block;padding:5px 0;" id="layerTabBusquedaManual" align="center" >
+                                                                    	<table border="0" cellpadding="0" cellspacing="0">
+                                                                        	<tr>
+                                                                            	<td>
+                                                                                	<div>
+                                                                                    	<table>
+                                                                                        	<tr>
+                                                                                            	<td align="right">Campa&ntilde;a</td>
+                                                                                                <td><select id="cbCampaniaBusquedaManual"><option value="0">--Seleccione--</option></select></td>
+                                                                                                <td></td>
+                                                                                                <td></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                            	<td align="right">Campo</td>
+                                                                                                <td><select><option>--Seleccione--</option></select></td>
+                                                                                                <td align="right">Dato</td>
+                                                                                                <td><select><option>--Seleccione--</option></select></td>
+                                                                                            </tr>
+                                                                                        </table>
+																					</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                	<div>
+                                                                                    	<table id="table_filtros">
+                                                                                        	
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                            	<td rowspan="2">
+                                                                                	<div>
+                                                                                    	<table id="table_busqueda_manual"></table>
+                                                                                        <div id="pager_table_busqueda_manual"></div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                    <div style="display:none;padding:5px 0;" id="layerTabBusquedaBase" align="center">
+                                                                    	<table border="0" cellpadding="0" cellspacing="0">
+                                                                        	<tr>
+                                                                            	<td>
+                                                                                	<div>
+                                                                                    	<table>
+                                                                                        	<tr>
+                                                                                            	<td align="right">Campaña</td>
+                                                                                                <td colspan="5"><select id="cbCampaniaBusquedaBase"><option value="0">--Seleccione--</option></select><td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                            	<td><button></button></td>
+                                                                                                <td><input type="text"  /></td>
+                                                                                                <td><button></button></td>
+                                                                                                <td><input type="text"  /></td>
+                                                                                                <td><button></button></td>
+                                                                                                <td><input type="text"  /></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                            	<td><button></button></td>
+                                                                                                <td><input type="text"  /></td>
+                                                                                                <td><button></button></td>
+                                                                                                <td colspan="3"><input type="text"  /></td>
+                                                                                            </tr>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                            	<td>
+                                                                                	<div>
+                                                                                    	<table id="table_busqueda_base"></table>
+                                                                                        <div id="pager_table_busqueda_base"></div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div id="layerTabAC1Resultado" style="display:none;padding:5px;" class="ui-widget-content" align="center">
+                                                    	<table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                                                            <tr>
+                                                                <td style="width:25px; height:25px;">
+                                                                    <div class="backPanel iconPinBlueUp" onclick="_slide(this,'PanelTableDatosCliente')"></div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:ltr;">
+                                                                        <a class="text-blue">Datos de Cliente</a>
+                                                                    </div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:rtl;">
+                                                                        <span class="text-gris"></span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <div id="PanelTableDatosCliente" style="display:none;padding:5px 10px;" align="center">
+                                                        	<table>
+                                                                <tr>
+                                                                    <td align="right">Codigo</td>
+                                                                    <td><input type="text"  /></td>
+ 																	<td align="right">Nombre</td>
+                                                                    <td><input type="text"  /></td>
+                                                                	<td align="right">DNI</td>
+                                                                    <td><input type="text"  /></td>
+                                                                	<td align="right">RUC</td>
+                                                                    <td><input type="text"  /></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                                                            <tr>
+                                                                <td style="width:25px; height:25px;">
+                                                                    <div class="backPanel iconPinBlueUp" onclick="_slide(this,'PanelTableDatosCuenta')"></div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:ltr;">
+                                                                        <a class="text-blue">Datos de Cuenta</a>
+                                                                    </div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:rtl;">
+                                                                        <span class="text-gris"></span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <div id="PanelTableDatosCuenta" style="display:none;padding:5px 10px;" align="center">
+                                                        	<table>
+                                                                <tr>
+                                                                    <td align="right">Total Deuda</td>
+                                                                    <td><input type="text"  /></td>
+                                                                    <td align="right">Total Deuda Soles</td>
+                                                                    <td><input type="text"  /></td>
+                                                                    <td align="right">Total Deuda Dolares</td>
+                                                                    <td><input type="text"  /></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right">Total Monto Mora</td>
+                                                                    <td><input type="text"  /></td>
+                                                                    <td align="right">Total Monto Mora Soles</td>
+                                                                    <td><input type="text"  /></td>
+                                                                    <td align="right">Total Monto Mora Dolares</td>
+                                                                    <td><input type="text"  /></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right">Total Saldo Capital</td>
+                                                                    <td><input type="text"  /></td>
+                                                                    <td align="right">Total Saldo Capital Soles</td>
+                                                                    <td><input type="text"  /></td>
+                                                                    <td align="right">Total Saldo Capital Dolares</td>
+                                                                    <td><input type="text"  /></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                                                            <tr>
+                                                                <td style="width:25px; height:25px;">
+                                                                    <div class="backPanel iconPinBlueUp" onclick="_slide(this,'PanelTableDatosAdicionalesCliente')"></div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:ltr;">
+                                                                        <a class="text-blue">Datos Adicionales de Cliente</a>
+                                                                    </div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:rtl;">
+                                                                        <span class="text-gris"></span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <div id="PanelTableDatosAdicionalesCliente" style="display:none;padding:5px 10px;" align="center">
+                                                        	<table id="table_datos_adicionales_cliente" cellpadding="0" cellspacing="0" border="0"></table>
+                                                        </div>
+                                                    </div>
+                                                    <div id="layerTabAC1MatrizBusqueda" style="display:none;padding:5px 10px;" class="ui-widget-content" align="center">
+                                                    	<table border="0" cellpadding="0" cellspacing="0">
+                                                        	<tr>
+                                                            	<td>
+                                                                	<div>
+                                                                    	<table>
+                                                                        	<tr>
+                                                                            	<td align="right">Servicio</td>
+                                                                                <td><select id="cbServicioMatrizBusqueda"><option value="0">--Seleccione--</option></select></td>
+                                                                                <td align="right">Campa&ntilde;a</td>
+                                                                                <td><select id="cbCampaniaMatrizBusqueda"><option value="0">--Seleccione--</option></select></td>
+                                                                                <td align="right">Operador</td>
+                                                                                <td><select><option value="0">--Seleccione--</option></select></td>
+                                                                                <td><button class="ui-button ui-state-default ui-corner-all" style="padding:2px 4px;"><span class="ui-button-text">Filtrar</span></button></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                            	<td>
+                                                                	<div>
+                                                                    	<table id="table_matriz_busqueda"></table>
+                                                                        <div id="pager_table_matriz_busqueda"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table style="width:99%;">
+                                        	<tr>
+                                            	<td id="content_table_tab_AC2" >
+                                                	<div id="layerTabAC2Llamada" class="ui-widget-content" style="display:block;padding:5px;" align="center">
+                                                    	<table border="0" >
+                                                        	<tr>
+                                                            	<td>
+                                                                	<div>
+                                                                    	<table border="0" cellpadding="0" cellspacing="0">
+                                                                        	<tr>
+                                                                            	<td align="center">Telefono</td>
+                                                                                <td><input type="text"  /></td>
+                                                                                <td><button></button></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                            	<td>
+                                                                	<div>
+                                                                    	<table id="table_llamada"></table>
+                                                                        <div id="pager_table_llamada"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div id="layerTabAC2CuentaPagos" class="ui-widget-content" style="display:none;padding:5px 0;width:100%;" align="center">
+                                                    	<table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                                                            <tr>
+                                                                <td style="width:25px; height:25px;">
+                                                                    <div class="backPanel iconPinBlueUp" onclick="_slide(this,'PanelTableCuentaAtencionCliente')"></div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:ltr;">
+                                                                        <a class="text-blue">Cuenta</a>
+                                                                    </div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:rtl;">
+                                                                        <span class="text-gris"></span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <div id="PanelTableCuentaAtencionCliente" style="display:none;padding:5px 10px;" align="center">
+                                                        	<table border="0" cellpadding="0" cellspacing="0">
+                                                            	<tr>
+                                                                	<td>
+                                                                    	<div>
+                                                                        	<table id="table_cuenta"></table>
+                                                                            <div id="pager_table_cuenta"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                                                            <tr>
+                                                                <td style="width:25px; height:25px;">
+                                                                    <div class="backPanel iconPinBlueUp" onclick="_slide(this,'PanelTableDatosAdicionalesCuentaAtencionCliente')"></div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:ltr;">
+                                                                        <a class="text-blue">Datos Adicionales Cuenta</a>
+                                                                    </div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:rtl;">
+                                                                        <span class="text-gris"></span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <div id="PanelTableDatosAdicionalesCuentaAtencionCliente" style="display:none;padding:5px 10px;" align="center">
+                                                        	<table id="table_datos_adicionales_cuenta" border="0" cellpadding="0" cellspacing="0">
+                                                            </table>
+                                                        </div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                                                            <tr>
+                                                                <td style="width:25px; height:25px;">
+                                                                    <div class="backPanel iconPinBlueUp" onclick="_slide(this,'PanelTableOperacionAtencionCliente')"></div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:ltr;">
+                                                                        <a class="text-blue">Operacion</a>
+                                                                    </div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:rtl;">
+                                                                        <span class="text-gris"></span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <div id="PanelTableOperacionAtencionCliente" style="display:none;padding:5px 10px;" align="center">
+                                                        	<table border="0" cellpadding="0" cellspacing="0">
+                                                            	<tr>
+                                                                	<td>
+                                                                    	<div>
+                                                                        	<table id="table_operaciones"></table>
+                                                                            <div id="pager_table_operaciones"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                                                            <tr>
+                                                                <td style="width:25px; height:25px;">
+                                                                    <div class="backPanel iconPinBlueUp" onclick="_slide(this,'PanelTableDatosAdicionalesOperacionAtencionCliente')"></div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:ltr;">
+                                                                        <a class="text-blue">Datos Adicionales Operacion</a>
+                                                                    </div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:rtl;">
+                                                                        <span class="text-gris"></span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <div id="PanelTableDatosAdicionalesOperacionAtencionCliente" style="display:none;padding:5px 10px;" align="center">
+                                                        	<table id="table_datos_adicionales_operacion" border="0" cellpadding="0" cellspacing="0">
+                                                            </table>
+                                                        </div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                                                            <tr>
+                                                                <td style="width:25px; height:25px;">
+                                                                    <div class="backPanel iconPinBlueUp" onclick="_slide(this,'PanelTablePagosAtencionCliente')"></div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:ltr;">
+                                                                        <a class="text-blue">Pagos</a>
+                                                                    </div>
+                                                                </td>
+                                                                <td style=" border-bottom:1px solid #EADEC8;">
+                                                                    <div style="direction:rtl;">
+                                                                        <span class="text-gris"></span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <div id="PanelTablePagosAtencionCliente" style="display:none;padding:5px 10px;" align="center">
+                                                        	<table border="0" cellpadding="0" cellspacing="0">
+                                                            	<tr>
+                                                                	<td>
+                                                                    	<div>
+                                                                        	<table id="table_pagos"></table>
+                                                                            <div id="pager_table_pagos"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div id="layerTabAC2Telefonos" class="ui-widget-content" style="display:none;padding:5px;" align="center">
+                                                    	<table border="0" cellpadding="0" cellspacing="0">
+                                                        	<tr>
+                                                            	<td>
+                                                                	<div>
+                                                                    	<table id="table_telefonos"></table>
+                                                                        <div id="pager_table_telefonos"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div id="layerTabAC2Direcciones" class="ui-widget-content" style="display:none;padding:5px;" align="center">
+                                                    	<table>
+                                                        	<tr>
+                                                            	<td>
+                                                                	<div>
+                                                                    	<table id="table_direccion"></table>
+                                                                        <div id="pager_table_direccion"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div id="layerTabAC2Visita" class="ui-widget-content" style="display:none;padding:5px;" align="center"></div>
+                                                    <div id="layerTabAC2Historico" class="ui-widget-content" style="display:none;padding:5px;" align="center"></div>
+                                                    <div id="layerTabAC2HorarioNuevoTramo" class="ui-widget-content" style="display:none;padding:5px;" align="center"></div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table border="0" cellpadding="0" cellspacing="0" style="width:99%">
+                                        	<tr>
+                                            	<td class="lineTab"></td>
+                                            </tr>
+                                        	<tr>
+                                            	<td>
+                                                	<div style="margin-left:100px;">
+                                                        <table id="table_tab_AC2" border="0" cellpadding="0" cellspacing="0">
+                                                            <tr>
+                                                                <td>
+                                                                    <div onclick="_activeTabLayer('table_tab_AC2','tabAC2',this,'content_table_tab_AC2','layerTabAC2','layerTabAC2Llamada')" id="tabAC2Llamada" class="itemTabActive border-radius-bottom pointer" style="margin:0px 1px 0 0">
+                                                                        <div class="text-white">Llamada</div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div onclick="_activeTabLayer('table_tab_AC2','tabAC2',this,'content_table_tab_AC2','layerTabAC2','layerTabAC2CuentaPagos')" id="tabAC2CuentaPagos" class="itemTab border-radius-bottom pointer" style="margin:0px 1px 0 0">
+                                                                        <div class="AitemTab">Cuenta-Pagos</div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div onclick="_activeTabLayer('table_tab_AC2','tabAC2',this,'content_table_tab_AC2','layerTabAC2','layerTabAC2Telefonos')" id="tabAC2Telefonos" class="itemTab border-radius-bottom pointer" style="margin:0px 1px 0 0">
+                                                                        <div class="AitemTab" >Telefonos</div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div onclick="_activeTabLayer('table_tab_AC2','tabAC2',this,'content_table_tab_AC2','layerTabAC2','layerTabAC2Direcciones')" id="tabAC2Direcciones" class="itemTab border-radius-bottom pointer" style="margin:0px 1px 0 0">
+                                                                        <div class="AitemTab" >Direcciones</div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div onclick="_activeTabLayer('table_tab_AC2','tabAC2',this,'content_table_tab_AC2','layerTabAC2','layerTabAC2Visita')" id="tabAC2Visita" class="itemTab border-radius-bottom pointer" style="margin:0px 1px 0 0">
+                                                                        <div class="AitemTab" >Visita</div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div onclick="_activeTabLayer('table_tab_AC2','tabAC2',this,'content_table_tab_AC2','layerTabAC2','layerTabAC2Historico')" id="tabAC2Historico" class="itemTab border-radius-bottom pointer" style="margin:0px 1px 0 0">
+                                                                        <div class="AitemTab" >Historico</div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div onclick="_activeTabLayer('table_tab_AC2','tabAC2',this,'content_table_tab_AC2','layerTabAC2','layerTabAC2HorarioNuevoTramo')" id="tabAC2HorarioNuevoTramo" class="itemTab border-radius-bottom pointer" style="margin:0px 1px 0 0">
+                                                                        <div class="AitemTab" style="width:120px;">Horario Nuevo Tramo</div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+													</div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                	<div id="panelGestorCampo" style="display:none;" align="center">
+                    	<table border="0" cellpadding="0" cellspacing="0">
+                        	<tr>
+                            	<td>
+                                	<div class="ui-widget-content ui-corner-all" style="padding:5px 10px;margin:5px;">
+                                    	<table border="0" cellpadding="0" cellspacing="0">
+                                        	<tr>
+                                            	<td>
+                                                	<div>
+                                                        <table>
+                                                            <tr>
+                                                                <td align="right">Tipo de gestion</td>
+                                                                <td><select><option value="0">--Seleccione--</option></select></td>
+                                                                <td align="right">Final</td>
+                                                                <td><select><option value="0">--Seleccione--</option></select></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                        		</td>
+                                        	</tr>
+                                            <tr>
+                                            	<td>
+                                                	<div>
+                                                    	<table>
+                                                        	<tr>
+                                                            	<td align="right" valign="top">Observacion</td>
+                                                                <td><textarea rows="8" cols="80"></textarea></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div style="width:100%; height:20px; background-color:#F0E8D9; border:0 none;"></div>
+</div>

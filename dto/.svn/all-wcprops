@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/COBRAST/!svn/ver/28/trunk/COBRAST/dto
+END
+dto_cliente.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/dto/dto_cliente.php
+END
+dto_servicio.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/COBRAST/!svn/ver/15/trunk/COBRAST/dto/dto_servicio.php
+END
+dto_cliente_cartera.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/dto/dto_cliente_cartera.php
+END
+dto_carga_final.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/dto/dto_carga_final.php
+END
+dto_niveles_permisos.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/COBRAST/!svn/ver/19/trunk/COBRAST/dto/dto_niveles_permisos.php
+END
+dto_clase.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/dto/dto_clase.php
+END
+dto_usuario.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/COBRAST/!svn/ver/17/trunk/COBRAST/dto/dto_usuario.php
+END
+dto_usuario_servicio.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/COBRAST/!svn/ver/24/trunk/COBRAST/dto/dto_usuario_servicio.php
+END
+dto_ayuda_gestion.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/dto/dto_ayuda_gestion.php
+END
+dto_permisos_detalle.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/COBRAST/!svn/ver/18/trunk/COBRAST/dto/dto_permisos_detalle.php
+END
+dto_campanias.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/COBRAST/!svn/ver/28/trunk/COBRAST/dto/dto_campanias.php
+END
+dto_compromiso_pago.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/dto/dto_compromiso_pago.php
+END
+dto_clase_final.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/dto/dto_clase_final.php
+END
+dto_url.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/COBRAST/!svn/ver/21/trunk/COBRAST/dto/dto_url.php
+END
+dto_menu.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/COBRAST/!svn/ver/21/trunk/COBRAST/dto/dto_menu.php
+END
+dto_alerta.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/dto/dto_alerta.php
+END
+dto_detalle_cuenta.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/dto/dto_detalle_cuenta.php
+END
+dto_cuenta.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/dto/dto_cuenta.php
+END
+dto_cartera.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/COBRAST/!svn/ver/3/trunk/COBRAST/dto/dto_cartera.php
+END

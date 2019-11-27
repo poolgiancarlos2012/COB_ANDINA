@@ -1,0 +1,109 @@
+<?php
+/**
+ * Description of dto_cabeceras
+ *
+ * @author Davis
+ */
+class dto_campanias {
+    private $id;
+    private $idServicio;
+    private $nombre;
+    private $status;
+    private $fechaInicio;
+    private $fechaFin;
+    private $descripcion;
+    private $estado;
+    private $fechaCreacion;
+    private $fechaModificacion;
+    private $usuarioCreacion;
+    private $usuarioModificacion;
+
+    public function __construct() {
+        
+    }
+    
+    public function setId($valor) {
+        $this->id=$valor;
+    }
+    public function getId() {
+        return $this->id;
+    }
+    
+    public function setStatus ( $valor ) {
+        $this->status = $valor ; 
+    }
+    public function getStatus ( ) {
+        return $this->status ;
+    }
+    
+    public function setIdServicio($valor){
+        $this->idServicio=$valor;
+    }
+    public function getIdServicio(){
+        return $this->idServicio;
+    }
+
+    public function setNombre($valor){
+        $this->nombre=$valor;
+    }
+    public function getNombre(){
+        return $this->nombre;
+    }
+
+    public function setFechaInicio($valor){
+        $this->fechaInicio=$valor;
+    }
+    public function getFechaInicio(){
+        return $this->fechaInicio;
+    }
+
+    public function setFechaFin($valor){
+        $this->fechaFin=$valor;
+    }
+    public function getFechaFin(){
+        return $this->fechaFin;
+    }
+
+    public function setDescripcion($valor){
+        $this->descripcion=$valor;
+    }
+    public function getDescripcion(){
+        return $this->descripcion;
+    }
+
+    public function setEstado($valor){
+        $this->estado=$valor;
+    }
+    public function getEstado(){
+        return $this->estado;
+    }
+
+    public function setFechaCreacion($valor){
+        $this->fechaCreacion=$valor;
+    }
+    public function getFechaCreacion(){
+        return $this->fechaCreacion;
+    }
+
+    public function setFechaModificacion($valor){
+        $this->fechaModificacion=$valor;
+    }
+    public function getFechaModificacion(){
+        return $this->fechaModificacion;
+    }
+
+    public function setUsuarioCreacion($valor){
+        $this->usuarioCreacion=$valor;
+    }
+    public function getUsuarioCreacion(){
+        return $this->usuarioCreacion;
+    }
+
+    public function setUsuarioModificacion($valor){
+        $this->usuarioModificacion=$valor;
+    }
+    public function getUsuarioModificacion(){
+        return $this->usuarioModificacion;
+    }
+}
+?>

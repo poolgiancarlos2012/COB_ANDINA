@@ -1,0 +1,1 @@
+C:\xampp\php\php.exe -f C:\xampp\htdocs\COB_ANDINA\tarea\envio_estado_cuenta.php >> C:\xampp\htdocs\COB_ANDINA\tarea\enviar_estado_cuenta.log

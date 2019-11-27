@@ -1,0 +1,88 @@
+<?php
+
+abstract class CommandController {
+
+    public function process ( ) {
+        switch ($_SERVER['REQUEST_METHOD']):
+            case 'POST':
+                if(method_exists($this,'doPost')) {
+                    $this->doPost();
+                }
+                break;
+            case 'GET':
+                if(method_exists($this,'doGet')) {
+                    $this->doGet();
+                }
+                break;
+            endswitch;
+    }
+
+    public function doPost ( ) {
+
+    }
+    public function doGet ( ) {
+
+    }
+    /*public static function getCommand ( ) {
+        $classController= NULL;
+        //print_r($_SERVER);
+        $controller = pathinfo($_SERVER['HTTP_REFERER']) ;
+        //echo $controller['filename'].'dasfdas';
+        switch($controller['filename']):
+            case 'ui-servicio':
+            //echo 'jfghgh';
+                $classController= new servletServicio;
+                break;
+            case 'ui-campania':
+                $classController= new servletCampania;
+                break;
+            case 'ui-usuario':
+                $classController= new servletUsuario;
+                break;
+            case 'ui-permisos':
+                $classController = new servletPermisosDetalle();
+                break;
+            case 'ui-menus':
+                $classController = new servletMenu();
+                break;
+            endswitch;
+        return $classController;
+    }*/
+    public static function getCommand ( ) {
+        $classController= NULL;
+        switch ($_REQUEST['command'] ) :
+            case 'servicio':
+                $classController= new servletServicio ;
+                break;
+            case 'campania':
+                $classController= new servletCampania ;
+                break;
+            case 'usuario':
+                $classController= new servletUsuario ;
+                break;
+            case 'permisos':
+                $classController= new servletPermisosDetalle ;
+                break;
+            case 'menus':
+                $classController= new servletMenu ;
+                break;
+            case 'login':
+                $classController= new servletLogin ;
+                break;
+            case 'distribucion':
+                $classController= new servletDistribucion ;
+                break;
+            case 'atencion_cliente':
+                $classController= new servletAtencionCliente ;
+                break;
+            case 'carga-cartera':                
+                $classController = new servletCargaCatera();
+                break;
+            endswitch;
+        return $classController;
+    }
+
+}
+
+
+?>

@@ -1,0 +1,81 @@
+<?php
+
+    class servletUsuario extends CommandController {
+        public function doPost ( ) {
+            $daoUsuario=DAOFactory::getDAOUsuario();
+			$daoUsuarioServicio=DAOFactory::getDAOUsuarioServicio();
+            switch ($_POST['action']):
+                case 'save_usuario':
+                    $dtoUsuario=new dto_usuario();
+					$dtoUsuarioServicio=new dto_usuario_servicio();
+					
+                    $dtoUsuario->setNombre($_POST['Nombre']);
+                    $dtoUsuario->setPaterno($_POST['Paterno']);
+                    $dtoUsuario->setMaterno($_POST['Materno']);
+                    $dtoUsuario->setDni($_POST['Dni']);
+                    $dtoUsuario->setEmail($_POST['Email']);
+                    $dtoUsuario->setClave($_POST['Clave']);
+                    $dtoUsuario->setEstado(1);
+                    $dtoUsuario->setUsuarioCreacion($_POST['UsuarioCreacion']);
+					
+					$dtoUsuarioServicio->setIdServicio($_POST['Servicio']);
+					$dtoUsuarioServicio->setIdTipoUsuario($_POST['TipoUsuario']);
+					$dtoUsuarioServicio->setIdPrivilegio($_POST['Privilegio']);
+					$dtoUsuarioServicio->setFechaInicio($_POST['FechaInicio']);
+					$dtoUsuarioServicio->setFechaFin($_POST['FechaFin']);
+					$dtoUsuarioServicio->setEstado(1);
+					$dtoUsuarioServicio->setUsuarioCreacion($_POST['UsuarioCreacion']);
+					
+                    $checkDNI=$dao->checkDNIexists($dtoUsuario);
+                    if($checkDNI[0]['countDNI']>0){
+                        echo json_encode(array('rst'=>false,'msg'=>'DNI ingresado ya existe'));
+                    }else{
+                        echo ($daoUsuarioServicio->insertUsuarioServicio($dtoUsuarioServicio,$dtoUsuario))?json_encode(array('rst'=>true,'msg'=>'Usuario creado correctamente')):json_encode(array('rst'=>false,'msg'=>'Error al  crear usuario'));
+                    }
+                    
+                break;
+                case 'update_usuario':
+                    $dto=new dto_usuario();
+                    $dto->setId($_POST['Id']);
+                    $dto->setNombre($_POST['Nombre']);
+                    $dto->setPaterno($_POST['Paterno']);
+                    $dto->setMaterno($_POST['Materno']);
+                    $dto->setDni($_POST['Dni']);
+                    $dto->setEmail($_POST['Email']);
+                    $dto->setUsuarioModificacion($_POST['UsuarioCreacion']);
+                    $checkDNI=$dao->checkDNIexists($dto);
+                    if($checkDNI[0]['countDNI']>0){
+                        echo json_encode(array('rst'=>false,'msg'=>'DNI ingresado ya existe'));
+                    }else{
+                        echo ($dao->updateDataModification($dto))?json_encode(array('rst'=>true,'msg'=>'Usuario actualizado correctamente')):json_encode(array('rst'=>false,'msg'=>'Error al actualizar usuario'));
+                    }
+                    
+                break;
+                case 'delete_usuario':
+                    $dto=new dto_usuario();
+                    $dto->setId($_POST['Id']);
+                    $dto->setUsuarioModificacion($_POST['UsuarioModificacion']);
+                    echo ($dao->delete($dto))?json_encode(array('rst'=>true,'msg'=>'Usuario eliminado correctamente')):json_encode(array('rst'=>false,'msg'=>'Error al eliminar usuario'));
+                break;
+            endswitch;
+        }
+
+        public function doGet ( ) {
+			$daoServicio=DAOFactory::getDAOServicio();
+			$daoTipoUsuario=DAOFactory::getDAOTipoUsuario();
+			$daoPrivilegio=DAOFactory::getDAOPrivilegio();
+            switch ($_GET['action']) :
+                case 'ListarServicio':
+                	echo json_encode($daoServicio->queryIdName());
+                break;
+				case 'ListarPrivilegios':
+					echo json_encode($daoPrivilegio->queryNotAdmin());
+				break;
+				case 'ListarTipoUsuario':
+					echo json_encode($daoTipoUsuario->queryNotAdmin());
+				break;
+            endswitch;
+        }
+    }
+
+?>

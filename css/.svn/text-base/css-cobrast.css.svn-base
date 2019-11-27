@@ -1,0 +1,260 @@
+@charset "utf-8";
+/****** General *****/
+body,div,td,a,span,input,select{
+	font-size:11px;
+	font-family:arial,sans-serif;
+        margin:0;
+        padding:0;
+}
+.icon{
+	background-image:url(../img/Icons.gif);
+}
+.backPanel{
+	background-image:url(../img/CAPASeIcon.gif);
+}
+.headerPanel{
+	width:100%;
+	background-position:0 -1019px;
+	background-repeat:repeat-x;
+	height:28px;
+	cursor:pointer;
+}
+.headerPanel2 {
+	background-color:#AB0D05;
+	color:#FFFFFF;
+	font-weight:bold;
+	padding:2px 0;
+}
+.button{
+	background-color:#333366;
+	border-width:1px;
+	color:#FFFFFF;
+	font-size:11px;
+	font-weight:bold;
+	padding:1px;
+}
+.plus-icon{
+	background-position:-33px -1006px;
+	height:10px;
+	width:10px;
+}
+.minus-icon{
+	background-position: -51px -1006px;
+	height: 10px;
+	width: 10px;
+}
+/******** border ********/
+
+.border-radius-top{
+	-moz-border-radius-topleft: 5px/*{cornerRadius}*/; 
+	-webkit-border-top-left-radius: 5px/*{cornerRadius}*/; 
+	border-top-left-radius: 5px/*{cornerRadius}*/; 
+	-moz-border-radius-topright: 5px/*{cornerRadius}*/; 
+	-webkit-border-top-right-radius: 5px/*{cornerRadius}*/; 
+	border-top-right-radius: 5px/*{cornerRadius}*/;
+}
+.border-radius-bottom {
+	-moz-border-radius-bottomleft: 4px/*{cornerRadius}*/; 
+	-webkit-border-bottom-left-radius: 4px/*{cornerRadius}*/; 
+	border-bottom-left-radius: 4px/*{cornerRadius}*/; 
+	-moz-border-radius-bottomright: 4px/*{cornerRadius}*/; 
+	-webkit-border-bottom-right-radius: 4px/*{cornerRadius}*/; 
+	border-bottom-right-radius: 4px/*{cornerRadius}*/;
+}
+.border-radius{
+	-moz-border-radius: 5px ;/*{cornerRadius}*/
+	-webkit-border-radius: 5px ; /*{cornerRadius}*/
+	border-radius: 5px ;/*{cornerRadius}*/
+}
+.border-radius-left {
+ -moz-border-radius-topleft: 5px/*{cornerRadius}*/; 
+ -webkit-border-top-left-radius: 5px/*{cornerRadius}*/; 
+ border-top-left-radius: 5px/*{cornerRadius}*/; 
+ -moz-border-radius-bottomleft: 5px/*{cornerRadius}*/; 
+ -webkit-border-bottom-left-radius: 5px/*{cornerRadius}*/; 
+ border-bottom-left-radius: 5px/*{cornerRadius}*/;
+}
+.border-cero{
+	border:o none;
+}
+
+
+/********** TABS ***********/
+.tableTab{
+	width:100%;
+}
+.tabsLine{
+	height:50px;
+	border:0 none;
+}
+.tabsLine .menuHome{
+	width:30px;
+}
+.vAlignBottom{
+	vertical-align:bottom;
+}
+.vAlignC{
+	vertical-align:middle;
+}
+.lineTab{
+	height:20px;
+	background-color:#AB0D05;
+}
+.rightItem{
+	direction:rtl;
+}
+.pointer{
+	cursor:pointer;
+}
+.fltRight{
+	float:right;
+}
+.itemTop{
+	color:#000099;
+	font-weight:bold;
+	padding:10px 10px 0 0;
+}
+.menuHome{
+	color:#000000;
+}
+.itemTab{
+	background-color:#FFC17C;
+	padding: 5px ;
+	margin: 1px 1px 0 0 ;
+}
+.itemTabActive{
+	background-color:#AB0D05;
+	padding: 5px ;
+	margin: 1px 1px 0 0 ;
+}
+.AitemTab{
+	color:#000000;
+	font-weight:bold;
+}
+.AitemTab:hover{
+	color:#000000;
+	font-weight:bold;
+	text-decoration:underline;
+}
+
+/********** Content ************/
+.BoxContent{
+	border:1px solid #EADEC8;
+	height:auto;
+	width:auto;
+}
+.tableForm{
+	width:99%;
+	height:auto;
+	margin: 3px ;
+}
+.rowBoxContent{
+	background-color:#F8F4ED;
+	border-top:2px solid #FFFFFF;
+	border-left:2px solid #FFFFFF;
+	padding:2px;
+}
+.rowLastBoxContent{
+	background-color:#F8F4ED;
+	border-top:2px solid #FFFFFF;
+	border-left:2px solid #FFFFFF;
+	border-bottom:2px solid #FFFFFF;
+	padding:2px;
+}
+.cajaForm{
+	border:1px solid #7F9DB9;
+	padding:1px;
+	margin:2px;
+}
+.tableContent{
+	width:100%;
+	height:82%;
+}
+.showHide{
+	padding-top:10px;
+	background-color:#F0E8D9;
+}
+.slider{
+	cursor:pointer;
+	height:116px;
+	width:6px;
+}
+.barLayer{
+	background:none repeat scroll 0 0 #FFFAF2;
+	vertical-align:top;
+	height:100%;
+}
+.sliderIconUp{
+	background-position:0 -473px;
+}
+.sliderIconDown{
+	background-position:0 -330px;
+}
+.iconPinUp{
+	background-position:0 -953px;
+	padding-left:20px;
+	font-weight:bold;
+	padding-top:5px;
+}
+.iconPinDown{
+	background-position:0 -929px;
+	padding-left:20px;
+	font-weight:bold;
+	padding-top:5px;
+}
+
+.contentBarLayer{
+	width:100%;
+	background-position:0 -1067px;
+	background-repeat:repeat-x;
+	border-bottom: 1px solid #F0E8D9;
+}
+/*********  Maestros *************/
+.iconPinBlueUp{
+	background-position:0 -625px;
+	margin-left:10px;
+	width:10px;
+	height:10px;
+	cursor:pointer;
+}
+.iconPinBlueDown{
+	background-position:1 -634px;
+	width:10px;
+	height:10px;
+	margin-left:10px;
+	cursor:pointer;
+}
+/********** text  ***********/
+.text-white{
+	font-weight:bold;
+	color:#FFFFFF;
+}
+.text-black{
+	font-weight:bold;
+	color:#000000;
+}
+.text-blue-simple{
+	color:#333366;
+}
+.text-blue{
+	color:#333366;
+	font-weight:bold;
+}
+.text-gris{
+	color:#CCCCCC;
+	font-weight:bold;
+}
+.text-alert{
+	color:#990000;
+	font-weight:bold;
+}
+.text-red{
+	color:#CC3300;
+	font-weight:bold;
+	text-decoration:underline;
+}
+.textForm{
+	color:#262626;
+	text-align:right;
+	font-size:12px;
+}

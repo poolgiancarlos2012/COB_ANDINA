@@ -1,0 +1,13 @@
+<?php
+/**
+ * Description of bo_CaCargaFinal
+ *
+ * @author Davis
+ */
+class bo_CaCargaFinal {
+    public function insertar(CaCargaFinal $caCargaFinal){
+        $daoCarga = new CaCargaFinalMySqlDAO();
+        $daoCarga->insert($caCargaFinal);
+    }
+}
+?>

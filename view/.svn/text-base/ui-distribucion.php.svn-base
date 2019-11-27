@@ -1,0 +1,437 @@
+<?php
+	session_start();
+?>
+<link type="text/css" rel="stylesheet" href="../includes/jqgrid6/css/ui.jqgrid.css" />
+<link type="text/css" rel="stylesheet" href="../includes/jquery-ui-1.8/themes/humanity/jquery-ui.css" />
+
+<link type="text/css" rel="stylesheet" href="../css/css-cobrast.css" />
+<script type="text/javascript" src="../js/includes/jquery-1.4.2.js" ></script>
+
+<script type="text/javascript" src="../includes/jquery-ui-1.8.1/development-bundle/ui/minified/jquery.effects.core.min.js" ></script>
+<script type="text/javascript" src="../includes/jquery-ui-1.8.1/development-bundle/ui/minified/jquery.ui.core.min.js" ></script>
+<script type="text/javascript" src="../includes/jquery-ui-1.8.1/development-bundle/ui/minified/jquery.ui.widget.min.js" ></script>
+<script type="text/javascript" src="../includes/jquery-ui-1.8.1/development-bundle/ui/minified/jquery.ui.mouse.min.js" ></script>
+<script type="text/javascript" src="../includes/jquery-ui-1.8.1/development-bundle/ui/minified/jquery.ui.draggable.min.js" ></script>
+<script type="text/javascript" src="../includes/jquery-ui-1.8.1/development-bundle/ui/minified/jquery.ui.droppable.min.js" ></script>
+<script type="text/javascript" src="../includes/jquery-ui-1.8.1/development-bundle/ui/minified/jquery.ui.selectable.min.js" ></script>
+<script type="text/javascript" src="../includes/jquery-ui-1.8.1/development-bundle/ui/minified/jquery.effects.core.min.js" ></script>
+<script type="text/javascript" src="../includes/jquery-ui-1.8.1/development-bundle/ui/minified/jquery.effects.pulsate.min.js" ></script>
+
+<script type="text/javascript" src="../includes/jqgrid6/src/i18n/grid.locale-en.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/jqModal.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.base.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.celledit.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.common.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.custom.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.formedit.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.import.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.inlinedit.js" ></script>
+
+<script type="text/javascript" src="../js/js-cobrast.js" ></script>
+<script type="text/javascript" src="../js/templates.js" ></script>
+
+<script type="text/javascript" src="../js/DistribucionJQGRID.js" ></script>
+<script type="text/javascript" src="../js/DistribucionDAO.js" ></script>
+<script type="text/javascript" src="../js/js-distribucion.js" ></script>
+<style type="text/css">
+	#table_retirar_clientes .ui-selected { background:url("../includes/jquery-ui-1.8/themes/excite-bike/images/ui-bg_highlight-soft_100_f9f9f9_1x100.png") repeat-x scroll 50% 50% #F9F9F9;border:1px solid #CCCCCC;color:#E69700;font-weight:bold;}
+	#table_retirar_clientes .ui-selectee {}
+</style>
+<div style="width:100%; margin:0 auto;">
+	<table class="tableTab" cellpadding="0" cellspacing="0" border="0">
+    	<tr>
+        	<td rowspan="2" width="100"></td>
+            <td>
+            	<div class="rightItem">
+                	<div class="fltRight">
+                    	<a class="itemTop">Cerra Sesion</a>
+                    </div>
+                    <div class="fltRight">
+                    	<a class="itemTop">Ayuda</a>
+                    </div>
+                    <div class="fltRight">
+                    	<a class="itemTop">Whats' New</a>
+                    </div>
+                    <div><strong style="margin-right: 5px;">Bienvenido: <?=$_SESSION['cobrast']['usuario'] ?></strong></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+        	<td class="vAlignBottom tabsLine">
+            	<div id="layerMessage" align="center"></div>
+            	<div class="menuHome">
+                	<span>
+                    	<div>
+                        	<table cellpadding="0" cellspacing="0" border="0">
+                            	<tr>
+                                	<td>
+                                    	<div id="tabMaestro" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Servicios</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Usuarios</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                            <a class="AitemTab">Campa&ntilde;as</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Cartera</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabDistribucion" class="itemTabActive border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="text-white">Distribucion</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabProcesos" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Procesos</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabSpeech" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Speech</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabGestion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Gestion</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabGestion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Reportes</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabPapelera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Adicionales</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+        	<td class="lineTab" colspan="2"></td>
+        </tr>
+    </table>
+    <table class="tableContent" cellpadding="0" cellspacing="0" border="0">
+    	<tr>
+        	<td class="barLayer">
+            	<div id="barLayer" style="width:210px; display:block;">	
+                	<div class=" backPanel headerPanel">
+                    	<div class="backPanel iconPinUp" onclick="_slideBarLayer(this,'panelMenu')">Menu</div>
+                    </div>
+                    <div id="panelMenu" class="backPanel contentBarLayer" style="display:block;" >
+                    	<div style="width:100%;">
+                        	<div style="margin-left:20px; margin-bottom:2px;"><a class="text-blue" onClick="_display_panel('panelDistribucion')">Distribucion</a></div>
+                            <div style="margin-left:20px; margin-bottom:2px;"><a class="text-blue" onClick="_display_panel('panelClientesGestionadosSinGestionar')">Clientes Gestionados y Sin Gestionar</a></div>
+                            <div style="margin-left:20px; margin-bottom:2px;"><a class="text-blue" onClick="_display_panel('panelRetirarClientes')">Retirar Clientes</a></div>
+                        </div>
+                    </div>
+                    <div class=" backPanel headerPanel">
+                    	<div class="backPanel iconPinUp" onclick="_slideBarLayer(this,'panelCrear')">Crear</div>
+                    </div>
+                    <div id="panelCrear" class="backPanel contentBarLayer" style="display:block;" >
+                    	<table>
+                        	<tr>
+                            	<td></td>
+                            </tr>
+                            <tr>
+                            	<td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td id="showhide" width="10px" class="showHide">
+            	<a onclick="_sliderFadeBarLayer()">
+                	<div id="iconSlider" class="slider icon sliderIconUp"></div>
+                </a>
+            </td>
+            <td width="100%">	
+            	<div id="cobrastHOME" style="background-color:#FFFFFF; width:100%; height:100%; ">
+                	<input type="hidden" id="hdCodUsuario" name="hdCodUsuario" value="<?=$_SESSION['cobrast']['idusuario']?>" />
+                    <input type="hidden" id="hdCodServicio" name="hdCodServicio" value="<?=$_SESSION['cobrast']['idservicio']?>" />
+                    <input type="hidden" id="hdCodUsuarioServicio" name="hdCodUsuarioServicio" value="<?=$_SESSION['cobrast']['idusuario_servicio']?>" />
+                    <input type="hidden" id="hdNomServicio" name="hdNomServicio" value="<?=$_SESSION['cobrast']['servicio']?>" />
+                	<div id="panelDistribucion" style="display:block;">
+                    	<table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp" onclick="_slide(this,'panel_Form_distribucion_automatica')"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Distribucion Automatica</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris">Nuevo</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="panel_Form_distribucion_automatica" style="display:none; padding:0 0 5px 5px ; width:94%;">
+                        	<table align="center" class="tableForm" cellpadding="0" cellspacing="0" border="0">
+                            	<tr>
+                                	<td>
+                                    	<div align="center">
+                                            <table>
+                                                <tr>
+                                                    <td><button class="button" onclick="generar_distribucion_automatica()">Generar</button></td>
+                                                    <td><button class="button">Cancelar</button></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                	<td>
+                                    	<div>
+                                        	<table align="center" class="tableForm BoxContent" cellpadding="0" cellspacing="0">
+                                				<tr>
+                                                	<td class="rowBoxContent textForm">Usuario Creacion:</td>
+                                                    <td class="rowBoxContent"><input type="text" id="txtUsuarioCreacion" readonly="readonly" class="cajaForm" value="<?=$_SESSION['cobrast']['usuario'] ?>" /></td>
+                                                    <td class="rowBoxContent textForm">Campa&ntilde;a:</td>
+                                                    <td class="rowBoxContent">
+                                                    	<select id="cbCampaniaDistribucionAutomatica" onchange="cargar_data_distribucion_automatica()">
+                                                        	<option value="0">--Seleccione--</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>    
+                                                    <td class="rowBoxContent textForm">Clientes sin asignar:</td>
+                                                    <td class="rowBoxContent"><input type="text" class="cajaForm" id="txtClientesSinAsignar" /></td>
+                                                    <td class="rowBoxContent textForm">Clientes Asignados:</td>
+                                                    <td class="rowBoxContent"><input type="text" class="cajaForm" id="txtClientesAsignados" /></td>
+                                                </tr>
+                                                <tr>    
+                                                    <td class="rowBoxContent textForm">Cantidad de Operadores:</td>
+                                                    <td class="rowBoxContent"><input type="text" class="cajaForm" id="txtCantidadOperadores" /></td>
+                                                	<td class="rowLastBoxContent textForm">Clientes X Operador:</td>
+                                                    <td class="rowLastBoxContent"><input type="text" class="cajaForm" id="txtClientesXOperador" /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            	<tr>
+                                	<td>
+                                    	<div align="center">
+                                            <table>
+                                                <tr>
+                                                    <td><button class="button" onclick="generar_distribucion_automatica()">Generar</button></td>
+                                                    <td><button class="button">Cancelar</button></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+						<table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp" onclick="_slide(this,'panel_Form_distribucion_manual')"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Distribucion Manual</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris">Nuevo</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="panel_Form_distribucion_manual" style="display:none; padding:5px 10px 5px 20px ;" >
+                        	<table style="width:785px;">
+                            	<tr>
+                                	<td align="right">Campa&ntilde;a</td>
+                                    <td><select id="cbCampaniaDistribucionManual" onchange="cargar_data_distribucion_manual()"><option value="0">--Seleccione--</option></select></td>
+                                </tr>
+                            </table>
+                        	<table cellpadding="0" cellspacing="0" border="0" style="width:785px;">
+                            	<tr>
+                                	<td valign="top">
+                                    	<div id="layerManualOperadores" style="width:410px;">
+                                    	<div class="ui-widget-content ui-corner-all" style="padding:3px 5px;width:400px;" >
+                                        	<table cellpadding="0" cellspacing="0" border="0" style="width:400px;">
+                                            	<tr>
+                                                	<td>
+                                                    	<div class="headerPanel2 ui-corner-all" style="margin-bottom:3px;" align="center">Operadores</div>
+                                               			<div align="center">
+	                                                        <table id="table_operador_distribucion_manual"></table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        </div>
+                                    </td>
+                                    <td style="width:10px;"></td>
+                                    <td valign="top">
+                                    	<div id="layerManualAsignacion" style="width:310px;">
+                                    	<div class="ui-corner-all ui-widget-content" style="padding:3px 5px;width:300px;" >
+                                        	<table border="0" cellpadding="0" cellspacing="0" style="width:300px;">
+                                            	<tr>
+                                                	<td>
+                                                    	<div class="headerPanel2 ui-corner-all" style="margin-bottom:3px;" align="center">Asignacion</div>
+                                                		<div>
+                                                        	<table id="table_asignacion">
+                                                            	<tr id="placeHolder">
+                                                                	<td>Arrastre operadores aqui..</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <div>
+                                                        	<div class="ui-state-default ui-corner-all" style="padding:4px;width:16px;" onclick="grabar_distribucion_manual()">
+                                                            	<span class="ui-icon ui-icon-disk"></span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table>
+                            	<tr>
+                                	<td align="right">Clientes Sin Asignar</td>
+                                    <td><input type="text" class="cajaForm" id="txtClienteSinAsignarManual" style="width:50px;" readonly="readonly" /></td>
+                                    <td><input type="hidden" id="hdClienteSinAsignar" /></td>
+                                </tr>
+                            </table>
+                    	</div>
+                    </div>    
+                    <div id="panelClientesGestionadosSinGestionar" style="display:none;" align="center">
+                    	<table border="0" cellpadding="10" cellspacing="2">
+                        	<tr>
+                            	<td>
+                                	<div>
+                                    	<table>
+                                        	<tr>
+                                            	<td align="right">Campania</td>
+                                                <td>
+                                                	<select id="cbCampaniaClientesGestSinGest" onchange="reload_jqgrid_clientes_GSG()">
+                                                    	<option value="0">--Seleccione--</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>	
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp" onclick="_slide(this,'PanelTableClientesGestionados')"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Clientes Gestionados</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="PanelTableClientesGestionados" style="display:none;margin-top:5px;">
+                            <table id="table_clientes_gestionados"></table>
+                            <div id="pager_table_clientes_gestionados"></div>            	
+                        </div>
+                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp" onclick="_slide(this,'PanelTableClientesSinGestionar')"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Clientes Sin Gestionar</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="PanelTableClientesSinGestionar" style="display:none; margin-top:5px;">
+                            <table id="table_clientes_sin_gestionar"></table>
+                            <div id="pager_table_clientes_sin_gestionar"></div>
+                        </div>
+                    </div>
+                    <div id="panelRetirarClientes" style="display:none;padding-top:5px;" align="center">
+                    	<table border="0" cellpadding="0" cellspacing="0">
+                        	<tr>
+                            	<td>
+                                	<div>
+                                    	<table>
+                                        	<tr>
+                                            	<td align="right">Campa&ntilde;a</td>
+                                                <td><select id="cbCampaniaRetirarCliente" onchange="cargar_data_retirar_clientes()" ><option value="0">--Seleccione--</option></select></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                	<div class="ui-widget-content ui-corner-all" style="padding:3px 5px;width:620px;" >
+                                        <table cellpadding="0" cellspacing="0" border="0" style="width:620px;">
+                                            <tr>
+                                                <td>
+                                                    <div class="headerPanel2 ui-corner-all" style="margin-bottom:3px;" align="center">Operadores</div>
+                                                    <div align="center">
+                                                        <table id="table_retirar_clientes" cellpadding="0" cellspacing="0" border="0"></table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--<tr>
+                            	<td>
+                                	<div style="width:100%;" align="center">
+                                    	<table>
+                                        	<tr>
+                                            	<td><div class="ui-button ui-state-default ui-corner-all" style="padding:4px;"><span>Seleccionar Todo</span></div></td>
+                                            	<td><div class="ui-state-default ui-corner-all" style="padding:4px;"><span class="ui-icon ui-icon-check"></span></div></td>
+                                                <td><div class="ui-state-default ui-corner-all" style="padding:4px;"><span class="ui-icon ui-icon-closethick"></span></div></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>-->
+                        </table>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div style="width:100%; height:20px; background-color:#F0E8D9; border:0 none;"></div>
+</div>
+<div id="beforeSendShadow" class="ui-widget-shadow" style="height:30px;position:absolute;top:32%;left:45%;display:none;"></div>
+<div id="MsgBeforeSend" class="ui-widget-content ui-corner-all" style="height:30px;position:absolute;top:32%;left:45%;font-weight:bold;font-size:20px;vertical-align:middle;color:#333366;display:none;" align="center"  ></div>

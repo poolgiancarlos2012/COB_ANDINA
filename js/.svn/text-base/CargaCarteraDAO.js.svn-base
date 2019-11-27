@@ -1,0 +1,71 @@
+var CargaCarteraDAO = {
+    url:'../controller/ControllerCobrast.php',
+    xTypeData:'json',    
+    loadCampania:function(xidServicio){
+        $.ajax({
+            url:this.url,
+            type:'GET',
+            dataType:this.xTypeData,
+            data:{command:'campania',action:'listarCampaniaServicio',idServicio:xidServicio},
+            beforeSend:function(){
+                var _html="";
+                    _html+="<option>";
+                        _html+="Cargando..";
+                    _html+="</option>";
+                   $("#cboCampania").html(_html);
+            },            
+            success:function(_obj){
+                var _html="";
+                $.each(_obj,function(k,v){
+                   _html+="<option value="+v.id+">";
+                        _html+=v.nombre;
+                    _html+="</option>";
+                $("#cboCampania").html(_html);
+                });
+            },
+            error:function(xhr, ajaxOptions, thrownError){
+                alert(xhr.status);
+                alert(thrownError);
+            }
+        });
+    },
+    loadHeaderFile:function(xfile,xfolder){
+        $.ajax({
+            url:this.url,
+            type:'POST',
+            dataType:this.xTypeData,
+            data:{command:'carga-cartera',action:'loadHeader',file:xfile,folder:xfolder},
+            beforeSend:function(){
+                
+            },
+            success:function(_obj){
+                alert(_obj);
+            }
+        });
+    },
+    loadFile:function(){
+        $("#flCartera").uploadifyUpload();
+    },
+    filechoose : function(){        
+        $("#flCartera").uploadify({
+            uploader:'../includes/uploadify/uploadify.swf',
+            script:'documents/uploadFiles/uploadFiles.php',
+            folder:'documents/carteras',
+            checkScript:'../includes/uploadify/check.php',
+            buttonText:'Buscar',
+            cancelImg:'../includes/uploadify/cancel.png',
+            fileExt:'*.csv;*.xls',
+            sizeLimit:18*1024*1024,
+            onComplete:function(evt,queueId,fileObj,response,data){
+                var json = eval('(' + response + ')');
+                if(json.msg==true){
+                    CargaCarteraDAO.loadHeaderFile(json.nombrefile,json.folder);
+                }else if(json.msg==false){
+                    alert("Error al subir archivo");
+                }else if(json.msg=="type"){
+                    alert("Erro en formato de archivo");
+                }
+            }
+        });
+    }
+};

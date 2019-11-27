@@ -1,0 +1,82 @@
+$(document).ready(function(){
+	//UsuarioDAO.ListarServicios();
+	UsuarioDAO.ListarPrivilegios();
+	UsuarioDAO.ListarTipoUsuario();
+	/***************************/
+    UsuarioJQGRID.administrador();
+    UsuarioJQGRID.teleoperador_gestor_campo();
+	/***************************/
+	$("#FechaInicio,#FechaFin").datepicker({dateFormat:'yy-mm-dd'});
+	
+//    $("#frUsuario").validate({
+//                                            rules: {
+//                                                txtNombre: {required: true,email:true},
+//                                                txtPaterno : {required: true},
+//                                                txtMaterno : {required: true},
+//                                                txtDNI : {required: true},
+//                                                txtRUC : {required : false}
+//                                            },
+//                                            errorContainer:$("#layerMessage"),
+//                                            showErrors : function ( errorMap , errorList) {
+//                                               for(var name in errorMap){
+//                                                   alert(errorMap[name]);
+//                                               }
+//                                                $("#layerMessage").html(errors);
+//                                            },
+//                                            submitHandler: function ( ) {
+//                                                    save_usuario();
+//                                            }
+//                                            });
+});
+save_usuario = function ( ) {
+	var nombre=$('#txtNombre').val();
+	var paterno=$('#txtPaterno').val();
+	var materno=$('#txtMaterno').val();
+	var dni=$('#txtDNI').val();
+	var email=$('#txtEmail').val();
+	var clave=$('#txtClave').val();
+	var servicios=$('#cbServicioUsuario').find('option').map(function(){ return this.value; }).get().join(',');
+    UsuarioDAO.insert({command:'usuario',action:'save_usuario',Nombre:nombre,Paterno:paterno,Materno:materno,Dni:dni,Email:email});
+}
+update_usuario = function ( ) {
+	var id=$("").val();
+	var nombre=$('#txtNombre').val();
+	var paterno=$('#txtPaterno').val();
+	var materno=$('#txtMaterno').val();
+	var dni=$('#txtDNI').val();
+	var email=$('#txtEmail').val();
+	
+    UsuarioDAO.update({command:'usuario',action:'update_usuario',Id:id,Nombre:nombre,Paterno:paterno,Materno:materno,Dni:dni,Email:email});
+}
+delete_usuario = function ( ) {
+	var id=$("").val();
+    UsuarioDAO.Delete({command:'usuario',action:'delete_usuario',Id:id});
+}
+cancel = function ( ) {
+	$("#panelNuevoUsuario :text").not('#txtUsuarioCreacion').val('');
+	$("#panelNuevoUsuario #cbServicioUsuario").empty();
+	$("#panelNuevoUsuario #cbServicioSystem").empty();
+	UsuarioDAO.ListarServicios();
+}
+agregar_servicio_usuario = function ( ) {
+	var option='';
+	var id=$("#cbServicioSystem").val();
+	var nombre=$("#cbServicioSystem option:selected").text();
+	
+	if(id=='' || nombre==''){ return false; }
+	
+	option='<option value="'+id+'">'+ nombre+'</option>';
+	$("#cbServicioUsuario").append(option);
+	$("#cbServicioSystem option:selected").remove();
+}
+eliminar_servicio_usuario = function ( ) {
+	var option='';
+	var id=$("#cbServicioUsuario").val();
+	var nombre=$("#cbServicioUsuario option:selected").text();
+	
+	if(id=='' || nombre==''){ return false; }
+	
+	option='<option value="'+id+'">'+ nombre+'</option>';
+	$("#cbServicioSystem").append(option);
+	$("#cbServicioUsuario option:selected").remove();
+}

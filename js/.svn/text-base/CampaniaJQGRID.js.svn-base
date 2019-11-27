@@ -1,0 +1,29 @@
+var CampaniaJQGRID = {
+		Campania : function ( ) {
+				$('#table_campanias').jqGrid({
+										  url:'../controller/ControllerCobrast.php?command=campania&action=jqgrid_campania&Servicio='+$('#hdCodServicio').val(),
+										  datatype:'json',
+										  height:100,
+										  colNames:['Nombre','Fecha Inicio','Fecha Fin','Descripion'],
+										  colModel:[
+													{name:'nombre',index:'nombre',align:'center',width:120},
+													{name:'fecha_inicio',index:'fecha_inicio',align:'center',width:80},
+													{name:'fecha_fin',index:'fecha_fin',align:'center',width:80},
+													{name:'descripcion',index:'descripcion',align:'center',width:300}
+													],
+										  rowList:[8,12,15],
+										  rownumbers:true,
+										  pager:'#pager_table_campanias',
+										  sortname:'fecha_inicio',
+										  sortorder:'desc',
+										  toolbar: [true,"top"],
+										  loadui:'block'
+										  });
+				
+				$("#table_campanias").jqGrid('navGrid','#pager_table_campanias',{edit:false,add:false,del:false,view:true});
+				$("#t_table_campanias").addClass('ui-corner-top');
+				$("#t_table_campanias").append("<div id='toolbar_campania_icon_edit' class='ui-pg-button ui-corner-all' style='width:19px;margin:0 2px;float:left;' onclick='edit_campania()' ><div class='ui-pg-div'><span class='ui-icon ui-icon-pencil'></span></div></div>");
+				$('#toolbar_campania_icon_edit').hover(function(){$('#toolbar_campania_icon_edit').addClass('ui-state-hover');},function(){$('#toolbar_campania_icon_edit').removeClass('ui-state-hover');});
+				
+			}
+	}

@@ -1,0 +1,42 @@
+<?php
+
+class  DAOFactory {
+
+    public static function getDAOServicio ( ) {
+        return new MYSQLServicioDAO ;
+    }
+    public static function getDAOUsuario ( ) {
+        return new MYSQLUsuarioDAO ;
+    }
+    public static function getDAOCampania ( ) {
+        return new MYSQLCampaniaDAO ;
+    }
+    public static function getDAOPermisosDetalle() {
+        return new MYSQLPermisosDetalleDAO();
+    }
+    public static function getDAONivelesPermisos() {
+        return new MYSQLNivelesPermisos();
+    }
+    public static function getDAOMenu() {
+        return new MYSQLMenuDAO();
+    }
+    public static function getDAOUrl() {
+        return new MYSQLUrlDAO();
+    }
+    public static function getDAOUsuarioServicio ( ) {
+        return new MYSQLUsuarioServicioDAO ;
+    }
+    public static function getDAOTipoUsuario ( ) {
+        return new MYSQLTipoUsuarioDAO ;
+    }
+    public static function getDAOPrivilegio ( ) {
+        return new MYSQLPrivilegioDAO ;
+    }
+    public static function getDAOClienteCartera ( ) {
+        return new MYSQLClienteCarteraDAO ;
+    }
+    public static function getDAOCargaCartera(){
+        return new MYSQLCargaCarteraDAO();
+    }
+}
+?>

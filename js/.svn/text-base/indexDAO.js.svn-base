@@ -1,0 +1,43 @@
+var indexDAO={
+                    url:'controller/ControllerCobrast.php',
+                    checkUser:function(dataJson){
+                        $.ajax({
+                                url:this.url,
+                                type:'POST',
+                                dataType:'json',
+                                data:dataJson,
+                                beforeSend:function(){
+                                   $('#layerOverlay,#layerLoading').css('display','block');
+                                },
+                                success:function(obj){
+                                    $('#layerOverlay,#layerLoading').hide();
+                                    if(obj.rst){
+                                        window.location.href='view/ui-servicio.php';
+                                    }else{
+                                           $('#layerMessage').html(templates.MsgError(obj.msg,'350px'));
+                                    }
+                                },
+                                error:function(){
+									$('#layerOverlay,#layerLoading').css('display','none');	
+                                    $('#layerMessage').html(templates.MsgError("Error en el servidor",'200px'));
+                                }
+                        });
+                    },
+                    servicio:function ( ) {
+                        $.ajax({
+                            url:this.url,
+                            type:'GET',
+                            dataType:'json',
+                            data:{command:'servicio',action:'listar_servicio'},
+                            success:function ( obj ) {
+                                   templates.combo(obj,'cbServicio');
+                            } ,
+                            error: function ( ) {
+                                    $('#layerMessage').html(templates.MsgError("Error en el servidor",'200px'));
+                            }
+                        });
+                    }
+
+}
+
+

@@ -1,0 +1,110 @@
+<?php
+/**
+ * Description of dto_ayuda_gestion
+ *
+ * @author Davis
+ */
+class dto_ayuda_gestion {
+    private $id;
+    private $idServicio;
+    private $ruta;
+    private $estado;
+    private $idTipoAyudaGestion;
+	private $nombre;
+	private $texto;
+	private $is_text;
+    private $fechaCreacion;
+    private $usuarioCreacion;
+    private $fechaModificacion;
+    private $usuarioModificacion;
+	
+
+    public function __construct() {
+
+    }
+
+    public function setId($valor) {
+        $this->id=$valor;
+    }
+    public function getId() {
+        return $this->id;
+    }
+	
+	public function setIsText ( $valor ) {
+		$this->is_text=$valor;
+	}
+	public function getIsText ( ) {
+		return $this->is_text;
+	}
+	
+	public function setNombre ( $valor ) {
+		$this->nombre=$valor;
+	}
+	public function getNombre ( ) {
+		return $this->nombre;
+	}
+	
+	public function setTexto ( $valor ) {
+		$this->texto=$valor;
+	}
+	public function getTexto ( ) {
+		return $this->texto;
+	} 
+
+    public function setIdServicio($valor) {
+        $this->idServicio=$valor;
+    }
+    public function getIdServicio() {
+        return $this->idServicio;
+    }
+
+    public function setRuta($valor) {
+        $this->ruta=$valor;
+    }
+    public function getRuta() {
+        return $this->ruta;
+    }
+
+    public function setEstado($valor) {
+        $this->estado=$valor;
+    }
+    public function getEstado() {
+        return $this->estado;
+    }
+
+    public function setIdTipoAyudaGestion($valor) {
+        $this->idTipoAyudaGestion=$valor;
+    }
+    public function getIdTipoAyudaGestion() {
+        return $this->idTipoAyudaGestion;
+    }
+
+    public function setFechaCreacion($valor) {
+        $this->fechaCreacion=$valor;
+    }
+    public function getFechaCreacion() {
+        return $this->fechaCreacion;
+    }
+
+    public function setUsuarioCreacion($valor) {
+        $this->usuarioCreacion=$valor;
+    }
+    public function getUsuarioCreacion() {
+        return $this->usuarioCreacion;
+    }
+    
+    public function setFechaModificacion($valor) {
+        $this->fechaModificacion=$valor;
+    }
+    public function getFechaModificacion() {
+        return $this->fechaModificacion;
+    }
+    
+    public function setUsuarioModificacion($valor) {
+        $this->usuarioModificacion=$valor;
+    }
+    public function getUsuarioModificacion() {
+        return $this->usuarioModificacion;
+    }
+}
+?>

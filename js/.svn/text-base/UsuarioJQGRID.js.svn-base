@@ -1,0 +1,43 @@
+var UsuarioJQGRID={
+    administrador: function ( ) {
+        $("#table_user_admin").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=usuario&action=jqgrid_usuario_administrador',
+                                        datatype:'GET',
+                                        gridview:true,
+                                        height:150,
+                                        colNames:['Nombre','Dni'],
+                                        colModel:[
+                                                        { name:'nombre_usuario',index:'nombre_usuario',align:'center',width:400 },
+                                                        { name:'dni',index:'dni',align:'center',width:100 }
+                                                    ],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_user_admin',
+                                        sortname:'nombre_usuario',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+    },
+    teleoperador_gestor_campo: function ( ) {
+        $("#table_user_teleoperador").jqGrid({
+                                        url:'../controller/ControllerCobrast.php?command=usuario&action=jqgrid_usuario_teleoperador_gestor_campo',
+                                        datatype:'GET',
+                                        gridview:true,
+                                        height:150,
+                                        colNames:['Nombre','Dni'],
+                                        colModel:[
+                                                        { name:'nombre_usuario',index:'nombre_usuario',align:'center',width:400 },
+                                                        { name:'dni',index:'dni',align:'center',width:100 }
+                                                    ],
+                                        rowNum:10,
+                                        rowList:[10,15,20],
+                                        rownumbers:true,
+                                        pager:'#pager_table_user_teleoperador',
+                                        sortname:'nombre_usuario',
+                                        sortorder:'desc',
+                                        loadui: "block"
+                                        });
+    }
+
+}

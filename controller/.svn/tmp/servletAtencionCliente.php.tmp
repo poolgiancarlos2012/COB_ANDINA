@@ -1,0 +1,554 @@
+<?php
+
+<<<<<<< .mine
+	class servletAtencionCliente extends CommandController {
+		public function doPost ( ) {
+			switch ($_POST['action']):
+				case '':
+					
+				break;
+				case '':
+					
+				break;
+			endswitch;
+		}
+		public function doGet ( ) {
+			$daoCampania=DAOFactory::getDAOCampania();
+			$daoUsuarioServicio=DAOFactory::getDAOUsuarioServicio();
+			$daoClienteCartera=DAOFactory::getDAOClienteCartera();
+			$daoDatosAdicionalesCliente=DAOFactory::getDAODatosAdicionalesCliente();
+			$daoDatosAdicionalesCuenta=DAOFactory::getDAODatosAdicionalesCuenta();
+			$daoDatosAdicionalesDatlleCuenta=DAOFactory::getDAODatosAdicionalesDetalleCuenta();
+			$daoDetalleCuenta=DAOFactory::getDAODetalleCuenta();
+			
+			switch ($_GET['action']):
+				case 'ListarCampanias':
+					$dto=new dto_servicio ;
+					$dto->setId($_GET['Servicio']);
+					echo json_encode($daoCampania->queryByIdName($dto));
+				break;
+				case 'ListarServicio':
+					$dto=new dto_usuario ;
+					$dto->setId($_GET['Usuario']);
+					echo json_encode($daoUsuarioServicio->queryServiciosUsuario($dto));
+				break;
+				case 'DatosTotalCuenta':
+					$dto=new dto_cliente_cartera ;
+					$dto->setId($_GET['ClienteCartera']);
+					echo json_encode($daoDetalleCuenta->queryTotalByCuenta($dto));
+				break;
+				case 'ListarOperadores':
+					$dto=new dto_servicio ;
+					$dto->setId($_GET['Servicio']);
+					echo json_encode($daoUsuarioServicio->queryOperadorXServicio($dto));
+				break;
+				case 'DefaultNext':
+					$dtoCampania=new dto_campanias ;
+					$dtoUsuarioServicio=new dto_usuario_servicio ;
+					$dtoClienteCartera=new dto_cliente_cartera ;
+					
+					$dtoCampania->setId($_GET['Campania']);
+					$dtoUsuarioServicio->setId($_GET['UsuarioServicio']);
+					$dtoClienteCartera->setId($_GET['ClienteCartera']);
+					
+					echo json_encode($daoClienteCartera->consultaNext($dtoCampania,$dtoUsuarioServicio,$dtoClienteCartera));
+					
+				break;
+				case 'DefaultBack':
+					$dtoCampania=new dto_campanias ;
+					$dtoUsuarioServicio=new dto_usuario_servicio ;
+					$dtoClienteCartera=new dto_cliente_cartera ;
+					
+					$dtoCampania->setId($_GET['Campania']);
+					$dtoUsuarioServicio->setId($_GET['UsuarioServicio']);
+					$dtoClienteCartera->setId($_GET['ClienteCartera']);
+					
+					echo json_encode($daoClienteCartera->consultaBack($dtoCampania,$dtoUsuarioServicio,$dtoClienteCartera));
+					
+				break;
+				case 'InitDefaultGestion':
+					$dtoCampania=new dto_campanias ;
+					$dtoUsuarioServicio=new dto_usuario_servicio ;
+					
+					$dtoCampania->setId($_GET['Campania']);
+					$dtoUsuarioServicio->setId($_GET['UsuarioServicio']);
+					
+					echo json_encode($daoClienteCartera->InitDefaultGestion($dtoCampania,$dtoUsuarioServicio));
+				break;
+				case 'DatosAdicionalesOperacion':
+					$dtoServicio=new dto_servicio ;
+					$dtoDetalleCuenta=new dto_detalle_cuenta ;
+					$dtoServicio->setId($_GET['Servicio']);
+					$dtoDetalleCuenta->setId($_GET['DetalleCuenta']);
+					echo json_encode($daoDatosAdicionalesDetalleCuenta->queryByDetalleCuenta($dtoServicio,$dtoDetalleCuenta));
+				break;
+				case 'DatosAdicionalesCuenta':
+					$dtoServicio=new dto_servicio ;
+					$dtoCuenta=new dto_cuenta ;
+					$dtoServicio->setId($_GET['Servicio']);
+					$dtoCuenta->setId($_GET['Cuenta']);
+					echo json_encode($daoDatosAdicionalesCuenta->queryByCuenta($dtoServicio,$dtoCuenta));
+				break;
+				case 'DatosAdicionalesCliente':
+					$dtoServicio=new dto_servicio ;
+					$dtoCliente=new dto_cliente ;
+					$dtoServicio->setId($_GET['Servicio']);
+					$dtoCliente->setId($_GET['Cliente']);
+					echo json_encode($daoDatosAdicionalesCliente->queryByCliente($dtoServicio,$dtoCliente));
+				break;
+				case 'DatosCuentaCliente':
+				break;
+				case 'DatosCliente':
+				break;
+				case 'jqgrid_busquedaManual':
+					echo '{}';
+				break;
+				case 'jqgrid_busquedaBase':
+					echo '{}';
+				break;
+				case 'jqgrid_matrizBusqueda':
+					if(!isset($_GET['Campania'],$_GET['Operador'])){
+						echo '{}';
+						exit();
+					}
+					$page=$_GET["page"];
+					$limit=$_GET["rows"];
+					$sidx=$_GET["sidx"];
+					$sord=$_GET["sord"];
+					$campania=$_GET['Campania'];
+					$operador=$_GET['Operador'];
+	
+					if(!$sidx)$sidx=1 ;
+					
+					$stmt=" SELECT COUNT(*) AS 'COUNT'
+							FROM ca_cartera car INNER JOIN ca_cliente_cartera clicar INNER JOIN ca_cliente cli 
+							ON cli.idcliente=clicar.idcliente AND clicar.idcartera=car.idcartera
+							WHERE car.idcampania=$campania AND clicar.idusuario=$operador ";
+					
+					$row=$daoClienteCartera->executeSelectString($stmt);
+					$count=$row[0]['COUNT'];
+					if($count>0) {
+						$total_pages=ceil($count/$limit);
+					}else {
+						$total_pages=0;
+					}
+	
+					if($page>$total_pages) $page=$total_pages;
+	
+					$start=$page*$limit-$limit;
+					
+					$stmt=" SELECT clicar.idcliente_cartera,cli.codigo,CONCAT_WS(' ',cli.nombre,cli.paterno,cli.materno) as 'nombre',cli.dni,cli.ruc
+							FROM ca_cartera car INNER JOIN ca_cliente_cartera clicar INNER JOIN ca_cliente cli 
+							ON cli.idcliente=clicar.idcliente AND clicar.idcartera=car.idcartera
+							WHERE car.idcampania=$campania AND clicar.idusuario=$operador ORDER BY $sidx $sord LIMIT $start , $limit ";
+	
+					$response=array("page"=>$page,"total"=>$total_pages,"records"=>$count);
+					
+					$data=$daoClienteCartera->executeSelectString($stmt);
+					$dataRow=array();
+					for($i=0;$i<count($data);$i++){
+						array_push($dataRow, array("id"=>$data[$i]['idcliente_cartera'],"cell"=>array($data[$i]['codigo'],$data[$i]['nombre'],$data[$i]['dni'],$data[$i]['ruc'])));
+					}
+					$response["rows"]=$dataRow;
+					echo json_encode($response);
+					
+				break;
+				case 'jqgrid_llamada':
+					if(!isset($_GET["ClienteCartera"])){
+						echo '{}';
+						exit();
+					}
+					$page=$_GET["page"];
+					$limit=$_GET["rows"];
+					$sidx=$_GET["sidx"];
+					$sord=$_GET["sord"];
+					$ClienteCartera=$_GET["ClienteCartera"];
+					if(!$sidx)$sidx=1 ;
+					
+					$stmt=" SELECT COUNT(*) AS 'COUNT'
+						FROM ca_transaccion trans INNER JOIN ca_compromiso_pago compag INNER JOIN ca_final fin INNER JOIN ca_tipo_gestion tipges
+						ON tipges.idtipo_gestion=trans.idtipo_gestion AND fin.idfinal=trans.idfinal AND compag.idtransaccion=trans.idtransaccion
+						WHERE trans.idcliente_cartera=$ClienteCartera AND compag.estado=1 ";
+					
+					$row=$daoClienteCartera->executeSelectString($stmt);
+					$count=$row[0]['COUNT'];
+					if($count>0) {
+						$total_pages=ceil($count/$limit);
+					}else {
+						$total_pages=0;
+					}
+	
+					if($page>$total_pages) $page=$total_pages;
+	
+					$start=$page*$limit-$limit;
+					
+					$stmt=" SELECT trans.idtransaccion,compag.idcompromiso_pago,tipges.nombre AS 'tipo_gestion',fin.nombre AS 'final',
+						trans.observacion,compag.fecha_cp,compag.monto_cp,compag.observacion AS 'observacion_cp'
+						FROM ca_transaccion trans INNER JOIN ca_compromiso_pago compag INNER JOIN ca_final fin INNER JOIN ca_tipo_gestion tipges
+						ON tipges.idtipo_gestion=trans.idtipo_gestion AND fin.idfinal=trans.idfinal AND compag.idtransaccion=trans.idtransaccion
+						WHERE trans.idcliente_cartera=$ClienteCartera AND compag.estado=1 
+						ORDER BY $sidx $sord LIMIT $start , $limit ";
+	
+					$response=array("page"=>$page,"total"=>$total_pages,"records"=>$count);
+					
+					$data=$daoClienteCartera->executeSelectString($stmt);
+					$dataRow=array();
+					for($i=0;$i<count($data);$i++){
+						array_push($dataRow, array("id"=>$data[$i]['idtransaccion'],"cell"=>array(
+																							$data[$i]['tipo_gestion'],
+																							$data[$i]['final'],
+																							$data[$i]['fecha_cp'],
+																							$data[$i]['monto_cp'],
+																							$data[$i]['observacion_cp']
+																							)
+													)
+									);
+					}
+					$response["rows"]=$dataRow;
+					echo json_encode($response);
+				break;
+				case 'jqgrid_historico':
+					echo '{}';
+				break;
+				case 'jqgrid_direcciones':
+					if(!isset($_GET["Cliente"])){
+						echo '{}';
+						exit();
+					}
+					$page=$_GET["page"];
+					$limit=$_GET["rows"];
+					$sidx=$_GET["sidx"];
+					$sord=$_GET["sord"];
+					$cliente=$_GET["Cliente"];
+
+					if(!$sidx)$sidx=1 ;
+					
+					$stmt=" SELECT COUNT(*) AS 'COUNT'
+						FROM ca_referencia_cliente refcli INNER JOIN ca_direccion dir INNER JOIN ca_tipo_referencia tipref INNER JOIN ca_origen org
+						ON org.idorigen=refcli.idorigen AND tipref.idtipo_referencia=refcli.idtipo_referencia 
+						AND  dir.idreferencia_cliente=refcli.idreferencia_cliente 
+						WHERE refcli.idcliente=$cliente AND refcli.estado=1 AND refcli.idclase=2 ";
+					
+					$row=$daoClienteCartera->executeSelectString($stmt);
+					$count=$row[0]['COUNT'];
+					if($count>0) {
+						$total_pages=ceil($count/$limit);
+					}else {
+						$total_pages=0;
+					}
+	
+					if($page>$total_pages) $page=$total_pages;
+	
+					$start=$page*$limit-$limit;
+					
+					$stmt=" SELECT refcli.idreferencia_cliente,TRIM(dir.direccion) AS 'direccion',TRIM(dir.referencia) AS 'referencia' ,
+						dir.ubigeo AS 'ubigeo',TRIM(dir.distrito) AS 'distrito' ,TRIM(dir.provincia) AS 'provincia',TRIM(dir.departamento) AS 'departamento',
+						tipref.nombre AS 'tipo_referencia',org.nombre AS 'origen',refcli.observacion
+						FROM ca_referencia_cliente refcli INNER JOIN ca_direccion dir INNER JOIN ca_tipo_referencia tipref INNER JOIN ca_origen org
+						ON org.idorigen=refcli.idorigen AND tipref.idtipo_referencia=refcli.idtipo_referencia 
+						AND  dir.idreferencia_cliente=refcli.idreferencia_cliente 
+						WHERE refcli.idcliente=$cliente AND refcli.estado=1 AND refcli.idclase=2 
+						ORDER BY $sidx $sord LIMIT $start , $limit ";
+	
+					$response=array("page"=>$page,"total"=>$total_pages,"records"=>$count);
+					
+					$data=$daoClienteCartera->executeSelectString($stmt);
+					$dataRow=array();
+					for($i=0;$i<count($data);$i++){
+						array_push($dataRow, array("id"=>$data[$i]['idreferencia_cliente'],"cell"=>array(
+																										$data[$i]['direccion'],
+																										$data[$i]['referencia'],
+																										$data[$i]['tipo_referencia'],
+																										$data[$i]['origen'],
+																										$data[$i]['ubigeo'],
+																										$data[$i]['distrito'],
+																										$data[$i]['provincia'],
+																										$data[$i]['departamento'],
+																										$data[$i]['observacion']
+																										)
+													)
+									);
+					}
+					$response["rows"]=$dataRow;
+					echo json_encode($response);
+				break;
+				case 'jqgrid_cuenta':
+					if(!isset($_GET["ClienteCartera"])){
+						echo '{}';
+						exit();
+					}
+					$page=$_GET["page"];
+					$limit=$_GET["rows"];
+					$sidx=$_GET["sidx"];
+					$sord=$_GET["sord"];
+					$ClienteCartera=$_GET["ClienteCartera"];
+	
+					if(!$sidx)$sidx=1 ;
+					
+					$stmt=" SELECT COUNT(*) AS 'COUNT'
+							FROM ca_cuenta WHERE idcliente_cartera=$ClienteCartera ";
+					
+					$row=$daoClienteCartera->executeSelectString($stmt);
+					$count=$row[0]['COUNT'];
+					if($count>0) {
+						$total_pages=ceil($count/$limit);
+					}else {
+						$total_pages=0;
+					}
+	
+					if($page>$total_pages) $page=$total_pages;
+	
+					$start=$page*$limit-$limit;
+					
+					$stmt=" SELECT idcuenta,numero_cuenta,total_deuda
+							FROM ca_cuenta WHERE idcliente_cartera=$ClienteCartera ORDER BY $sidx $sord LIMIT $start , $limit ";
+	
+					$response=array("page"=>$page,"total"=>$total_pages,"records"=>$count);
+					
+					$data=$daoClienteCartera->executeSelectString($stmt);
+					$dataRow=array();
+					for($i=0;$i<count($data);$i++){
+						array_push($dataRow, array("id"=>$data[$i]['idcuenta'],"cell"=>array($data[$i]['numero_cuenta'],$data[$i]['total_deuda'])));
+					}
+					$response["rows"]=$dataRow;
+					echo json_encode($response);
+				break;
+				case 'jqgrid_operaciones':
+					if(!isset($_GET["Cuenta"])){
+						echo '{}';
+						exit();
+					}
+					$page=$_GET["page"];
+					$limit=$_GET["rows"];
+					$sidx=$_GET["sidx"];
+					$sord=$_GET["sord"];
+					$cuenta=$_GET["Cuenta"];
+	
+					if(!$sidx)$sidx=1 ;
+					
+					$stmt=" SELECT COUNT(*) AS 'COUNT'
+						FROM ca_detalle_cuenta WHERE idcuenta=$cuenta ";
+					
+					$row=$daoClienteCartera->executeSelectString($stmt);
+					$count=$row[0]['COUNT'];
+					if($count>0) {
+						$total_pages=ceil($count/$limit);
+					}else {
+						$total_pages=0;
+					}
+	
+					if($page>$total_pages) $page=$total_pages;
+	
+					$start=$page*$limit-$limit;
+					
+					$stmt=" SELECT iddetalle_cuenta,codigo_operacion,moneda,refinanciamiento,numero_cuotas,numero_cuotas_pagadas,
+						dias_mora,total_deuda,total_deuda_soles,total_deuda_dolares,monto_mora,monto_mora_soles,
+						monto_mora_dolares,saldo_capital,saldo_capital_soles,saldo_capital_dolares,DATE(fecha_asignacion) AS 'fecha_asignacion',tramo
+						FROM ca_detalle_cuenta WHERE idcuenta=$cuenta ORDER BY $sidx $sord LIMIT $start , $limit ";
+	
+					$response=array("page"=>$page,"total"=>$total_pages,"records"=>$count);
+					
+					$data=$daoClienteCartera->executeSelectString($stmt);
+					$dataRow=array();
+					for($i=0;$i<count($data);$i++){
+						array_push($dataRow, array("id"=>$data[$i]['iddetalle_cuenta'],"cell"=>array(
+																									$data[$i]['codigo_operacion'],
+																									$data[$i]['moneda'],
+																									$data[$i]['refinanciamiento'],
+																									$data[$i]['numero_cuotas'],
+																									$data[$i]['numero_cuotas_pagadas'],
+																									$data[$i]['dias_mora'],
+																									$data[$i]['tramo'],
+																									$data[$i]['total_deuda'],
+																									$data[$i]['total_deuda_soles'],
+																									$data[$i]['total_deuda_dolares'],
+																									$data[$i]['monto_mora'],
+																									$data[$i]['monto_mora_soles'],
+																									$data[$i]['monto_mora_dolares'],
+																									$data[$i]['saldo_capital'],
+																									$data[$i]['saldo_capital_soles'],
+																									$data[$i]['saldo_capital_dolares'],
+																									$data[$i]['fecha_asignacion']
+																									)
+													)
+									);
+					}
+					$response["rows"]=$dataRow;
+					echo json_encode($response);
+				break;
+				case 'jqgrid_pagos':
+					if(!isset($_GET["DetalleCuenta"])){
+						echo '{}';
+						exit();
+					}
+					$page=$_GET["page"];
+					$limit=$_GET["rows"];
+					$sidx=$_GET["sidx"];
+					$sord=$_GET["sord"];
+					$DetalleCuenta=$_GET["DetalleCuenta"];
+
+					if(!$sidx)$sidx=1 ;
+					
+					$stmt=" SELECT COUNT(*) AS 'COUNT'
+						FROM ca_pago WHERE iddetalle_cuenta=$DetalleCuenta ";
+					
+					$row=$daoClienteCartera->executeSelectString($stmt);
+					$count=$row[0]['COUNT'];
+					if($count>0) {
+						$total_pages=ceil($count/$limit);
+					}else {
+						$total_pages=0;
+					}
+	
+					if($page>$total_pages) $page=$total_pages;
+	
+					$start=$page*$limit-$limit;
+					
+					$stmt=" SELECT idpago,monto,moneda,fecha
+						FROM ca_pago WHERE iddetalle_cuenta=$DetalleCuenta 
+						ORDER BY $sidx $sord LIMIT $start , $limit ";
+	
+					$response=array("page"=>$page,"total"=>$total_pages,"records"=>$count);
+					
+					$data=$daoClienteCartera->executeSelectString($stmt);
+					$dataRow=array();
+					for($i=0;$i<count($data);$i++){
+						array_push($dataRow, array("id"=>$data[$i]['idpago'],"cell"=>array($data[$i]['monto'],$data[$i]['moneda'],$data[$i]['fecha'])));
+					}
+					$response["rows"]=$dataRow;
+					echo json_encode($response);
+				break;
+				case 'jqgrid_telefonos':
+					if(!isset($_GET["Cliente"])){
+						echo '{}';
+						exit();
+					}
+					$page=$_GET["page"];
+					$limit=$_GET["rows"];
+					$sidx=$_GET["sidx"];
+					$sord=$_GET["sord"];
+					$cliente=$_GET["Cliente"];
+
+					if(!$sidx)$sidx=1 ;
+					
+					$stmt=" SELECT COUNT(*) AS 'COUNT'
+						FROM ca_referencia_cliente refcli INNER JOIN ca_telefono tel INNER JOIN ca_tipo_referencia tipref INNER JOIN ca_origen org
+						ON org.idorigen=refcli.idorigen AND tipref.idtipo_referencia=refcli.idtipo_referencia 
+						AND tel.idreferencia_cliente=refcli.idreferencia_cliente 
+						WHERE refcli.idcliente=$cliente AND refcli.estado=1 AND refcli.idclase=1 ";
+					
+					$row=$daoClienteCartera->executeSelectString($stmt);
+					$count=$row[0]['COUNT'];
+					if($count>0) {
+						$total_pages=ceil($count/$limit);
+					}else {
+						$total_pages=0;
+					}
+	
+					if($page>$total_pages) $page=$total_pages;
+	
+					$start=$page*$limit-$limit;
+					
+					$stmt=" SELECT refcli.idreferencia_cliente,tel.idtelefono,tel.numero,tel.anexo,
+						(SELECT nombre FROM ca_tipo_telefono WHERE idtipo_telefono=tel.idtipo_telefono LIMIT 1 ) AS 'tipo_telefono',
+						tipref.nombre as 'tipo_referencia',org.nombre as 'origen',refcli.observacion
+						FROM ca_referencia_cliente refcli INNER JOIN ca_telefono tel INNER JOIN ca_tipo_referencia tipref INNER JOIN ca_origen org
+						ON org.idorigen=refcli.idorigen AND tipref.idtipo_referencia=refcli.idtipo_referencia 
+						AND tel.idreferencia_cliente=refcli.idreferencia_cliente 
+						WHERE refcli.idcliente=$cliente AND refcli.estado=1 AND refcli.idclase=1 
+						ORDER BY $sidx $sord LIMIT $start , $limit ";
+	
+					$response=array("page"=>$page,"total"=>$total_pages,"records"=>$count);
+					
+					$data=$daoClienteCartera->executeSelectString($stmt);
+					$dataRow=array();
+					for($i=0;$i<count($data);$i++){
+						array_push($dataRow, array("id"=>$data[$i]['idreferencia_cliente'],"cell"=>array(
+																										$data[$i]['numero'],
+																										$data[$i]['anexo'],
+																										$data[$i]['tipo_telefono'],
+																										$data[$i]['tipo_referencia'],
+																										$data[$i]['origen'],
+																										$data[$i]['observacion']
+																										)
+													)
+									);
+					}
+					$response["rows"]=$dataRow;
+					echo json_encode($response);
+				break;
+			endswitch;
+			
+		}
+	}
+=======
+class servletAtencionCliente extends CommandController {
+    public function doPost ( ) {
+        switch ($_POST['action']):
+            case '':
+>>>>>>> .r31
+
+                break;
+            case '':
+
+                break;
+            endswitch;
+    }
+    public function doGet ( ) {
+        $daoCampania=DAOFactory::getDAOCampania();
+        $daoUsuarioServicio=DAOFactory::getDAOUsuarioServicio();
+        switch ($_GET['action']):
+            case 'ListarCampanias':
+                $dto=new dto_servicio ;
+                $dto->setId($_GET['Servicio']);
+                echo json_encode($daoCampania->queryByIdName($dto));
+                break;
+            case 'ListarServicio':
+                $dto=new dto_usuario ;
+                $dto->setId($_GET['Usuario']);
+                echo json_encode($daoUsuarioServicio->queryServiciosUsuario($dto));
+                break;
+            case 'DatosAdicionalesOperacion':
+
+                break;
+            case 'DatosAdicionalesCuenta':
+                break;
+            case 'DatosAdicionalesCliente':
+                break;
+            case 'DatosCuentaCliente':
+                break;
+            case 'DatosCliente':
+                break;
+            case 'jqgrid_busquedaManual':
+                echo '{}';
+                break;
+            case 'jqgrid_busquedaBase':
+                echo '{}';
+                break;
+            case 'jqgrid_matrizBusqueda':
+                echo '{}';
+                break;
+            case 'jqgrid_llamada':
+                echo '{}';
+                break;
+            case 'jqgrid_direcciones':
+                echo '{}';
+                break;
+            case 'jqgrid_cuenta':
+                echo '{}';
+                break;
+            case 'jqgrid_operaciones':
+                echo '{}';
+                break;
+            case 'jqgrid_pagos':
+                echo '{}';
+                break;
+            case 'jqgrid_telefonos':
+                echo '{}';
+                break;
+            endswitch;
+
+    }
+}
+
+?>

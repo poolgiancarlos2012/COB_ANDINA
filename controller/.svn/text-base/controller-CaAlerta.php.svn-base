@@ -1,0 +1,22 @@
+<?php
+require '../bo/include_dao.php';
+require_once('../dao/CaAlertaDAO....php');
+require_once('../dto/CaAlerta....php');
+require_once('../mysql/CaAlertaMySqlDAO....php');
+require_once('../mysql/ext/CaAlertaMySqlExtDAO....php');
+require '../bo/bo_CaAlerta.php';
+
+switch ($_POST["action"]):
+    case 'listar';
+            $obj = new bo_CaAlerta();
+            $obj->cargarXid($_POST["id"]);
+        break;
+    case 'crear':
+            $dtoAlerta = new CaAlerta();
+            $boAlerta = new bo_CaAlerta();
+            
+            
+        break;
+    endswitch;
+
+?>

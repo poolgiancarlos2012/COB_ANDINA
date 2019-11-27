@@ -1,0 +1,27 @@
+<?php
+	class MYSQLConnectionPDO {
+		public static $instance= NULL;
+                private function __construct(){}
+		private function  __clone() {}
+		public static function getInstance( ) {
+			if(self::$instance == NULL){
+				self::$instance= new self() ;
+			}
+			return self::$instance;
+		}
+		
+		public function getConnection ( ) {
+			$cn = NULL;
+			try{
+				$cf=new config();
+                $cn = new PDO($cf->getDns(),$cf->getUser(),$cf->getPassword(),array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",PDO::ATTR_PERSISTENT => true));
+				//$cn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+				$cn->setAttribute(PDO::ATTR_AUTOCOMMIT,false);
+			}catch(PDOException $exc){
+				//echo json_encode(array('rst'=>false,'msg'=>'No se puede conectar con la base de datos'));
+			}
+			return $cn;
+		}
+	}
+
+?>

@@ -1,0 +1,316 @@
+<?php
+    session_start();
+    
+?>
+<link type="text/css" rel="stylesheet" href="../includes/jqgrid6/css/ui.jqgrid.css" />
+<link type="text/css" rel="stylesheet" href="../includes/jquery-ui-1.8/themes/humanity/jquery-ui.css" />
+
+<link type="text/css" rel="stylesheet" href="../css/css-cobrast.css" />
+
+<script type="text/javascript" src="../js/includes/jquery-1.4.2.js" ></script>
+
+<script type="text/javascript" src="../includes/jquery-ui-1.7.2/ui/jquery-ui.js" ></script>
+
+<script type="text/javascript" src="../includes/jqgrid6/src/i18n/grid.locale-en.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/jqModal.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.base.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.celledit.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.common.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.custom.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.formedit.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.import.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.inlinedit.js" ></script>
+
+<script type="text/javascript" src="../js/js-cobrast.js" ></script>
+<script type="text/javascript" src="../js/templates.js"  ></script>
+<script type="text/javascript" src="../js/ServicioDAO.js" ></script>
+<script type="text/javascript" src="../js/ServicioJQGRID.js" ></script>
+<script type="text/javascript" src="../js/js-service.js" ></script>
+<div style="width:100%; margin:0 auto;">
+	<table class="tableTab" cellpadding="0" cellspacing="0" border="0">
+    	<tr>
+        	<td rowspan="2" width="100"></td>
+            <td>
+            	<div class="rightItem">
+                	<div class="fltRight">
+                            <a class="itemTop" href="../close.php">Cerra Sesion</a>
+                    </div>
+                    <div class="fltRight">
+                    	<a class="itemTop">Ayuda</a>
+                    </div>
+                    <div class="fltRight">
+                    	<a class="itemTop">Whats' New</a>
+                    </div>
+                    <div><strong style="margin-right: 5px;">Bienvenido: <?=$_SESSION['cobrast']['usuario'] ?></strong></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="vAlignBottom tabsLine">
+                <div id="layerMessage" align="center"></div>
+            	<div class="menuHome">
+                	<span>
+                    	<div>
+                        	<table cellpadding="0" cellspacing="0" border="0">
+                            	<tr>
+                                	<td>
+                                    	<div id="tabMaestro" class="itemTabActive border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="text-white">Servicios</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Usuarios</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                            <a class="AitemTab">Campa&ntilde;as</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Cartera</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabDistribucion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Distribucion</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabProcesos" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Procesos</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabSpeech" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Speech</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabGestion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Gestion</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabGestion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Reportes</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabPapelera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Adicionales</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+        	<td class="lineTab" colspan="2"></td>
+        </tr>
+    </table>
+    <table class="tableContent" cellpadding="0" cellspacing="0" border="0">
+    	<tr>
+        	<td class="barLayer">
+            	<div id="barLayer" style="width:210px; display:block;">	
+                	<div class=" backPanel headerPanel">
+                    	<div class="backPanel iconPinUp" onclick="_slideBarLayer(this,'panelMenu')">Menu</div>
+                    </div>
+                    <div id="panelMenu" class="backPanel contentBarLayer" style="display:block;" >
+                    	<div style="width:100%;">
+                        	<div style="margin-left:20px; margin-bottom:2px;"><a class="text-blue" onClick="_display_panel('panelCrearServicio')">Nuevo</a></div>
+                            <div style="margin-left:20px; margin-bottom:2px;"><a class="text-blue" onClick="_display_panel('panelRegistrosServicio')">Registros</a></div>
+                            
+                     	</div>       
+                    </div>
+                    <div class=" backPanel headerPanel">
+                    	<div class="backPanel iconPinUp" onclick="_slideBarLayer(this,'panelCrear')">Crear</div>
+                    </div>
+                    <div id="panelCrear" class="backPanel contentBarLayer" style="display:block;padding:3px 0;" align="center" >
+                    	<table>
+                        	<tr>
+                            	<td>
+                                	<select>
+                                    	<option>Crear..</option>
+                                        <option>Campaña</option>
+                                        <option>Usuario</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class=" backPanel headerPanel">
+                    	<div class="backPanel iconPinUp" onclick="_slideBarLayer(this,'panelCalendario')" >Calendario</div>
+                    </div>
+                    <div align="center" id="panelCalendario" style="padding:3px 0;display:block;">
+                    	<div id="layerDatepicker"></div>
+                    </div>
+                </div>
+            </td>
+            <td id="showhide" width="10px" class="showHide">
+            	<a onclick="_sliderFadeBarLayer()">
+                	<div id="iconSlider" class="slider icon sliderIconUp"></div>
+                </a>
+            </td>
+            <td width="100%">	
+            	<div id="cobrastHOME" style="background-color:#FFFFFF; width:100%; height:100%; ">
+                	<input type="hidden" id="hdCodUsuario" name="hdCodUsuario" value="<?=$_SESSION['cobrast']['idusuario']?>" />
+                    <input type="hidden" id="hdCodUsuario" name="hdNomUsuario" value="<?=$_SESSION['cobrast']['usuario']?>" />
+                    <input type="hidden" id="hdCodServicio" name="hdCodServicio" value="<?=$_SESSION['cobrast']['idservicio']?>" />
+                    <input type="hidden" id="hdCodUsuarioServicio" name="hdCodUsuarioServicio" value="<?=$_SESSION['cobrast']['idusuario_servicio']?>" />
+                    <input type="hidden" id="hdNomServicio" name="hdNomServicio" value="<?=$_SESSION['cobrast']['servicio']?>" />
+                	<div id="panelRegistrosServicio" style="display:none;">
+                    	<table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp" onclick="_slide(this,'content_table_servicio')"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Servicios</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="content_table_servicio" style="display:none; padding:5px 10px 5px 20px ;">
+                        	<table id="table_servicio"></table>
+                                <div id="pager_table_servicio"></div>
+                        </div>
+                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Administradores por Servicio</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris">Nuevo</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="display:none;">
+                        	<table></table>
+                            <div></div>
+                        </div>
+                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                        	<tr>
+                            	<td style="width:25px; height:25px;">
+                                	<div class="backPanel iconPinBlueUp"></div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:ltr;">
+	                                	<a class="text-blue">Teleoperadores y gestores de campo por Servicio</a>
+                                    </div>
+                                </td>
+                                <td style=" border-bottom:1px solid #EADEC8;">
+                                	<div style="direction:rtl;">
+                                    	<span class="text-gris"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="display:none;">
+                        	<table></table>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div id="panelCrearServicio">
+                    	<table cellpadding="0" cellspacing="0" border="0" class="tableForm">
+                        	<tr>
+                            	<td></td>
+                                <td class="text-black" style="font-size:18px; border-bottom:1px solid #F1F1F1;">Crear Servicio</td>
+                                <td>
+                                    <input type="hidden" id="IdServicio" name="IdServicio"  />
+                                </td>
+                            </tr>
+                        </table>
+						<table cellpadding="0" cellspacing="0" border="0" class="tableForm">
+                        	<tr>
+                            	<td>
+									<div align="center">
+                                    	<table>
+                                        	<tr>
+                                                    <td><button class="button" onclick="save_servicio()">Guardar</button></td>
+                                                    <td><button class="button" onclick="update_servicio()">Actualizar</button></td>
+                                                    <td><button class="button" onclick="delete_servicio()">Eliminar</button></td>
+                                                    <td><button class="button" onclick="cancel()">Cancelar</button></td>
+                                            </tr>
+                                        </table>
+	                                    <div style="float:right; color:#AB0D05; font-weight:bold; ">*Campos requeridos</div>
+                                    </div>
+                                </td>
+                            </tr>
+							<tr>
+                            	<td>
+                                	<span class="text-black" style="margin-left:5px;font-size:15px;">Informacion sobre Servicio</span>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                	<div>
+                                    	<table align="center" class="tableForm BoxContent" cellpadding="0" cellspacing="0">
+                                        	<tr>
+                                            	<td class="rowLastBoxContent textForm">Usuario de creacion:</td>
+                                                <td><input type="text" class="cajaForm" style="width:100%;" id="txtUsuarioCreacion" value="<?= $_SESSION['cobrast']['usuario'];?>" readonly="readonly" /></td>
+                                                <td class="rowLastBoxContent text-alert" style="text-align:right;">*Nombre de Servicio:</td>
+                                                <td><input type="text" class="cajaForm" style="width:100%;" id="txtNombre" /></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td><span class="text-black" style="margin-left:5px;font-size:15px;">Descripcion/Informacion</span></td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                	<div>
+                                    	<table align="center" class="tableForm BoxContent" cellpadding="0" cellspacing="0">
+                                        	<tr>
+                                            	<td valign="top" class="rowLastBoxContent textForm">Descripcion:</td>
+                                                <td><textarea class="cajaForm" style="width:100%;" id="txtDescripcion"></textarea></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                	<div align="center">
+                                    	<table>
+                                        	<tr>
+                                                    <td><button class="button" onclick="save_servicio()">Guardar</button></td>
+                                                    <td><button class="button" onclick="update_servicio()">Actualizar</button></td>
+                                                    <td><button class="button" onclick="delete_servicio()">Eliminar</button></td>
+                                                    <td><button class="button" onclick="cancel()">Cancelar</button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div style="width:100%; height:20px; background-color:#F0E8D9; border:0 none;"></div>
+</div>
+<div id="beforeSendShadow" class="ui-widget-shadow" style="width:150px;height:30px;position:absolute;top:32%;left:45%;display:none;"></div>
+<div id="MsgBeforeSend" class="ui-widget-content ui-corner-all" style="width:150px;height:30px;position:absolute;top:32%;left:45%;font-weight:bold;font-size:20px;vertical-align:middle;color:#333366;display:none;" align="center"  ></div>

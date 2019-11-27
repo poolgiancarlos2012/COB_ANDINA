@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/COBRAST/!svn/ver/31/trunk/COBRAST/js
+END
+AtencionClienteJQGRID.js
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/COBRAST/!svn/ver/28/trunk/COBRAST/js/AtencionClienteJQGRID.js
+END
+js-carga-cartera.js
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/COBRAST/!svn/ver/31/trunk/COBRAST/js/js-carga-cartera.js
+END
+index.js
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/COBRAST/!svn/ver/25/trunk/COBRAST/js/index.js
+END
+js-cobrast.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/COBRAST/!svn/ver/31/trunk/COBRAST/js/js-cobrast.js
+END
+ServicioDAO.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/COBRAST/!svn/ver/29/trunk/COBRAST/js/ServicioDAO.js
+END
+js-distribucion.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/COBRAST/!svn/ver/30/trunk/COBRAST/js/js-distribucion.js
+END
+validacion.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/COBRAST/!svn/ver/26/trunk/COBRAST/js/validacion.js
+END
+js-service.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/COBRAST/!svn/ver/29/trunk/COBRAST/js/js-service.js
+END
+CampaniaJQGRID.js
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/COBRAST/!svn/ver/29/trunk/COBRAST/js/CampaniaJQGRID.js
+END
+UsuarioDAO.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/COBRAST/!svn/ver/28/trunk/COBRAST/js/UsuarioDAO.js
+END
+js-permisos.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/COBRAST/!svn/ver/16/trunk/COBRAST/js/js-permisos.js
+END
+AdicionalesJQGRID.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/COBRAST/!svn/ver/26/trunk/COBRAST/js/AdicionalesJQGRID.js
+END
+DistribucionDAO.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/COBRAST/!svn/ver/30/trunk/COBRAST/js/DistribucionDAO.js
+END
+js-campania.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/COBRAST/!svn/ver/29/trunk/COBRAST/js/js-campania.js
+END
+ServicioJQGRID.js
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/COBRAST/!svn/ver/29/trunk/COBRAST/js/ServicioJQGRID.js
+END
+PermisosDAO.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/COBRAST/!svn/ver/16/trunk/COBRAST/js/PermisosDAO.js
+END
+UrlDAO.js
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/COBRAST/!svn/ver/31/trunk/COBRAST/js/UrlDAO.js
+END
+UsuarioJQGRID.js
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/COBRAST/!svn/ver/25/trunk/COBRAST/js/UsuarioJQGRID.js
+END
+MenuDAO.js
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/COBRAST/!svn/ver/23/trunk/COBRAST/js/MenuDAO.js
+END
+AtencionClienteDAO.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/COBRAST/!svn/ver/30/trunk/COBRAST/js/AtencionClienteDAO.js
+END
+indexDAO.js
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/COBRAST/!svn/ver/29/trunk/COBRAST/js/indexDAO.js
+END
+js-atencion-cliente.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/COBRAST/!svn/ver/30/trunk/COBRAST/js/js-atencion-cliente.js
+END
+CampaniaDAO.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/COBRAST/!svn/ver/29/trunk/COBRAST/js/CampaniaDAO.js
+END
+templates.js
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/COBRAST/!svn/ver/30/trunk/COBRAST/js/templates.js
+END
+AdicionalesDAO.js
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/COBRAST/!svn/ver/26/trunk/COBRAST/js/AdicionalesDAO.js
+END
+DistribucionJQGRID.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/COBRAST/!svn/ver/30/trunk/COBRAST/js/DistribucionJQGRID.js
+END
+js-menus.js
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/COBRAST/!svn/ver/23/trunk/COBRAST/js/js-menus.js
+END
+js-usuario.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/COBRAST/!svn/ver/28/trunk/COBRAST/js/js-usuario.js
+END
+CargaCarteraDAO.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/COBRAST/!svn/ver/31/trunk/COBRAST/js/CargaCarteraDAO.js
+END

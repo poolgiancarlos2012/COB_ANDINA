@@ -1,0 +1,192 @@
+<link type="text/css" rel="stylesheet" href="../includes/jqgrid6/css/ui.jqgrid.css" />
+<link type="text/css" rel="stylesheet" href="../includes/jquery-ui-1.8/themes/humanity/jquery-ui.css" />
+
+<link type="text/css" rel="stylesheet" href="../css/css-cobrast.css" />
+<script type="text/javascript" src="../js/includes/jquery-1.4.2.js" ></script>
+
+<script type="text/javascript" src="../includes/jqgrid6/src/i18n/grid.locale-en.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/jqModal.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.base.js" ></script>
+<script type="text/javascript" src="../includes/jqgrid6/src/grid.common.js" ></script>
+
+
+<script type="text/javascript" src="../js/js-cobrast.js" ></script>
+<div style="width:100%; margin:0 auto;">
+	<table class="tableTab" cellpadding="0" cellspacing="0" border="0">
+    	<tr>
+        	<td rowspan="2" width="100"></td>
+            <td>
+            	<div class="rightItem">
+                	<div class="fltRight">
+                    	<a class="itemTop">Cerra Sesion</a>
+                    </div>
+                    <div class="fltRight">
+                    	<a class="itemTop">Ayuda</a>
+                    </div>
+                    <div class="fltRight">
+                    	<a class="itemTop">Whats' New</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+        	<td class="vAlignBottom tabsLine">
+            	<div class="menuHome">
+                	<span>
+                    	<div>
+                        	<table cellpadding="0" cellspacing="0" border="0">
+                            	<tr>
+                                	<td>
+                                    	<div id="tabMaestro" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Servicios</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Usuarios</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                            <a class="AitemTab">Campa&ntilde;as</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabCartera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Cartera</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabDistribucion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Distribucion</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabProcesos" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Procesos</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabSpeech" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Speech</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabGestion" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Gestion</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabGestion" class="itemTabActive border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="text-white">Reportes</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    	<div id="tabPapelera" class="itemTab border-radius-top pointer" onclick="_activeTab(this)">
+                                        	<a class="AitemTab">Adicionales</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+        	<td class="lineTab" colspan="2"></td>
+        </tr>
+    </table>
+    <table class="tableContent" cellpadding="0" cellspacing="0" border="0">
+    	<tr>
+        	<td class="barLayer">
+            	<div id="barLayer" style="width:210px; display:block;">	
+                	<div class=" backPanel headerPanel">
+                    	<div class="backPanel iconPinUp" onclick="_slideBarLayer(this,'panelMenu')">Menu</div>
+                    </div>
+                    <div id="panelMenu" class="backPanel contentBarLayer" style="display:block;" >
+                    	<div style="width:100%;">
+                        	<div style="margin-left:10px; margin-bottom:2px;">
+                            	<table border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+                            			<td><div class="icon plus-icon" style="width:10px; height:10px; cursor:pointer;" onclick="_display_submenu(this,'submenuCartera')"></div></td>
+                                		<td><a class="text-blue" >Cartera</a></td>
+                                	</tr>
+                                </table>
+                            </div>
+                            <div style="display:none; margin-left:30px;" id="submenuCartera">
+                            	<div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Fotocartera</a></div>
+                                <div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Otros</a></div>
+                                <div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Etc</a></div>
+                            </div>
+                            <div style="margin-left:10px; margin-bottom:2px;">
+                            	<table border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+                            			<td><div class="icon plus-icon" style="width:10px; height:10px; cursor:pointer;" onclick="_display_submenu(this,'submenuLlamadas')"></div></td>
+                                		<td><a class="text-blue" >Llamadas</a></td>
+                                	</tr>
+                                </table>
+                            </div>
+                            <div style="display:none; margin-left:30px;" id="submenuLlamadas">
+                            	<div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Mejores Llamadas</a></div>
+                                <div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Ultimas LLamadas</a></div>
+                                <div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Otros</a></div>
+                            </div>
+                            <div style="margin-left:10px; margin-bottom:2px;">
+                            	<table border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+                            			<td><div class="icon plus-icon" style="width:10px; height:10px; cursor:pointer;" onclick="_display_submenu(this,'submenuVisitas')"></div></td>
+                                		<td><a class="text-blue" >Visitas</a></td>
+                                	</tr>
+                                </table>
+                            </div>
+                            <div style="display:none; margin-left:30px;" id="submenuVisitas">
+                            	<div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Mejores Visitas</a></div>
+                                <div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Ultimas Visitas</a></div>
+                                <div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Otros</a></div>
+                            </div>
+                            <div style="margin-left:10px; margin-bottom:2px;">
+                            	<table border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+                            			<td><div class="icon plus-icon" style="width:10px; height:10px; cursor:pointer;" onclick="_display_submenu(this,'submenuRanking')"></div></td>
+                                		<td><a class="text-blue" >Ranking</a></td>
+                                	</tr>
+                                </table>
+                            </div>
+                            <div style="display:none; margin-left:30px;" id="submenuRanking">
+                            	<div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Operadores</a></div>
+                                <div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Llamadas</a></div>
+                                <div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Visitas</a></div>
+                                <div style="margin-top:2px;"><a class="text-blue-simple" style="cursor:pointer;">Otros</a></div>
+                            </div>
+                     	</div>
+                    </div>
+                    <div class=" backPanel headerPanel">
+                    	<div class="backPanel iconPinUp" onclick="_slideBarLayer(this,'panelCrear')">Crear</div>
+                    </div>
+                    <div id="panelCrear" class="backPanel contentBarLayer" style="display:block;" >
+                    	<table>
+                        	<tr>
+                            	<td></td>
+                            </tr>
+                            <tr>
+                            	<td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td id="showhide" width="10px" class="showHide">
+            	<a onclick="_sliderFadeBarLayer()">
+                	<div id="iconSlider" class="slider icon sliderIconUp"></div>
+                </a>
+            </td>
+            <td width="100%">	
+            	<div id="cobrastHOME" style="background-color:#FFFFFF; width:100%; height:100%; ">
+                	<div></div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div style="width:100%; height:20px; background-color:#F0E8D9; border:0 none;"></div>
+</div>

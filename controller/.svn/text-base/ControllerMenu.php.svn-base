@@ -1,0 +1,18 @@
+<?php
+/**
+ * Description of ControllerMenu
+ *
+ * @author Davis
+ */
+require_once('../controller/CommandController.php'); #Chek
+require_once('../controller/servletMenu.php');#Chek
+require_once('../dto/dto_menu.php'); #Chek
+require_once('../dao/MYSQLMenuDAO.php');
+require_once('../factory/DAOFactory.php');
+require_once('../factory/FactoryConnection.php');
+require_once('../conexion/MYSQLConnectionPDO.php');
+require_once('../conexion/config.php');
+
+$cn=CommandController::getCommand();
+$cn->process();
+?>

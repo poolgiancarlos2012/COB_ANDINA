@@ -1,0 +1,21 @@
+$(document).ready(function(){
+	CampaniaJQGRID.Campania();
+	/***************/
+	$('#txtFechaInicio,#txtFechaFin').datepicker({dateFormat:'yy-mm-dd'});
+	$('#layerDatepicker').datepicker({inline:true,autoSize:true});
+		
+});
+edit_campania = function ( ) {
+	var id=$("#table_campanias").jqGrid("getGridParam",'selrow');		
+	CampaniaDAO.DataById(id);
+	_display_panel('panelNuevaCampania');
+}
+save_campania = function ( ) {
+	CampaniaDAO.Save();
+}
+update_campania = function ( ) {
+	CampaniaDAO.Update();
+}
+delete_campania = function ( ) {
+	CampaniaDAO.Delete();
+}

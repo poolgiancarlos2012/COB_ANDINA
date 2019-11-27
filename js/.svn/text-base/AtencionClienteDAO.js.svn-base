@@ -1,0 +1,120 @@
+var AtencionClienteDAO={
+		url:'../controller/ControllerCobrast.php',
+		ListarCampanias : function ( ) {
+				$.ajax({
+					   url:this.url,
+					   type:'GET',
+					   dataType:'json',
+					   data:{command:'atencion_cliente',action:'ListarCampanias',Servicio:$('#hdCodServicio').val()},
+					   success: function ( obj ) {
+								AtencionClienteDAO.CampaniaBusquedaManual( obj );
+								AtencionClienteDAO.CampaniaBusquedaBase( obj );
+								AtencionClienteDAO.CampaniaMatrizBusqueda( obj );
+						   },
+					   error: this.error_ajax
+					   });
+			},
+		CampaniaBusquedaManual : function ( obj ) {
+				var html='';
+					html+='<option value="0">--Seleccione--</option>';
+				$.each(obj,function(key,data){
+					html+='<option value="'+data.idcampania+'">'+data.nombre+'</option>';
+				});
+				$("#cbCampaniaBusquedaManual").html(html);
+			},
+		CampaniaBusquedaBase : function ( obj ) {
+				var html='';
+					html+='<option value="0">--Seleccione--</option>';
+				$.each(obj,function(key,data){
+					html+='<option value="'+data.idcampania+'">'+data.nombre+'</option>';
+				});
+				$("#cbCampaniaBusquedaBase").html(html);
+			},
+		CampaniaMatrizBusqueda : function ( obj ){
+				var html='';
+					html+='<option value="0">--Seleccione--</option>';
+				$.each(obj,function(key,data){
+					html+='<option value="'+data.idcampania+'">'+data.nombre+'</option>';
+				});
+				$("#cbCampaniaMatrizBusqueda").html(html);
+			},
+		servicios : function ( ) {
+				$.ajax({
+					    url : this.url,
+						type : 'GET',
+						dataType : 'json',
+						data : {command:'atencion_cliente',action:'ListarServicio',Usuario:$('#hdCodUsuario').val()},
+						success : function ( obj ) {
+								AtencionClienteDAO.ServicioMatrizBusqueda( obj );
+							},
+						error : this.error_ajax
+					   });
+			},
+		ServicioMatrizBusqueda : function ( obj ) {
+				var html='';
+					html+='<option value="0">--Seleccione--</option>';
+				$.each(obj,function(key,data){
+					html+='<option value="'+data.idservicio+'">'+data.nombre+'</option>';
+				});
+				$("#cbServicioMatrizBusqueda").html(html);
+			},
+		DatosCliente : function ( ) {
+				$.ajax({
+					   url : this.url,
+					   type : 'GET',
+					   dataType : 'json',
+					   data : {command:'atencion_cliente',action:'DatosCliente'},
+					   success : function ( obj ) {
+						   		
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		DatosCuentaCliente : function ( ) {
+				$.ajax({
+					   url : this.url,
+					   type : 'GET',
+					   dataType : 'json',
+					   data : {command:'atencion_cliente',action:'DatosCuentaCliente'},
+					   success : function ( obj ) {
+						   		
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		DatosAdicionalesCliente : function ( ) {
+				$.ajax({
+					   url : this.url,
+					   type : 'GET',
+					   dataType : 'json',
+					   data : {command:'atencion_cliente',action:'DatosAdicionalesCliente'},
+					   success : function ( obj ) {
+						   		
+						   },
+					   error : this.error_ajax
+					   });
+			},
+		DatosAdicionalesCuenta : function ( ) {
+				$.ajax({
+					   url : this.url,
+					   type : 'GET',
+					   dataType : 'json',
+					   data : {command:'atencion_cliente',action:'DatosAdicionalesCuenta'},
+					   success : function ( obj ) {},
+					   error : this.error_ajax
+					   });
+			},
+		DatosAdicionalesOperacion : function ( ) {
+				$.ajax({
+					   url : this.url,
+					   type : 'GET',
+					   dataType : 'json',
+					   data : {command:'atencion_cliente',action:'DatosAdicionalesOperacion'},
+					   success : function ( obj ) {},
+					   error : this.error_ajax
+					   });
+			},
+		error_ajax : function ( ) {
+				templates.MsgError('Error en el servidor','250px');
+			}
+	}

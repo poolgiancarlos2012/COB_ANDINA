@@ -1,0 +1,143 @@
+INSERT INTO `ca_servicio` VALUES ('1', 'interbank xxx', 'bancos xxx', '1', '2010-05-06 00:00:00', '2010-06-09 17:00:23', '1', '5');
+INSERT INTO `ca_servicio` VALUES ('2', 'ripley', 'bancos', '1', '2010-05-15 10:00:25', null, '1', null);
+INSERT INTO `ca_servicio` VALUES ('3', 'mi banco', 'prueba mi banco', '1', '2010-06-21 16:33:28', null, '5', null);
+
+INSERT INTO `ca_campania` VALUES ('1', '2', 'campania banco xxx', '2010-05-06', '2010-06-30', 'campaña ripley xxx', '1', '2010-05-06 00:00:00', '2010-06-09 18:04:11', null, '5');
+INSERT INTO `ca_campania` VALUES ('2', '2', 'campaña xxx junio', '2010-06-01', '2010-06-30', 'prueba de junio', '1', '2010-06-09 17:52:04', null, '5', '5');
+INSERT INTO `ca_campania` VALUES ('3', '2', 'prueba campania', '2010-06-01', '2010-06-30', 'prueba', '1', '2010-06-16 21:38:37', null, '5', null);
+INSERT INTO `ca_campania` VALUES ('4', '2', 'ripley xxxx', '2010-06-01', '2010-06-30', 'prubea', '1', '2010-06-21 21:01:47', null, '5', null);
+INSERT INTO `ca_campania` VALUES ('5', '2', 'xvcbxvb', '2010-06-01', '2010-06-30', 'dsfgsdfgsdfgsd', '1', '2010-06-23 15:46:32', null, '5', null);
+INSERT INTO `ca_campania` VALUES ('6', '2', 'prueba', '2010-06-09', '2010-06-03', 'buuuuuuuuuu', '1', '2010-06-23 20:58:14', null, '5', null);
+
+INSERT INTO `ca_usuario` VALUES ('1', 'davis', 'laban', 'castillo', '44819500', 'dlaban@hdec.pe', 'e10adc3949ba59abbe56e057f20f883e', '1', '2010-05-06 00:00:00', null, '1', '2010');
+INSERT INTO `ca_usuario` VALUES ('2', 'kennedy', 'chagua', 'encarnacion', '4421210', 'kchagua@hdec.pe', 'e10adc3949ba59abbe56e057f20f883e', '1', '2010-05-15 10:01:40', null, '1', null);
+INSERT INTO `ca_usuario` VALUES ('3', 'carlos', 'perez', 'castillo', '44212105', 'carlos@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1', '2010-05-18 12:37:14', null, '1', null);
+INSERT INTO `ca_usuario` VALUES ('4', 'paul', 'valencia', 'colca', '44212106', 'pvalencia@yahoo.es', 'e10adc3949ba59abbe56e057f20f883e', '1', '2010-05-18 12:37:53', null, '1', null);
+INSERT INTO `ca_usuario` VALUES ('5', 'alexis', 'benavente', 'vallejo', '44212109', 'abenavente@hdec.pe', 'e10adc3949ba59abbe56e057f20f883e', '1', '2010-05-18 12:38:34', null, '1', null);
+INSERT INTO `ca_usuario` VALUES ('6', 'marco', 'reategui', 'xxx', '442121078', 'mreategui@hdec.pe', 'e10adc3949ba59abbe56e057f20f883e', '1', '2010-05-18 12:39:06', null, '1', null);
+INSERT INTO `ca_usuario` VALUES ('7', 'gabriel', 'gavilano', 'iglesias', '442121084', 'ggavilano@hdec.pe', 'e10adc3949ba59abbe56e057f20f883e', '1', '2010-05-18 12:39:44', null, '1', null);
+INSERT INTO `ca_usuario` VALUES ('8', 'ruben', 'muquillaza', 'xxx', '442121045', 'rmuquillaza', 'e10adc3949ba59abbe56e057f20f883e', '1', '2010-05-18 12:40:25', null, '1', null);
+INSERT INTO `ca_usuario` VALUES ('9', 'rosana', 'garcia', 'salirrosas', '442121065', 'rgarcia@hdec.pe', 'e10adc3949ba59abbe56e057f20f883e', '1', '2010-05-18 12:41:49', null, '1', null);
+INSERT INTO `ca_usuario` VALUES ('10', 'carla', 'gonzales', 'torres', '442121002', 'carlabb@hotmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1', '2010-05-18 12:43:38', null, '1', null);
+INSERT INTO `ca_usuario` VALUES ('11', 'zoroastrodsfg dsf', 'hans fdgsdf', 'hans sdfg', '442121099', 'ghfjhdfhsfhf', '4be86d2120f1a09de67fb1c22e38e97a', '1', '2010-06-09 20:14:16', '2010-06-10 15:33:55', '5', '5');
+INSERT INTO `ca_usuario` VALUES ('12', 'sdfg', 'sdfgsdf', 'gsd', '00067575', 'rwetwertwe', 'e10adc3949ba59abbe56e057f20f883e', '1', '2010-06-23 15:16:05', null, '5', null);
+
+INSERT INTO `ca_tipo_usuario` VALUES ('1', 'SUPERVISOR', null, '1');
+INSERT INTO `ca_tipo_usuario` VALUES ('2', 'OPERADOR', null, '1');
+INSERT INTO `ca_tipo_usuario` VALUES ('3', 'GESTOR DE CAMPO', null, '1');
+INSERT INTO `ca_tipo_usuario` VALUES ('4', 'SISTEMAS', null, '1');
+
+INSERT INTO `ca_privilegio` VALUES ('1', 'OPERADOR', '');
+INSERT INTO `ca_privilegio` VALUES ('2', 'SUPERVISOR', '');
+INSERT INTO `ca_privilegio` VALUES ('3', 'ADMINISTRADOR', '');
+INSERT INTO `ca_privilegio` VALUES ('4', 'GESTOR DE CAMPO', '');
+
+INSERT INTO `ca_usuario_servicio` VALUES ('1', '2', '2', '4', '4', '2010-05-01', '2010-05-31', '1', '2010-05-15 10:03:38', '2', null, null);
+INSERT INTO `ca_usuario_servicio` VALUES ('2', '3', '2', '1', '2', '2010-05-01', '2010-05-31', '1', '2010-05-18 12:45:19', '2', null, null);
+INSERT INTO `ca_usuario_servicio` VALUES ('3', '4', '2', '1', '2', '2010-05-01', '2010-05-31', '1', '2010-05-18 12:45:45', '2', null, null);
+INSERT INTO `ca_usuario_servicio` VALUES ('4', '5', '2', '1', '2', '2010-05-01', '2010-05-31', '1', '2010-05-18 12:46:07', '2', null, null);
+INSERT INTO `ca_usuario_servicio` VALUES ('5', '6', '2', '1', '2', '2010-05-01', '2010-05-31', '1', '2010-05-18 12:46:25', '2', null, null);
+INSERT INTO `ca_usuario_servicio` VALUES ('6', '7', '2', '1', '2', '2010-05-01', '2010-05-31', '1', '2010-05-18 12:46:52', '2', null, null);
+INSERT INTO `ca_usuario_servicio` VALUES ('7', '8', '2', '1', '2', '2010-05-01', '2010-05-31', '1', '2010-05-18 12:47:15', '2', null, null);
+INSERT INTO `ca_usuario_servicio` VALUES ('8', '9', '2', '1', '2', '2010-05-01', '2010-05-31', '1', '2010-05-18 12:47:39', '2', null, null);
+INSERT INTO `ca_usuario_servicio` VALUES ('9', '10', '2', '1', '2', '2010-05-01', '2010-05-31', '1', '2010-05-18 12:47:59', '2', null, null);
+INSERT INTO `ca_usuario_servicio` VALUES ('10', '11', '2', '2', '2', '2010-05-01', '2010-07-31', '1', '2010-06-09 20:14:16', '5', '2010-06-10 15:33:55', '5');
+INSERT INTO `ca_usuario_servicio` VALUES ('11', '12', '2', '2', '3', '2010-06-01', '2010-06-30', '1', '2010-06-23 15:16:05', '5', null, null);
+
+INSERT INTO `ca_origen` VALUES ('1', 'CARTERA', null);
+INSERT INTO `ca_origen` VALUES ('2', 'GESTION', null);
+
+INSERT INTO `ca_tipo_referencia` VALUES ('1', 'OFICINA', null);
+INSERT INTO `ca_tipo_referencia` VALUES ('2', 'DOMICILIO', null);
+INSERT INTO `ca_tipo_referencia` VALUES ('3', 'PREDETERMINADO', null);
+INSERT INTO `ca_tipo_referencia` VALUES ('4', 'NEGOCIO', null);
+INSERT INTO `ca_tipo_referencia` VALUES ('5', 'LABORAL', null);
+
+INSERT INTO `ca_tipo_gestion` VALUES ('1', 'CARGA', 'CARGA XXXXX');
+INSERT INTO `ca_tipo_gestion` VALUES ('2', 'GESTION', 'hgfhgf');
+
+INSERT INTO `ca_tipo_telefono` VALUES ('1', 'CELULAR', null);
+INSERT INTO `ca_tipo_telefono` VALUES ('2', 'TELEFONO', null);
+
+INSERT INTO `ca_carga_final` VALUES ('1', 'NC', 'NO CONTACTO');
+INSERT INTO `ca_carga_final` VALUES ('2', 'CNE', 'CONTACTO NO EFECTIVO');
+INSERT INTO `ca_carga_final` VALUES ('3', 'CE', 'CONTACTO EFECTIVO');
+
+INSERT INTO `ca_clase_final` VALUES ('1', 'LLAMADA', null);
+INSERT INTO `ca_clase_final` VALUES ('2', 'VISITA', null);
+INSERT INTO `ca_clase_final` VALUES ('3', 'AGENDAR', null);
+
+INSERT INTO `ca_nivel` VALUES ('1', 'VENTA', null);
+INSERT INTO `ca_nivel` VALUES ('2', 'NO DESEA', null);
+INSERT INTO `ca_nivel` VALUES ('3', 'NO CALIFICA', null);
+INSERT INTO `ca_nivel` VALUES ('4', 'NO CONTESTA', null);
+
+INSERT INTO `ca_tipo_final` VALUES ('1', 'POTENCIAL', null);
+INSERT INTO `ca_tipo_final` VALUES ('2', 'NEGATIVO', null);
+INSERT INTO `ca_tipo_final` VALUES ('3', 'POSITIVO', null);
+
+INSERT INTO `ca_final` VALUES ('1', '1', '1', '2', '1', 'xxxxx', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('2', '1', '2', '2', '1', 'hhhhh', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('3', '1', '3', '2', '1', 'kkkkkk', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('4', '1', '1', '3', '1', 'jjjjjjj', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('5', '1', '2', '3', '1', 'hgjgj', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('6', '1', '3', '3', '1', 'ffffff', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('7', '2', '1', '2', '1', 'bbbbb', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('8', '2', '2', '2', '1', 'kkkkkk', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('9', '2', '3', '2', '1', 'ddddd', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('10', '2', '1', '3', '1', 'kkkkkk', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('11', '2', '2', '3', '1', 'pppppp', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('12', '2', '3', '3', '1', 'ffffffff', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('13', '1', '1', '2', '2', 'sssssss', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('14', '1', '2', '2', '2', 'qqqqqqq', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('15', '2', '1', '3', '2', 'hhhhhg', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('16', '2', '2', '3', '2', 'zzzzzzz', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('17', '1', '1', '2', '3', 'ccccccc', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('18', '1', '2', '2', '3', 'wwwww', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('19', '1', '1', '3', '3', 'aaaaaaa', null, '1', null, null, null, null);
+INSERT INTO `ca_final` VALUES ('20', '1', '2', '3', '3', 'ddddddd', null, '1', null, null, null, null);
+
+INSERT INTO `ca_final_servicio` VALUES ('1', '2', '1', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('2', '2', '2', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('3', '2', '3', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('4', '2', '4', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('5', '2', '5', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('6', '2', '6', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('7', '2', '7', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('8', '2', '8', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('9', '2', '9', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('10', '2', '10', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('11', '2', '12', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('12', '2', '14', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('13', '2', '16', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('14', '2', '18', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('15', '2', '20', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('16', '1', '1', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('17', '1', '2', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('18', '1', '4', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('19', '1', '6', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('20', '1', '7', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('21', '1', '9', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('22', '1', '10', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('23', '1', '11', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('24', '1', '13', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('25', '1', '14', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('26', '1', '16', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('27', '1', '17', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('28', '1', '19', '1', null, null, null, null);
+INSERT INTO `ca_final_servicio` VALUES ('33', '2', '19', '1', null, null, null, null);
+
+
+INSERT INTO `ca_tipo_datos_adicionales` VALUES ('1', 'CLIENTE', null);
+INSERT INTO `ca_tipo_datos_adicionales` VALUES ('2', 'CUENTA', null);
+INSERT INTO `ca_tipo_datos_adicionales` VALUES ('3', 'DETALLE CUENTA', null);
+
+INSERT INTO `ca_tipo_filtro` VALUES ('1', 'ATENCION', 'ATENCION AL CLIENTE');
+
+INSERT INTO `ca_filtros` VALUES ('1', '2', '1', 'ca_direccion', 'direccion', 'direccion', 'varchar', null, null, null, 'Direccion');
+INSERT INTO `ca_filtros` VALUES ('2', '2', '1', 'ca_direccion', 'direccion', 'departamento', 'varchar', null, null, null,'Direccion');
+INSERT INTO `ca_filtros` VALUES ('3', '2', '1', 'ca_direccion', 'direccion', 'provincia', 'varchar', null, null, null, 'Direccion');
+INSERT INTO `ca_filtros` VALUES ('5', '2', '1', 'ca_telefono', 'telefono', 'numero', 'varchar', null, null, null, 'Telefono');
+
+
+

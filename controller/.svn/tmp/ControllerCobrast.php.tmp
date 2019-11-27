@@ -1,0 +1,92 @@
+<?php
+session_start();
+/* Start Controller */
+require_once '../controller/CommandController.php';
+require_once '../controller/servletCampania.php';
+require_once '../controller/servletMenu.php';
+require_once '../controller/servletPermisosDetalle.php';
+require_once '../controller/servletServicio.php';
+require_once '../controller/servletUsuario.php';
+require_once '../controller/servletLogin.php';
+require_once '../controller/servletDistribucion.php';
+require_once '../controller/servletAtencionCliente.php';
+require_once '../controller/servletCargaCatera.php';
+/* End Controller */
+
+/* Configation */
+require_once '../conexion/config.php';
+require_once '../conexion/MYSQLConnectionMYSQLI.php';
+require_once '../conexion/MYSQLConnectionPDO.php';
+	
+require_once '../factory/DAOFactory.php';
+require_once '../factory/FactoryConnection.php';
+
+require_once '../dao/MYSQLCampaniaDAO.php';
+
+require_once '../dao/MYSQLMenuDAO.php';
+require_once '../dao/MYSQLNivelesPermisos.php';
+require_once '../dao/MYSQLPermisosDetalleDAO.php';
+require_once '../dao/MYSQLServicioDAO.php';
+require_once '../dao/MYSQLUrlDAO.php';
+require_once '../dao/MYSQLUsuarioDAO.php';
+require_once '../dao/MYSQLUsuarioServicioDAO.php';
+require_once '../dao/MYSQLTipoUsuarioDAO.php';
+require_once '../dao/MYSQLPrivilegioDAO.php';
+require_once '../dao/MYSQLClienteCarteraDAO.php';
+
+require_once '../dto/dto_alerta.php';
+require_once '../dto/dto_ayuda_gestion.php';
+require_once '../dto/dto_campanias.php';
+require_once '../dto/dto_carga_final.php';
+require_once '../dto/dto_cartera.php';
+require_once '../dto/dto_clase.php';
+require_once '../dto/dto_clase_final.php';
+require_once '../dto/dto_cliente.php';
+require_once '../dto/dto_cliente_cartera.php';
+require_once '../dto/dto_compromiso_pago.php';
+require_once '../dto/dto_cuenta.php';
+require_once '../dto/dto_detalle_cuenta.php';
+require_once '../dto/dto_menu.php';
+require_once '../dto/dto_niveles_permisos.php';
+require_once '../dto/dto_permisos_detalle.php';
+require_once '../dto/dto_servicio.php';
+require_once '../dto/dto_url.php';
+require_once '../dto/dto_usuario.php';
+require_once '../dto/dto_usuario_servicio.php';
+	require_once '../dao/MYSQLClienteDAO.php';
+	require_once '../dao/MYSQLDatosAdicionalesClienteDAO.php';
+	require_once '../dao/MYSQLDatosAdicionalesCuentaDAO.php';
+	require_once '../dao/MYSQLDatosAdicionalesDetalleCuentaDAO.php';
+	require_once '../dao/MYSQLDetalleCuentaDAO.php';
+	require_once '../dao/MYSQLAyudaGestionDAO.php';
+
+<<<<<<< .mine
+    require_once '../dto/dto_alerta.php';
+    require_once '../dto/dto_ayuda_gestion.php';
+    require_once '../dto/dto_campanias.php';
+    require_once '../dto/dto_carga_final.php';
+    require_once '../dto/dto_cartera.php';
+    require_once '../dto/dto_clase.php';
+    require_once '../dto/dto_clase_final.php';
+    require_once '../dto/dto_cliente.php';
+    require_once '../dto/dto_cliente_cartera.php';
+    require_once '../dto/dto_compromiso_pago.php';
+    require_once '../dto/dto_cuenta.php';
+    require_once '../dto/dto_detalle_cuenta.php';
+    require_once '../dto/dto_menu.php';
+    require_once '../dto/dto_niveles_permisos.php';
+    require_once '../dto/dto_permisos_detalle.php';
+    require_once '../dto/dto_servicio.php';
+    require_once '../dto/dto_url.php';
+    require_once '../dto/dto_usuario.php';
+    require_once '../dto/dto_usuario_servicio.php';
+	
+
+    $cn=CommandController::getCommand();
+    $cn->process();
+
+=======
+$cn=CommandController::getCommand();
+$cn->process();
+>>>>>>> .r31
+?>

@@ -1,0 +1,110 @@
+var UsuarioDAO={
+    url:'../controller/ControllerCobrast.php',
+    type:'POST',
+    insert : function ( dataJson ) {
+		var dataJson=$.extend({command:'usuario',action:'save_usuario'},this.retornarData());
+        $.ajax({
+            url:this.url ,
+            type:this.type ,
+            dataType:'json',
+            data: dataJson ,
+            success: function ( obj ) {
+					if(obj.rst){
+						$('#layerMessage').html(templates.MsgInfo(obj.msg,'250px'));
+					}else{
+						$('#layerMessage').html(templates.MsgError(obj.msg,'250px'));
+					}
+				} ,
+            error : this.error_ajax
+        });
+    },
+	retornarData : function ( ) {
+		var dataJson={Id:$('#Usuario').val(),Nombre:$('#Nombre').val(),Paterno:$('#Paterno').val(),Materno:$('#Materno').val(),Dni:$('#DNI').val(),Clave:$('#Clave').val(),UsuarioCreacion:$('#hdCodUsuario').val(),UsuarioModificacion:$('#hdCodUsuario').val(),Email:$('#Email').val(),Servicio:$('#hdCodServicio').val(),TipoUsuario:$('#TipoUsuario').val(),Privilegio:$('#Privilegio').val(),FechaInicio:$('#FechaInicio').val(),FechaFin:$('#FechaFin').val()};
+		return dataJson;
+	},
+    update : function ( dataJson ) {
+		var dataJson=$.extend({command:'usuario',action:'update_usuario'},this.retornarData());
+        $.ajax({
+            url :this.url ,
+            type : this.type ,
+            dataType : 'json' ,
+            data : dataJson,
+            success : function ( obj ) {
+					if(obj.rst){
+						$('#layerMessage').html(templates.MsgInfo(obj.msg,'250px'));
+					}else{
+						$('#layerMessage').html(templates.MsgError(obj.msg,'250px'));
+					}
+				} ,
+            error : this.error_ajax
+        });
+    },
+    Delete : function ( dataJson ) {
+		var dataJson=$.extend({command:'usuario',action:'delete_usuario'},this.retornarData());	
+        $.ajax({
+            url : this.url ,
+            type : this.type ,
+            dataType : 'json' ,
+            data: dataJson ,
+            success : function ( obj ) {
+					if(obj.rst){
+						$('#layerMessage').html(templates.MsgInfo(obj.msg,'250px'));
+					}else{
+						$('#layerMessage').html(templates.MsgError(obj.msg,'250px'));
+					}
+				},
+            error : this.error_ajax
+        });
+    },
+	ListarServicios : function ( ) {
+		$.ajax({
+			   url : this.url,
+			   type : 'GET',
+			   dataType : 'json',
+			   data : {command:'usuario',action:'ListarServicio'},
+			   success : function ( obj ) {
+				   		var html='';
+				   		$.each(obj,function(key,data){
+							html+='<option value="'+data.id+'">'+data.nombre+'</option>';
+						});
+						$("#cbServicioSystem").html(html);
+				   },
+			   error : this.error_ajax
+			   });
+	},
+	ListarTipoUsuario : function ( ) {
+		$.ajax({
+			   url : this.url,
+			   type : 'GET',
+			   dataType : 'json',
+			   data : {command:'usuario',action:'ListarTipoUsuario'},
+			   success : function ( obj ) {
+				   		var html='';
+				   		$.each(obj,function(key,data){
+							html+='<option value="'+data.id+'">'+data.nombre+'</option>';
+						});
+						$("#TipoUsuario").html(html);
+				   },
+			   error : this.error_ajax
+			   });
+	},
+	ListarPrivilegios : function ( ) {
+		$.ajax({
+			   url : this.url,
+			   type : 'GET',
+			   dataType : 'json',
+			   data : {command:'usuario',action:'ListarPrivilegios'},
+			   success : function ( obj ) {
+				   		var html='';
+				   		$.each(obj,function(key,data){
+							html+='<option value="'+data.id+'">'+data.nombre+'</option>';
+						});
+						$("#Privilegio").html(html);
+				   },
+			   error : this.error_ajax
+			   });	
+	},
+	error_ajax : function ( ) {
+		$('#layerMessage').html(templates.MsgError('Error en el servidor','200px'));
+	}
+}

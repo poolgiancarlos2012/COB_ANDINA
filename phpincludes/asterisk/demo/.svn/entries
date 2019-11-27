@@ -1,0 +1,70 @@
+10
+
+dir
+0
+https://pc-liz/svn/COBRAST/trunk/COBRAST/phpincludes/asterisk/demo
+https://pc-liz/svn/COBRAST
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+01c8336d-b25a-a348-ac1b-a91b532ad82c
+
+example.php
+file
+
+
+
+add
+
+AsteriskManagerException.php
+file
+
+
+
+add
+
+AsteriskManager.php
+file
+
+
+
+add
+
+nbproject
+dir
+
+
+
+add
+
+PEAR
+dir
+
+
+
+add
+
+demo_2.php
+file
+
+
+
+add
+

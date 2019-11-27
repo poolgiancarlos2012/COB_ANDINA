@@ -1,0 +1,71 @@
+<?php
+
+class servletAtencionCliente extends CommandController {
+    public function doPost ( ) {
+        switch ($_POST['action']):
+            case '':
+
+                break;
+            case '':
+
+                break;
+            endswitch;
+    }
+    public function doGet ( ) {
+        $daoCampania=DAOFactory::getDAOCampania();
+        $daoUsuarioServicio=DAOFactory::getDAOUsuarioServicio();
+        switch ($_GET['action']):
+            case 'ListarCampanias':
+                $dto=new dto_servicio ;
+                $dto->setId($_GET['Servicio']);
+                echo json_encode($daoCampania->queryByIdName($dto));
+                break;
+            case 'ListarServicio':
+                $dto=new dto_usuario ;
+                $dto->setId($_GET['Usuario']);
+                echo json_encode($daoUsuarioServicio->queryServiciosUsuario($dto));
+                break;
+            case 'DatosAdicionalesOperacion':
+
+                break;
+            case 'DatosAdicionalesCuenta':
+                break;
+            case 'DatosAdicionalesCliente':
+                break;
+            case 'DatosCuentaCliente':
+                break;
+            case 'DatosCliente':
+                break;
+            case 'jqgrid_busquedaManual':
+                echo '{}';
+                break;
+            case 'jqgrid_busquedaBase':
+                echo '{}';
+                break;
+            case 'jqgrid_matrizBusqueda':
+                echo '{}';
+                break;
+            case 'jqgrid_llamada':
+                echo '{}';
+                break;
+            case 'jqgrid_direcciones':
+                echo '{}';
+                break;
+            case 'jqgrid_cuenta':
+                echo '{}';
+                break;
+            case 'jqgrid_operaciones':
+                echo '{}';
+                break;
+            case 'jqgrid_pagos':
+                echo '{}';
+                break;
+            case 'jqgrid_telefonos':
+                echo '{}';
+                break;
+            endswitch;
+
+    }
+}
+
+?>
